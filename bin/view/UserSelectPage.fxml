@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserSelectController">
+   <center>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Just BeWeave" />
+            <Label text="Please select your role:" />
+            <RadioButton fx:id="attendeeRButton" mnemonicParsing="false" selected="true" text="Attendee">
+               <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="judgeRButton" mnemonicParsing="false" text="Judge" toggleGroup="$group" />
+            <RadioButton fx:id="adminRButton" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
+            <HBox>
+               <children>
+                  <Region maxHeight="25.0" minWidth="70.0" />
+                  <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
