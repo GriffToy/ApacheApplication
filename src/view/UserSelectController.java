@@ -22,26 +22,41 @@ public class UserSelectController {
 	
 	@FXML
 	private void submitButtonClicked(){
+		Parent root;
+		Stage stage = (Stage)submitButton.getScene().getWindow();
 		System.out.print("The user selected: ");
 		if(attendeeRButton.isSelected()){
 			System.out.println("Attendee");
+			try {
+				root = FXMLLoader.load(getClass().getResource("EventPage.fxml"));
+				stage.setScene(new Scene(root));
+				stage.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else if(judgeRButton.isSelected()){
 			System.out.println("Judge");
+			try {
+				root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+				stage.setScene(new Scene(root));
+				stage.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else if(adminRButton.isSelected()){
 			System.out.println("Admin");
-		}
-		Parent root;
-		Stage stage = (Stage)submitButton.getScene().getWindow();
-		System.out.println(stage);
-		try {
-			root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
+				stage.setScene(new Scene(root));
+				stage.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		System.out.println("This button should lead to the login page");
 	}

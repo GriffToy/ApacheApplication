@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventController">
+   <center>
+      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Event Name:" />
+                  <ChoiceBox prefWidth="150.0" />
+               </children>
+            </HBox>
+            <Label text="Event Details" />
+            <Label text="Location" />
+            <Label text="Date and Time" />
+            <Label text="Event Info" />
+            <Label text="Sponsors" />
+            <Label text="Contact Criteria &amp; Judges" />
+            <HBox spacing="10.0">
+               <children>
+                  <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
+                  <Button fx:id="OKButton" mnemonicParsing="false" onAction="#okayButtonClicked" text="OK" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
