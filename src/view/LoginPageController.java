@@ -25,7 +25,7 @@ public class LoginPageController extends BorderPane {
 	private PasswordField passwordField;
 	
 	/**
-	 * @author Griff
+	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void cancelButtonClicked(){
@@ -44,20 +44,36 @@ public class LoginPageController extends BorderPane {
 	}
 	
 	/**
-	 * @author Griff
+	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void loginButtonClicked(){
 		System.out.println("Login button. This feature has not been implemented yet...");
 		System.out.println("The user's username is: " + userNameField.getText());
 		System.out.println("The user's password is: " + passwordField.getText());
+		if(validateUser(userNameField.getText(), passwordField.getText())){
+			// Go on to next screen
+		}
+		else{
+			// Alert the user that the username and password is incorrect
+		}
 	}
 	
 	/**
-	 * @author Griff
+	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void registerButtonClicked(){
 		System.out.println("Register button. This feature has not been implemented yet...");
+	}
+	
+	/**
+	 * @author Griffin Toyoda
+	 * @param username entered on login screen
+	 * @param password entered on login screen
+	 * @return true if username and password is valid pair, false otherwise
+	 */
+	private boolean validateUser(String username, String password){
+		return true;
 	}
 }

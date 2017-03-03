@@ -23,11 +23,11 @@ public class UserSelectController {
 	public enum UserType{
 		NONE, ATTENDEE, JUDGE, ADMIN
 	}
-	
+	// Maybe create a model class for this?
 	private static UserType user = UserType.NONE;
 	
 	/**
-	 *@author Griff
+	 *@author Griffin Toyoda
 	 */
 	@FXML
 	private void submitButtonClicked(){
@@ -71,6 +71,10 @@ public class UserSelectController {
 		}
 	}
 	
+	/**
+	 * @author Griffin Toyoda
+	 * @return user type (NONE, ATTENDEE, JUDGE, or ADMIN)
+	 */
 	public static UserType getUser(){
 		return user;
 	}

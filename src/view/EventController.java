@@ -27,7 +27,7 @@ public class EventController implements Initializable{
 			"Yarnosphere", "Fiber Fair at Lambtown", "Stitches West", "Fiber Fest");
 
 	/**
-	 * @author Griff
+	 * @author Griffin Toyoda
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -37,7 +37,7 @@ public class EventController implements Initializable{
 	}
 	
 	/**
-	 * @author Griff
+	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void cancelButtonClicked(){
@@ -48,13 +48,12 @@ public class EventController implements Initializable{
 			stage.setScene(new Scene(root));
 			stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	/**
-	 * @author Griff
+	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void okayButtonClicked(){
@@ -65,7 +64,6 @@ public class EventController implements Initializable{
 			stage.setScene(new Scene(root));
 			stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
