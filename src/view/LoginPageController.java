@@ -2,7 +2,6 @@ package view;
 
 import java.io.IOException;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +24,9 @@ public class LoginPageController extends BorderPane {
 	@FXML
 	private PasswordField passwordField;
 	
+	/**
+	 * @author Griff
+	 */
 	@FXML
 	private void cancelButtonClicked(){
 		// Go back to the UserSelect page.
@@ -41,6 +43,9 @@ public class LoginPageController extends BorderPane {
 		//Platform.exit();
 	}
 	
+	/**
+	 * @author Griff
+	 */
 	@FXML
 	private void loginButtonClicked(){
 		System.out.println("Login button. This feature has not been implemented yet...");
@@ -48,6 +53,9 @@ public class LoginPageController extends BorderPane {
 		System.out.println("The user's password is: " + passwordField.getText());
 	}
 	
+	/**
+	 * @author Griff
+	 */
 	@FXML
 	private void registerButtonClicked(){
 		System.out.println("Register button. This feature has not been implemented yet...");

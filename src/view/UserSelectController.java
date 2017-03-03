@@ -19,14 +19,23 @@ public class UserSelectController {
 	private RadioButton adminRButton;
 	@FXML
 	private Button submitButton;
+	 
+	public enum UserType{
+		NONE, ATTENDEE, JUDGE, ADMIN
+	}
 	
+	private static UserType user = UserType.NONE;
+	
+	/**
+	 *@author Griff
+	 */
 	@FXML
 	private void submitButtonClicked(){
 		Parent root;
 		Stage stage = (Stage)submitButton.getScene().getWindow();
-		System.out.print("The user selected: ");
 		if(attendeeRButton.isSelected()){
-			System.out.println("Attendee");
+			user = UserType.ATTENDEE;
+			// Load event page
 			try {
 				root = FXMLLoader.load(getClass().getResource("EventPage.fxml"));
 				stage.setScene(new Scene(root));
@@ -37,7 +46,8 @@ public class UserSelectController {
 			}
 		}
 		else if(judgeRButton.isSelected()){
-			System.out.println("Judge");
+			user = UserType.JUDGE;
+			// Load login page
 			try {
 				root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
 				stage.setScene(new Scene(root));
@@ -48,7 +58,8 @@ public class UserSelectController {
 			}
 		}
 		else if(adminRButton.isSelected()){
-			System.out.println("Admin");
+			user = UserType.ADMIN;
+			// Load login page
 			try {
 				root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
 				stage.setScene(new Scene(root));
@@ -58,6 +69,9 @@ public class UserSelectController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("This button should lead to the login page");
+	}
+	
+	public static UserType getUser(){
+		return user;
 	}
 }

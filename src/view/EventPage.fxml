@@ -13,7 +13,7 @@
             <HBox spacing="10.0">
                <children>
                   <Label text="Event Name:" />
-                  <ChoiceBox prefWidth="150.0" />
+                  <ComboBox fx:id="eventsComboBox" prefWidth="150.0" />
                </children>
             </HBox>
             <Label text="Event Details" />
