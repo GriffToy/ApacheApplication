@@ -62,7 +62,7 @@ public class LoginPageController {
 	 */
 	@FXML
 	private void registerButtonClicked(){
-		System.out.println("Register button. This feature has not been implemented yet...");
+		mainApp.showRegisterPage();
 	}
 	
 	/**

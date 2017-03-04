@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.EventController;
 import view.LoginPageController;
+import view.RegisterPageController;
 import view.UserSelectController;
 
 public class Main extends Application {
@@ -102,6 +103,27 @@ public class Main extends Application {
 
             // Give the controller access to the main app.
             EventController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Shows the Register page inside the root layout.
+     */
+    public void showRegisterPage() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/RegisterPage.fxml"));
+            AnchorPane registerPage = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(registerPage);
+
+            // Give the controller access to the main app.
+            RegisterPageController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
