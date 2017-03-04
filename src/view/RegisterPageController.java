@@ -1,8 +1,13 @@
 package view;
 
+import java.util.Optional;
+
 import controller.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -39,7 +44,18 @@ public class RegisterPageController {
     @FXML
     private void cancelButtonClicked(){
     	// Popup warning, go back to login page if user confirms they want to go back.
-    	mainApp.showLoginPage();
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Confirmation Dialog");
+    	alert.setHeaderText("Are you sure you want to return to the login page?");
+    	alert.setContentText("Registration details will be lost");
+
+    	Optional<ButtonType> result = alert.showAndWait();
+    	if (result.get() == ButtonType.OK){
+    	    // ... user chose OK
+        	mainApp.showLoginPage();
+    	} else {
+    	    // ... user chose CANCEL or closed the dialog
+    	}
     }
     
     @FXML
