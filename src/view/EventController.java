@@ -1,19 +1,15 @@
 package view;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.stage.Stage;
 
 public class EventController implements Initializable{
 	@FXML
@@ -25,6 +21,18 @@ public class EventController implements Initializable{
 	@FXML
 	private ObservableList<String> events = FXCollections.observableArrayList(
 			"Yarnosphere", "Fiber Fair at Lambtown", "Stitches West", "Fiber Fest");
+	
+    // Reference to the main application.
+    private Main mainApp;
+    
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
 
 	/**
 	 * @author Griffin Toyoda
@@ -41,15 +49,7 @@ public class EventController implements Initializable{
 	 */
 	@FXML
 	private void cancelButtonClicked(){
-		Parent root;
-		Stage stage = (Stage)cancelButton.getScene().getWindow();
-		try {
-			root = FXMLLoader.load(getClass().getResource("UserSelectPage.fxml"));
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		mainApp.showUserSelectPage();
 	}
 	
 	/**
@@ -57,14 +57,6 @@ public class EventController implements Initializable{
 	 */
 	@FXML
 	private void okayButtonClicked(){
-		Parent root;
-		Stage stage = (Stage)OKButton.getScene().getWindow();
-		try {
-			root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		mainApp.showLoginPage();
 	}
 }

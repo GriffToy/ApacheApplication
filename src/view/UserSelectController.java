@@ -1,14 +1,9 @@
 package view;
 
-import java.io.IOException;
-
+import controller.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.stage.Stage;
 
 public class UserSelectController {
 	@FXML
@@ -26,48 +21,37 @@ public class UserSelectController {
 	// Maybe create a model class for this?
 	private static UserType user = UserType.NONE;
 	
+    // Reference to the main application.
+    private Main mainApp;
+    
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+	
 	/**
 	 *@author Griffin Toyoda
 	 */
 	@FXML
 	private void submitButtonClicked(){
-		Parent root;
-		Stage stage = (Stage)submitButton.getScene().getWindow();
 		if(attendeeRButton.isSelected()){
 			user = UserType.ATTENDEE;
 			// Load event page
-			try {
-				root = FXMLLoader.load(getClass().getResource("EventPage.fxml"));
-				stage.setScene(new Scene(root));
-				stage.show();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mainApp.showEventPage();
 		}
 		else if(judgeRButton.isSelected()){
 			user = UserType.JUDGE;
 			// Load login page
-			try {
-				root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
-				stage.setScene(new Scene(root));
-				stage.show();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mainApp.showLoginPage();
 		}
 		else if(adminRButton.isSelected()){
 			user = UserType.ADMIN;
 			// Load login page
-			try {
-				root = FXMLLoader.load(getClass().getResource("LoginPage.fxml"));
-				stage.setScene(new Scene(root));
-				stage.show();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			mainApp.showLoginPage();
 		}
 	}
 	

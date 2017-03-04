@@ -1,18 +1,12 @@
 package view;
 
-import java.io.IOException;
-
+import controller.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
-public class LoginPageController extends BorderPane {
+public class LoginPageController {
 	@FXML
 	private Button cancelButton;
 	@FXML
@@ -24,21 +18,25 @@ public class LoginPageController extends BorderPane {
 	@FXML
 	private PasswordField passwordField;
 	
+    // Reference to the main application.
+    private Main mainApp;
+    
+    /**
+     * Is called by the main application to give a reference back to itself.
+     * 
+     * @param mainApp
+     */
+    public void setMainApp(Main mainApp) {
+        this.mainApp = mainApp;
+    }
+	
 	/**
 	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void cancelButtonClicked(){
 		// Go back to the UserSelect page.
-		Parent root;
-		Stage stage = (Stage)cancelButton.getScene().getWindow();
-		try {
-			root = FXMLLoader.load(getClass().getResource("UserSelectPage.fxml"));
-			stage.setScene(new Scene(root));
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		mainApp.showUserSelectPage();
 		// Or close the window.
 		//Platform.exit();
 	}
