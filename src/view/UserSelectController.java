@@ -4,6 +4,7 @@ import controller.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import model.User.UserType;
 
 public class UserSelectController {
 	@FXML
@@ -14,19 +15,13 @@ public class UserSelectController {
 	private RadioButton adminRButton;
 	@FXML
 	private Button submitButton;
-	 
-	public enum UserType{
-		NONE, ATTENDEE, JUDGE, ADMIN
-	}
-	// Maybe create a model class for this?
-	private static UserType user = UserType.NONE;
 	
     // Reference to the main application.
     private Main mainApp;
     
     /**
      * Is called by the main application to give a reference back to itself.
-     * 
+     * @author Griffin Toyoda
      * @param mainApp
      */
     public void setMainApp(Main mainApp) {
@@ -39,27 +34,19 @@ public class UserSelectController {
 	@FXML
 	private void submitButtonClicked(){
 		if(attendeeRButton.isSelected()){
-			user = UserType.ATTENDEE;
+			mainApp.currentUser.setUserType(UserType.ATTENDEE);
 			// Load event page
 			mainApp.showEventPage();
 		}
 		else if(judgeRButton.isSelected()){
-			user = UserType.JUDGE;
+			mainApp.currentUser.setUserType(UserType.JUDGE);
 			// Load login page
 			mainApp.showLoginPage();
 		}
 		else if(adminRButton.isSelected()){
-			user = UserType.ADMIN;
+			mainApp.currentUser.setUserType(UserType.ADMIN);
 			// Load login page
 			mainApp.showLoginPage();
 		}
-	}
-	
-	/**
-	 * @author Griffin Toyoda
-	 * @return user type (NONE, ATTENDEE, JUDGE, or ADMIN)
-	 */
-	public static UserType getUser(){
-		return user;
 	}
 }

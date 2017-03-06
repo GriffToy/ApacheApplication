@@ -4,24 +4,43 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventController">
    <children>
-      <VBox spacing="10.0">
+      <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox spacing="10.0">
+            <GridPane hgap="10.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="147.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="18.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="152.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
                   <Label text="Event Name:" />
-                  <ComboBox fx:id="eventsComboBox" prefWidth="150.0" />
+                  <ComboBox fx:id="eventsComboBox" GridPane.columnIndex="2" />
+                  <Label text="Event Details" GridPane.rowIndex="1" />
+                  <Label text="Date and Time" GridPane.rowIndex="3" />
+                  <Label text="Event Info" GridPane.rowIndex="4" />
+                  <Label text="Sponsors" GridPane.rowIndex="5" />
+                  <Label text="Contact Criteria &amp; Judges" GridPane.rowIndex="6" />
+                  <Label fx:id="eventDetails" text="None" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="eventInfo" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="judges" text="None" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Label text="Location" GridPane.rowIndex="2" />
+                  <Label fx:id="eventLocation" text="None" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
-            </HBox>
-            <Label text="Event Details" />
-            <Label text="Location" />
-            <Label text="Date and Time" />
-            <Label text="Event Info" />
-            <Label text="Sponsors" />
-            <Label text="Contact Criteria &amp; Judges" />
+            </GridPane>
             <HBox spacing="10.0">
                <children>
                   <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" HBox.hgrow="ALWAYS" />

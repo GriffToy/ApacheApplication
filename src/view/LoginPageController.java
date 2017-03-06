@@ -23,7 +23,7 @@ public class LoginPageController {
     
     /**
      * Is called by the main application to give a reference back to itself.
-     * 
+     * @author Griffin Toyoda
      * @param mainApp
      */
     public void setMainApp(Main mainApp) {

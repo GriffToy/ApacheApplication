@@ -3,12 +3,16 @@ package controller;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.User;
+import model.WeaveEvent;
 import view.EventController;
 import view.LoginPageController;
 import view.RegisterPageController;
@@ -17,6 +21,28 @@ import view.UserSelectController;
 public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
+    public User currentUser; // Testing purposes. I don't know where to create a user within the program.
+    
+    /**
+     * Constructor for testing purposes
+     */
+    public Main(){        
+    	// Add some sample data
+    	weaveEventList.add(new WeaveEvent("Yarnosphere", 1));
+    	weaveEventList.add(new WeaveEvent("Fiber Fair at Lambtown", 2));
+    	weaveEventList.add(new WeaveEvent("Stitches West", 3));
+    	weaveEventList.add(new WeaveEvent("Fiber Fest", 4));
+    	currentUser = new User();
+    }
+    
+    /**
+     * Returns the data as an observable list of WeaveEvents. 
+     * @return
+     */
+    public ObservableList<WeaveEvent> getWeaveEventList() {
+        return weaveEventList;
+    }
 
 	@Override
 	public void start(Stage primaryStage) {

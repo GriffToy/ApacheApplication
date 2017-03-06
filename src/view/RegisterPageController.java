@@ -34,13 +34,16 @@ public class RegisterPageController {
     
     /**
      * Is called by the main application to give a reference back to itself.
-     * 
+     * @author Griffin Toyoda
      * @param mainApp
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
     
+    /**
+     * @author Griffin Toyoda
+     */
     @FXML
     private void cancelButtonClicked(){
     	// Popup warning, go back to login page if user confirms they want to go back.
@@ -58,6 +61,9 @@ public class RegisterPageController {
     	}
     }
     
+    /**
+     * @author Griffin Toyoda
+     */
     @FXML
     private void submitButtonClicked(){
     	// Store data and go back to the login page.

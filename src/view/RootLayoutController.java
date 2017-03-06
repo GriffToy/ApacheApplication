@@ -15,6 +15,9 @@ public class RootLayoutController {
 	private static String aboutUs = "We are Team Apache:\n Brandon Gibbons --Gibbo\n Jorie Fernandez --J \n Griffin Toyoda --Griff\n "
 			+ "Zeeshan Aziz Karim --**Needs nickname**\n Max Kullish --**Needs Nickname**";
 	
+	/**
+	 * @author Griffin Toyoda
+	 */
 	@FXML
 	private void onAboutClick(){
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -24,6 +27,9 @@ public class RootLayoutController {
 		alert.showAndWait();
 	}
 	
+	/**
+	 * @author Griffin Toyoda
+	 */
 	@FXML
 	private void close(){
 		Platform.exit();
