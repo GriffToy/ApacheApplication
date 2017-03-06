@@ -2,10 +2,13 @@ package view;
 
 import controller.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import model.User.UserType;
 
 public class LoginPageController {
 	@FXML
@@ -49,11 +52,11 @@ public class LoginPageController {
 	 */
 	@FXML
 	private void loginButtonClicked(){
-		System.out.println("Login button. This feature has not been implemented yet...");
 		System.out.println("The user's username is: " + userNameField.getText());
 		System.out.println("The user's password is: " + passwordField.getText());
 		if(validateUser(userNameField.getText(), passwordField.getText())){
 			// Go on to next screen
+			System.out.println("Valid user");
 		}
 		else{
 			// Alert the user that the username and password is incorrect
@@ -66,7 +69,15 @@ public class LoginPageController {
 	 */
 	@FXML
 	private void registerButtonClicked(){
-		mainApp.showRegisterPage();
+		if(mainApp.currentUser.getUserType() == UserType.ATTENDEE){
+			mainApp.showRegisterPage();
+		}
+		else{
+	    	Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setTitle("Error");
+	    	alert.setHeaderText("Only attendees are allowed to register!");
+	    	alert.showAndWait();
+		}
 	}
 	
 	/**
@@ -76,6 +87,13 @@ public class LoginPageController {
 	 * @return true if username and password is valid pair, false otherwise
 	 */
 	private boolean validateUser(String username, String password){
+		// Check if there is a user with given username.
+		if(mainApp.userNameUserMap.containsKey(username)){
+			// Check if password of user matches given password.
+			if(mainApp.userNameUserMap.get(username).getPassword().equals(password)){
+				return true;
+			}
+		}
 		return false;
 	}
 }

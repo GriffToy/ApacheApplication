@@ -36,6 +36,10 @@ public class Main extends Application {
     	weaveEventList.add(new WeaveEvent("Stitches West", 3));
     	weaveEventList.add(new WeaveEvent("Fiber Fest", 4));
     	userNameUserMap = new HashMap<String, User>();
+    	User admin = new User();
+    	admin.setUsername("admin");
+    	admin.setPassword("password");
+    	userNameUserMap.put(admin.getUsername(), admin);
     }
     
     /**
@@ -106,7 +110,7 @@ public class Main extends Application {
     public void showLoginPage() {
         try {
         	System.out.println("User is of type: " + currentUser.getUserType());
-        	System.out.println("User is attendee event: " + currentUser.getEventID());
+        	System.out.println("User is attending event: " + currentUser.getEventID());
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/LoginPage.fxml"));
