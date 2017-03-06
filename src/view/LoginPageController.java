@@ -59,10 +59,10 @@ public class LoginPageController {
 			System.out.println("Valid user");
 			// Check to see which type of user they are
 			if(mainApp.currentUser.getUserType() == UserType.ATTENDEE){
-				mainApp.showEntryRegistrationPage();
+				mainApp.showAttendeePage();
 			}
 			// Show entry registration page anyways (testing)
-			mainApp.showEntryRegistrationPage();
+			mainApp.showAttendeePage();
 		}
 		else{
 			// Alert the user that the username and password is incorrect

@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.User;
 import model.WeaveEvent;
+import view.AttendeeController;
 import view.EntryRegistrationController;
 import view.EventController;
 import view.LoginPageController;
@@ -187,13 +188,35 @@ public class Main extends Application {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/EntryRegistrationPage.fxml"));
-            AnchorPane registerPage = (AnchorPane) loader.load();
+            AnchorPane EntryRegistrationPage = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
-            rootLayout.setCenter(registerPage);
+            rootLayout.setCenter(EntryRegistrationPage);
 
             // Give the controller access to the main app.
             EntryRegistrationController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Shows the Register page inside the root layout.
+     * @author Griffin Toyoda
+     */
+    public void showAttendeePage() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/AttendeePage.fxml"));
+            AnchorPane attendeePage = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(attendeePage);
+
+            // Give the controller access to the main app.
+            AttendeeController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();

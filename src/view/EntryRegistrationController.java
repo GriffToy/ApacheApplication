@@ -45,6 +45,11 @@ public class EntryRegistrationController {
 	@FXML
 	private void anotherEntryButtonClicked(){
 		System.out.println("This feature has not been implemented yet");
+		// TODO Validate entry
+		// TODO Save Entry details to a file
+		if(mainApp != null){
+			mainApp.showEntryRegistrationPage();
+		}
 	}
 	
 	/**
@@ -53,7 +58,7 @@ public class EntryRegistrationController {
 	@FXML
 	private void cancelButtonClicked(){
 		if(mainApp != null){
-			mainApp.showLoginPage();
+			mainApp.showAttendeePage();
 		}
 	}
 	
@@ -63,5 +68,9 @@ public class EntryRegistrationController {
 	@FXML
 	private void submitButtonClicked(){
 		System.out.println("This feature has not been implemented yet");
+		// TODO Validate entry
+		if(mainApp != null){
+			mainApp.showAttendeePage();
+		}
 	}
 }
