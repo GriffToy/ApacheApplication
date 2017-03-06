@@ -29,6 +29,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
             </GridPane>
+            <Label fx:id="invalidLoginLabel" text=" " textFill="RED" />
             <Label text="No account yet? Click Register to create." />
             <HBox alignment="TOP_RIGHT" spacing="10.0">
                <children>

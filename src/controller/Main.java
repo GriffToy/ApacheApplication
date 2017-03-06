@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
     public User currentUser; // Testing purposes. I don't know where to create a user within the program.
+    public HashMap<String, User> userNameUserMap;
     
     /**
      * Constructor for testing purposes
@@ -33,11 +35,12 @@ public class Main extends Application {
     	weaveEventList.add(new WeaveEvent("Fiber Fair at Lambtown", 2));
     	weaveEventList.add(new WeaveEvent("Stitches West", 3));
     	weaveEventList.add(new WeaveEvent("Fiber Fest", 4));
-    	currentUser = new User();
+    	userNameUserMap = new HashMap<String, User>();
     }
     
     /**
      * Returns the data as an observable list of WeaveEvents. 
+     * @author Griffin Toyoda
      * @return
      */
     public ObservableList<WeaveEvent> getWeaveEventList() {
@@ -55,6 +58,7 @@ public class Main extends Application {
 
     /**
      * Initializes the root layout with the menu bar.
+     * @author Griffin Toyoda
      */
     public void initRootLayout() {
         try {
@@ -74,9 +78,11 @@ public class Main extends Application {
     
     /**
      * Shows the User Select page inside the root layout.
+     * @author Griffin Toyoda
      */
     public void showUserSelectPage() {
         try {
+        	currentUser = new User();
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/UserSelectPage.fxml"));
@@ -95,9 +101,12 @@ public class Main extends Application {
 	
     /**
      * Shows the Login page inside the root layout.
+     * @author Griffin Toyoda
      */
     public void showLoginPage() {
         try {
+        	System.out.println("User is of type: " + currentUser.getUserType());
+        	System.out.println("User is attendee event: " + currentUser.getEventID());
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/LoginPage.fxml"));
@@ -116,6 +125,7 @@ public class Main extends Application {
     
     /**
      * Shows the Event page inside the root layout.
+     * @author Griffin Toyoda
      */
     public void showEventPage() {
         try {
@@ -137,6 +147,7 @@ public class Main extends Application {
     
     /**
      * Shows the Register page inside the root layout.
+     * @author Griffin Toyoda
      */
     public void showRegisterPage() {
         try {

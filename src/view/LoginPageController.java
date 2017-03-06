@@ -3,6 +3,7 @@ package view;
 import controller.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -17,6 +18,8 @@ public class LoginPageController {
 	private TextField userNameField;
 	@FXML
 	private PasswordField passwordField;
+	@FXML
+	private Label invalidLoginLabel;
 	
     // Reference to the main application.
     private Main mainApp;
@@ -54,6 +57,7 @@ public class LoginPageController {
 		}
 		else{
 			// Alert the user that the username and password is incorrect
+			invalidLoginLabel.setText("Invalid Username or Password");
 		}
 	}
 	
@@ -72,6 +76,6 @@ public class LoginPageController {
 	 * @return true if username and password is valid pair, false otherwise
 	 */
 	private boolean validateUser(String username, String password){
-		return true;
+		return false;
 	}
 }

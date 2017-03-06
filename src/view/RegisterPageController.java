@@ -9,9 +9,20 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class RegisterPageController {
+	private static int minUsernameLength = 1;
+	private static int minPasswordLength = 1;
+	private static int minFirstNameLength = 1;
+	private static int minLastNameLength = 1;
+	private static int minEmailLength = 1;
+	@FXML
+	TextField userNameField;
+	@FXML
+	PasswordField passwordField;
 	@FXML
 	TextField firstName;
 	@FXML
@@ -28,6 +39,8 @@ public class RegisterPageController {
 	Button cancelButton;
 	@FXML
 	Button submitButton;
+	@FXML
+	Label warningText;
 	
     // Reference to the main application.
     private Main mainApp;
@@ -66,7 +79,67 @@ public class RegisterPageController {
      */
     @FXML
     private void submitButtonClicked(){
-    	// Store data and go back to the login page.
-    	mainApp.showLoginPage();
+    	// Verify filed are setup
+    	if(verifyFields()){
+	    	// Store data and go back to the login page.
+	    	mainApp.currentUser.setAttendeeID(-1);
+	    	mainApp.currentUser.setUsername(userNameField.getText());
+	    	mainApp.currentUser.setPassword(passwordField.getText());
+	    	mainApp.currentUser.setFirstName(firstName.getText());
+	    	mainApp.currentUser.setLastName(lastName.getText());
+	    	mainApp.currentUser.setPhoneNumber(Integer.parseInt(phoneNumber.getText()));
+	    	mainApp.currentUser.setEmailAddress(emailAddress.getText());
+	    	mainApp.userNameUserMap.put(userNameField.getText(), mainApp.currentUser);
+	    	System.out.println(mainApp.currentUser);
+	    	mainApp.showLoginPage();
+    	}
+    }
+    
+    /**
+     * Sets the warning text to the field that is incorrect.
+     * @author Griffin Toyoda
+     * @return True if fields in the registration page are valid, false otherwise.
+     */
+    private boolean verifyFields(){
+    	boolean phoneNumberIsInt = false;
+    	try{
+    		Integer.parseInt(phoneNumber.getText());
+    		phoneNumberIsInt = true;
+    	}
+    	catch (NumberFormatException e){
+    	}
+    	if(userNameField.getText().length() < minUsernameLength){
+    		warningText.setText("Username has to be longer than " + minUsernameLength + " characters.");
+    		return false;
+    	}
+    	else if(passwordField.getText().length() < minPasswordLength){
+    		warningText.setText("Password has to be longer than " + minPasswordLength + " characters.");
+    		return false;
+    	}
+    	else if(firstName.getText().length() < minFirstNameLength){
+    		warningText.setText("Please enter your first name.");
+    		return false;
+    	}
+    	else if(lastName.getText().length() < minLastNameLength){
+    		warningText.setText("Please enter your last name.");
+    		return false;
+    	}
+    	else if(phoneNumber.getText().length() != 10){
+    		warningText.setText("Please enter a 10 digit phone number in the form of: 0123456789.");
+    		return false;
+    	}
+    	else if(!phoneNumberIsInt){
+    		warningText.setText("Phone number is not a number.");
+    		return false;
+    	}
+    	else if(emailAddress.getText().length() < minEmailLength){
+    		warningText.setText("Please enter your email address.");
+    		return false;
+    	}
+    	else if(!emailAddress.getText().contains("@")){
+    		warningText.setText("Please enter a valid email address.");
+    		return false;
+    	}
+    	return true;
     }
 }

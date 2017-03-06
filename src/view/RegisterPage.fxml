@@ -23,23 +23,27 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="First Name: " />
-                  <TextField fx:id="firstName" GridPane.columnIndex="1" />
-                  <Label text="Last Name:" GridPane.columnIndex="2" />
-                  <TextField fx:id="lastName" GridPane.columnIndex="3" />
-                  <Label text="Phone Number" GridPane.rowIndex="1" />
-                  <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Email Address" GridPane.rowIndex="2" />
-                  <TextField fx:id="emailAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Username" />
+                  <TextField fx:id="userNameField" GridPane.columnIndex="1" />
+                  <Label text="Password" GridPane.columnIndex="2" />
+                  <PasswordField fx:id="passwordField" GridPane.columnIndex="3" />
+                  <Label text="First Name: " GridPane.rowIndex="1" />
+                  <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Last Name:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="lastName" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label text="Phone Number" GridPane.rowIndex="2" />
+                  <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Email Address" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <TextField fx:id="emailAddress" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <Label text="Category" GridPane.rowIndex="3" />
                   <ComboBox fx:id="category" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Action" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="action" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Action" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="action" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                </children>
             </GridPane>
+            <Label fx:id="warningText" text=" " textFill="RED" />
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />

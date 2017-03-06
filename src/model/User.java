@@ -13,7 +13,51 @@ public class User {
 	private String lastName;
 	private String emailAddress;
 	private int phoneNumber;
+	private int eventID;
 	
+	public User(){
+		this.userType = UserType.NONE;
+		this.attendeeID = -1;
+		this.username = null;
+		this.password = null;
+		this.firstName = null;
+		this.lastName = null;
+		this.emailAddress = null;
+		this.phoneNumber = -1;
+		this.eventID = -1;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder returnString = new StringBuilder();
+		returnString.append("User is: ");
+		returnString.append(userType);
+		returnString.append("\nID: ");
+		returnString.append(attendeeID);
+		returnString.append("\nusername: ");
+		returnString.append(username);
+		returnString.append("\npassword: ");
+		returnString.append(password);
+		returnString.append("\nfirstName: ");
+		returnString.append(firstName);
+		returnString.append("\nlastName: ");
+		returnString.append(lastName);
+		returnString.append("\nemailAddress: ");
+		returnString.append(emailAddress);
+		returnString.append("\nphoneNumber: ");
+		returnString.append(phoneNumber);
+		returnString.append("\neventID: ");
+		returnString.append(eventID);
+		returnString.append("\n");
+		return returnString.toString();
+	}
+	
+	public int getEventID() {
+		return eventID;
+	}
+	public void setEventID(int eventID) {
+		this.eventID = eventID;
+	}
 	public UserType getUserType() {
 		return userType;
 	}

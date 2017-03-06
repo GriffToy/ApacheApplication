@@ -94,6 +94,7 @@ public class EventController {
 	 */
 	@FXML
 	private void okayButtonClicked(){
+		mainApp.currentUser.setEventID(eventsComboBox.getValue().getEventID());
 		mainApp.showLoginPage();
 	}
 }
