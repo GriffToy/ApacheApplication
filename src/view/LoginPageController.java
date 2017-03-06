@@ -57,6 +57,12 @@ public class LoginPageController {
 		if(validateUser(userNameField.getText(), passwordField.getText())){
 			// Go on to next screen
 			System.out.println("Valid user");
+			// Check to see which type of user they are
+			if(mainApp.currentUser.getUserType() == UserType.ATTENDEE){
+				mainApp.showEntryRegistrationPage();
+			}
+			// Show entry registration page anyways (testing)
+			mainApp.showEntryRegistrationPage();
 		}
 		else{
 			// Alert the user that the username and password is incorrect

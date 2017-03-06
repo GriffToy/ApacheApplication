@@ -85,12 +85,14 @@ public class RegisterPageController {
 	    	mainApp.currentUser.setAttendeeID(-1);
 	    	mainApp.currentUser.setUsername(userNameField.getText());
 	    	mainApp.currentUser.setPassword(passwordField.getText());
+	    	// TODO Encrypt password. http://blog.jerryorr.com/2012/05/secure-password-storage-lots-of-donts.html
 	    	mainApp.currentUser.setFirstName(firstName.getText());
 	    	mainApp.currentUser.setLastName(lastName.getText());
 	    	mainApp.currentUser.setPhoneNumber(Integer.parseInt(phoneNumber.getText()));
 	    	mainApp.currentUser.setEmailAddress(emailAddress.getText());
 	    	mainApp.userNameUserMap.put(userNameField.getText(), mainApp.currentUser);
 	    	System.out.println(mainApp.currentUser);
+	    	// TODO Append user to list of users file.
 	    	mainApp.showLoginPage();
     	}
     }
