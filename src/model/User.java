@@ -12,7 +12,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String emailAddress;
-	private int phoneNumber;
+	private long phoneNumber;
 	private int eventID;
 	
 	public User(){
@@ -100,10 +100,10 @@ public class User {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	public int getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	

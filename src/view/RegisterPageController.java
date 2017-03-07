@@ -88,7 +88,7 @@ public class RegisterPageController {
 	    	// TODO Encrypt password. http://blog.jerryorr.com/2012/05/secure-password-storage-lots-of-donts.html
 	    	mainApp.currentUser.setFirstName(firstName.getText());
 	    	mainApp.currentUser.setLastName(lastName.getText());
-	    	mainApp.currentUser.setPhoneNumber(Integer.parseInt(phoneNumber.getText()));
+	    	mainApp.currentUser.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
 	    	mainApp.currentUser.setEmailAddress(emailAddress.getText());
 	    	mainApp.userNameUserMap.put(userNameField.getText(), mainApp.currentUser);
 	    	System.out.println(mainApp.currentUser);
@@ -105,7 +105,7 @@ public class RegisterPageController {
     private boolean verifyFields(){
     	boolean phoneNumberIsInt = false;
     	try{
-    		Integer.parseInt(phoneNumber.getText());
+    		Long.parseLong(phoneNumber.getText());
     		phoneNumberIsInt = true;
     	}
     	catch (NumberFormatException e){

@@ -35,7 +35,6 @@
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="anotherEntryButton" mnemonicParsing="false" onAction="#anotherEntryButtonClicked" text="Submit Another Entry" />
                   <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
                   <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
                </children>

@@ -21,8 +21,6 @@ public class EntryRegistrationController {
 	@FXML
 	private TextArea otherDetailsTextArea;
 	@FXML
-	private Button anotherEntryButton;
-	@FXML
 	private Button cancelButton;
 	@FXML
 	private Button submitButton;
@@ -38,19 +36,6 @@ public class EntryRegistrationController {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
-	
-    /**
-     * @author Griffin Toyoda
-     */
-	@FXML
-	private void anotherEntryButtonClicked(){
-		System.out.println("This feature has not been implemented yet");
-		// TODO Validate entry
-		// TODO Save Entry details to a file
-		if(mainApp != null){
-			mainApp.showEntryRegistrationPage();
-		}
-	}
 	
 	/**
 	 * @author Griffin Toyoda
