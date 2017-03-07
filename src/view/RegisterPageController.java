@@ -114,6 +114,10 @@ public class RegisterPageController {
     		warningText.setText("Username has to be longer than " + minUsernameLength + " characters.");
     		return false;
     	}
+    	if(mainApp.userNameUserMap.containsKey(userNameField.getText())){
+    		warningText.setText("Username already in use. Please choose another.");
+    		return false;
+    	}
     	else if(passwordField.getText().length() < minPasswordLength){
     		warningText.setText("Password has to be longer than " + minPasswordLength + " characters.");
     		return false;
