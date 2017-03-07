@@ -45,7 +45,7 @@
                <children>
                   <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" HBox.hgrow="ALWAYS" />
                   <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
-                  <Button fx:id="OKButton" mnemonicParsing="false" onAction="#okayButtonClicked" text="OK" />
+                  <Button fx:id="OKButton" defaultButton="true" mnemonicParsing="false" onAction="#okayButtonClicked" text="OK" />
                </children>
             </HBox>
          </children>

@@ -22,7 +22,7 @@
             <HBox>
                <children>
                   <Region maxHeight="25.0" minWidth="70.0" />
-                  <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
+                  <Button fx:id="submitButton" defaultButton="true" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
                </children>
             </HBox>
          </children>

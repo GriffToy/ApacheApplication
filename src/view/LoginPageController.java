@@ -61,8 +61,13 @@ public class LoginPageController {
 			if(mainApp.currentUser.getUserType() == UserType.ATTENDEE){
 				mainApp.showAttendeePage();
 			}
-			// Show entry registration page anyways (testing)
-			mainApp.showAttendeePage();
+			else if(mainApp.currentUser.getUserType() == UserType.JUDGE){
+				mainApp.showJudgeViewPage();
+			}
+			else{
+				// Show entry registration page anyways (testing)
+				mainApp.showAttendeePage();
+			}
 		}
 		else{
 			// Alert the user that the username and password is incorrect

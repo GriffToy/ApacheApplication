@@ -13,10 +13,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.User;
+import model.User.UserType;
 import model.WeaveEvent;
 import view.AttendeeController;
 import view.EntryRegistrationController;
 import view.EventController;
+import view.JudgeViewController;
 import view.LoginPageController;
 import view.RegisterPageController;
 import view.UserSelectController;
@@ -48,6 +50,11 @@ public class Main extends Application {
     	admin.setUsername("admin");
     	admin.setPassword("password");
     	userNameUserMap.put(admin.getUsername(), admin);
+    	User judge = new User();
+    	judge.setUsername("judge");
+    	judge.setPassword("password");
+    	judge.setUserType(UserType.JUDGE);
+    	userNameUserMap.put(judge.getUsername(), judge);
     }
     
     /**
@@ -217,6 +224,28 @@ public class Main extends Application {
 
             // Give the controller access to the main app.
             AttendeeController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Shows the JudgeView page inside the root layout.
+     * @author Griffin Toyoda
+     */
+    public void showJudgeViewPage() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/JudgeViewPage.fxml"));
+            AnchorPane judgeViewPage = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(judgeViewPage);
+
+            // Give the controller access to the main app.
+            JudgeViewController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();

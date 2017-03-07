@@ -46,7 +46,7 @@
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="newEntryButton" mnemonicParsing="false" onAction="#newEntryButtonClicked" text="New Entry" />
+                  <Button fx:id="newEntryButton" defaultButton="true" mnemonicParsing="false" onAction="#newEntryButtonClicked" text="New Entry" />
                   <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
                </children>
             </HBox>
