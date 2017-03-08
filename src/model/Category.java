@@ -20,6 +20,11 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
+	@Override
+	public String toString(){
+		return categoryName;
+	}
+	
 	Category(Category anotherCategory){
 		this.categoryID = anotherCategory.getCategoryID();
 		this.categoryName = new String(anotherCategory.getCategoryName());

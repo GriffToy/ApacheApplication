@@ -1,12 +1,19 @@
 package model;
 
 public class UserEntry {
+	private WeaveEvent weaveEvent;
 	private Category category;
 	private String fibersInWeave;
 	private boolean selfDyedYarn;
 	private boolean handspunYarn;
 	private String otherDetails;
 	
+	public WeaveEvent getWeaveEvent() {
+		return weaveEvent;
+	}
+	public void setWeaveEvent(WeaveEvent weaveEvent) {
+		this.weaveEvent = weaveEvent;
+	}
 	public Category getCategory() {
 		return category;
 	}

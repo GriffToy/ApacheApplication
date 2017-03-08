@@ -25,7 +25,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Event Name:" />
+                  <Label text="Select Event:" />
                   <ComboBox fx:id="eventsComboBox" GridPane.columnIndex="2" />
                   <Label text="Event Details" GridPane.rowIndex="1" />
                   <Label text="Date and Time" GridPane.rowIndex="3" />
@@ -44,8 +44,8 @@
             <HBox spacing="10.0">
                <children>
                   <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
-                  <Button fx:id="OKButton" defaultButton="true" mnemonicParsing="false" onAction="#okayButtonClicked" text="OK" />
+                  <Button fx:id="leftButton" mnemonicParsing="false" onAction="#leftButtonClicked" text=" " visible="false" />
+                  <Button fx:id="rightButton" defaultButton="true" mnemonicParsing="false" onAction="#rightButtonClicked" text="Back" />
                </children>
             </HBox>
          </children>

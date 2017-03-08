@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.User;
 
 public class RegisterPageController {
 	private static int minUsernameLength = 1;
@@ -36,9 +37,9 @@ public class RegisterPageController {
 	@FXML
 	private ComboBox<String> action;
 	@FXML
-	private Button backButton;
-	@FXML
 	private Button cancelButton;
+	@FXML
+	private Button backButton;
 	@FXML
 	private Button submitButton;
 	@FXML
@@ -82,6 +83,31 @@ public class RegisterPageController {
      * @author Griffin Toyoda
      */
     @FXML
+    private void submitButtonClicked(){
+    	// Verify filed are setup
+    	if(verifyFields()){
+	    	// Store data and go back to the login page.
+    		User newUser = new User();
+    		newUser.setUserType(mainApp.attendeeType);
+    		newUser.setAttendeeID(-1);
+    		newUser.setUsername(userNameField.getText());
+    		newUser.setPassword(passwordField.getText());
+	    	// TODO Encrypt password. http://blog.jerryorr.com/2012/05/secure-password-storage-lots-of-donts.html
+    		newUser.setFirstName(firstName.getText());
+    		newUser.setLastName(lastName.getText());
+    		newUser.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
+    		newUser.setEmailAddress(emailAddress.getText());
+	    	mainApp.userNameUserMap.put(userNameField.getText(), newUser);
+	    	System.out.println(newUser);
+	    	// TODO Append user to list of users file.
+	    	mainApp.showLoginPage();
+    	}
+    }
+    
+    /**
+     * @author Griffin Toyoda
+     */
+    @FXML
     private void cancelButtonClicked(){
     	// Popup warning, go back to login page if user confirms they want to go back.
     	Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -95,29 +121,6 @@ public class RegisterPageController {
         	mainApp.showLoginPage();
     	} else {
     	    // ... user chose CANCEL or closed the dialog
-    	}
-    }
-    
-    /**
-     * @author Griffin Toyoda
-     */
-    @FXML
-    private void submitButtonClicked(){
-    	// Verify filed are setup
-    	if(verifyFields()){
-	    	// Store data and go back to the login page.
-	    	mainApp.currentUser.setAttendeeID(-1);
-	    	mainApp.currentUser.setUsername(userNameField.getText());
-	    	mainApp.currentUser.setPassword(passwordField.getText());
-	    	// TODO Encrypt password. http://blog.jerryorr.com/2012/05/secure-password-storage-lots-of-donts.html
-	    	mainApp.currentUser.setFirstName(firstName.getText());
-	    	mainApp.currentUser.setLastName(lastName.getText());
-	    	mainApp.currentUser.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
-	    	mainApp.currentUser.setEmailAddress(emailAddress.getText());
-	    	mainApp.userNameUserMap.put(userNameField.getText(), mainApp.currentUser);
-	    	System.out.println(mainApp.currentUser);
-	    	// TODO Append user to list of users file.
-	    	mainApp.showLoginPage();
     	}
     }
     

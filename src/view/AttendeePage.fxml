@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -38,9 +39,12 @@
                   <Label fx:id="selfDyedLabel" text="None" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label fx:id="handspunLabel" text="None" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label fx:id="otherDetailsLabel" text="None" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label text="Select Entry" />
-                  <ComboBox fx:id="selectEntryComboBox" GridPane.columnIndex="1" />
-                  <Label text="Entry Details" GridPane.rowIndex="1" />
+                  <Label text="View Entry:" />
+                  <ComboBox fx:id="selectEntryComboBox" prefHeight="25.0" prefWidth="114.0" promptText="None" GridPane.columnIndex="1" />
+                  <Label text="Entry Details" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                </children>
             </GridPane>
             <HBox spacing="10.0">

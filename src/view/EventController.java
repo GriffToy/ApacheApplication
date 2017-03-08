@@ -11,9 +11,9 @@ import model.WeaveEvent;
 
 public class EventController {
 	@FXML
-	private Button cancelButton;
+	private Button leftButton;
 	@FXML
-	private Button OKButton;
+	private Button rightButton;
 	@FXML
 	private ComboBox<WeaveEvent> eventsComboBox;
 	@FXML
@@ -57,6 +57,11 @@ public class EventController {
     	    }
     	});
 		eventsComboBox.getSelectionModel().selectFirst();
+		if(mainApp.currentUser != null){
+			leftButton.setText("Back");
+			leftButton.setVisible(true);
+			rightButton.setText("Next");
+		}
     }	
 	
 	/**
@@ -85,16 +90,25 @@ public class EventController {
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void cancelButtonClicked(){
-		mainApp.showLoginPage();
+	private void leftButtonClicked(){
+		if(mainApp != null){
+			mainApp.showAttendeePage();
+		}
 	}
 	
 	/**
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void okayButtonClicked(){
-		mainApp.currentUser.setEventID(eventsComboBox.getValue().getEventID());
-		mainApp.showLoginPage();
+	private void rightButtonClicked(){
+		if(mainApp != null){
+			if(mainApp.currentUser != null){
+				// Pass the weave event selected to the next page
+				mainApp.showEntryRegistrationPage(eventsComboBox.getValue());
+			}
+			else{
+				mainApp.showLoginPage();
+			}
+		}
 	}
 }

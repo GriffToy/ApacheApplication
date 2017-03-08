@@ -38,6 +38,28 @@ public class AttendeeController {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
     }
+    
+    /**
+     * @author Griffin Toyoda
+     */
+    private void showUserEntry(UserEntry userEntry){
+    	this.eventLabel.setText(userEntry.getWeaveEvent().toString());
+    	this.categoryLabel.setText(userEntry.getCategory().toString());
+    	this.fibersLabel.setText(userEntry.getFibersInWeave());
+    	if(userEntry.isHandspunYarn()){
+    		this.handspunLabel.setText("Yes");
+    	}
+    	else{
+    		this.handspunLabel.setText("No");
+    	}
+    	if(userEntry.isSelfDyedYarn()){
+    		this.selfDyedLabel.setText("Yes");
+    	}
+    	else{
+    		this.selfDyedLabel.setText("No");
+    	}
+    	this.otherDetailsLabel.setText(userEntry.getOtherDetails());
+    }
 	
 	/**
 	 * @author Griffin Toyoda
@@ -45,7 +67,8 @@ public class AttendeeController {
 	@FXML
 	private void newEntryButtonClicked(){
 		if(mainApp != null){
-			mainApp.showEntryRegistrationPage();
+			mainApp.showEventPage();
+			//mainApp.showEntryRegistrationPage();
 		}
 	}
 	

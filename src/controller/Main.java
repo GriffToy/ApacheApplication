@@ -28,7 +28,8 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
     public User currentUser; // Testing purposes. I don't know where to create a user within the program.
-    public HashMap<String, User> userNameUserMap;
+    public UserType attendeeType; // Stores attendee type when users are registering
+    public HashMap<String, User> userNameUserMap; // Maps usernames to users
     
     /**
      * Constructor for testing purposes
@@ -71,7 +72,6 @@ public class Main extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Apache Application");
 		this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
-    	currentUser = new User();
 	    initRootLayout();
 	    showLoginPage();
 	}
@@ -124,6 +124,7 @@ public class Main extends Application {
      */
     public void showLoginPage() {
         try {
+        	currentUser = null;
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/LoginPage.fxml"));
@@ -188,7 +189,7 @@ public class Main extends Application {
      * Shows the Register page inside the root layout.
      * @author Griffin Toyoda
      */
-    public void showEntryRegistrationPage() {
+    public void showEntryRegistrationPage(WeaveEvent eventSelected) {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
@@ -200,6 +201,7 @@ public class Main extends Application {
 
             // Give the controller access to the main app.
             EntryRegistrationController controller = loader.getController();
+            controller.setWeaveEvent(eventSelected);
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();
