@@ -1,10 +1,12 @@
 package view;
 
 import controller.Main;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.util.StringConverter;
 import model.UserEntry;
 
 public class AttendeeController {
@@ -30,6 +32,8 @@ public class AttendeeController {
     // Reference to the main application.
     private Main mainApp;
     
+	private ObservableList<UserEntry> userEntryList;
+    
     /**
      * Is called by the main application to give a reference back to itself.
      * @author Griffin Toyoda
@@ -37,6 +41,21 @@ public class AttendeeController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
+        this.userEntryList = mainApp.getCurrentUser().getUserEntries();
+        selectEntryComboBox.setItems(userEntryList);
+        selectEntryComboBox.valueProperty().addListener((obs, oldVal, newVal) -> showUserEntry(newVal));
+        selectEntryComboBox.setConverter(new StringConverter<UserEntry>() {
+    	    @Override
+    	    public String toString(UserEntry object) {
+    	        return object.getEntryName();
+    	    }
+
+    	    @Override
+    	    public UserEntry fromString(String string) {
+    	        return null;
+    	    }
+    	});
+        selectEntryComboBox.getSelectionModel().selectFirst();
     }
     
     /**

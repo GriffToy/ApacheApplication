@@ -56,11 +56,11 @@ public class LoginPageController {
 			if (validateUser(userNameField.getText(), passwordField.getText())) {
 				// Go on to next screen
 				System.out.println("Valid user");
-				mainApp.currentUser = mainApp.userNameUserMap.get(userNameField.getText());
+				mainApp.setCurrentUser(mainApp.userNameUserMap.get(userNameField.getText()));
 				// Check to see which type of user they are
-				if (mainApp.currentUser.getUserType() == UserType.ATTENDEE) {
+				if (mainApp.getCurrentUser().getUserType() == UserType.ATTENDEE) {
 					mainApp.showAttendeePage();
-				} else if (mainApp.currentUser.getUserType() == UserType.JUDGE) {
+				} else if (mainApp.getCurrentUser().getUserType() == UserType.JUDGE) {
 					mainApp.showJudgeViewPage();
 				} else {
 					// Show entry registration page anyways (testing)

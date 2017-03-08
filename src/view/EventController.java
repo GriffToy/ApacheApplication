@@ -57,7 +57,7 @@ public class EventController {
     	    }
     	});
 		eventsComboBox.getSelectionModel().selectFirst();
-		if(mainApp.currentUser != null){
+		if(mainApp.getCurrentUser() != null){
 			leftButton.setText("Back");
 			leftButton.setVisible(true);
 			rightButton.setText("Next");
@@ -102,7 +102,7 @@ public class EventController {
 	@FXML
 	private void rightButtonClicked(){
 		if(mainApp != null){
-			if(mainApp.currentUser != null){
+			if(mainApp.getCurrentUser() != null){
 				// Pass the weave event selected to the next page
 				mainApp.showEntryRegistrationPage(eventsComboBox.getValue());
 			}

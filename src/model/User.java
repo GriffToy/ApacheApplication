@@ -1,5 +1,7 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class User {
 	public enum UserType{
@@ -14,7 +16,8 @@ public class User {
 	private String emailAddress;
 	private long phoneNumber;
 	private int eventID;
-	
+	private ObservableList<UserEntry> userEntries = FXCollections.observableArrayList();
+
 	public User(){
 		this.userType = UserType.NONE;
 		this.attendeeID = -1;
@@ -50,6 +53,14 @@ public class User {
 		returnString.append(eventID);
 		returnString.append("\n");
 		return returnString.toString();
+	}
+	
+	public ObservableList<UserEntry> getUserEntries() {
+		return userEntries;
+	}
+
+	public void addUserEntry(UserEntry userEntry) {
+		userEntries.add(userEntry);
 	}
 	
 	public int getEventID() {

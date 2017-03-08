@@ -14,6 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.User;
 import model.User.UserType;
+import model.UserEntry;
 import model.WeaveEvent;
 import view.AttendeeController;
 import view.EntryRegistrationController;
@@ -27,7 +28,7 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
-    public User currentUser; // Testing purposes. I don't know where to create a user within the program.
+    private User currentUser; // Testing purposes. I don't know where to create a user within the program.
     public UserType attendeeType; // Stores attendee type when users are registering
     public HashMap<String, User> userNameUserMap; // Maps usernames to users
     
@@ -46,6 +47,7 @@ public class Main extends Application {
     	fiberFest.setSponsors("Redbull");
     	fiberFest.setCriteriaAndJudges("Tony Hawk");
     	weaveEventList.add(fiberFest);
+    	
     	userNameUserMap = new HashMap<String, User>();
     	User admin = new User();
     	admin.setUsername("admin");
@@ -56,6 +58,9 @@ public class Main extends Application {
     	judge.setPassword("password");
     	judge.setUserType(UserType.JUDGE);
     	userNameUserMap.put(judge.getUsername(), judge);
+    	
+    	UserEntry testEntry = new UserEntry(fiberFest);
+    	admin.addUserEntry(testEntry);
     }
     
     /**
@@ -65,6 +70,14 @@ public class Main extends Application {
      */
     public ObservableList<WeaveEvent> getWeaveEventList() {
         return weaveEventList;
+    }
+    
+    public User getCurrentUser(){
+    	return currentUser;
+    }
+    
+    public void setCurrentUser(User currentUser){
+    	this.currentUser = currentUser;
     }
 
 	@Override
