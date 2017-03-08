@@ -23,7 +23,7 @@ public class EventController {
 	@FXML
 	private Label dateAndTime;
 	@FXML
-	private Label eventInfo;
+	private Label cutOff;
 	@FXML
 	private Label sponsors;
 	@FXML
@@ -66,16 +66,16 @@ public class EventController {
 		if(eventToShow != null){
 			eventDetails.setText(eventToShow.getEventDetails());
 			eventLocation.setText(eventToShow.getLocation());
-			dateAndTime.setText(eventToShow.getDateAndTime());
-			eventInfo.setText(eventToShow.getEventInfo());
+			dateAndTime.setText(eventToShow.getDateAndTime().toString());	
 			sponsors.setText(eventToShow.getSponsors());
+			//cutOff.setText(eventToShow.getCutOffDate().toString());
 			judges.setText(eventToShow.getCriteriaAndJudges());
 		}
 		else{
 			eventDetails.setText("None");
 			eventLocation.setText("None");
 			dateAndTime.setText("None");
-			eventInfo.setText("None");
+			cutOff.setText("None");
 			sponsors.setText("None");
 			judges.setText("None");
 		}
