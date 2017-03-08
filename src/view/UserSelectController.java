@@ -12,41 +12,45 @@ public class UserSelectController {
 	@FXML
 	private RadioButton judgeRButton;
 	@FXML
-	private RadioButton adminRButton;
+	private Button cancelButton;
 	@FXML
 	private Button submitButton;
-	
-    // Reference to the main application.
-    private Main mainApp;
-    
-    /**
-     * Is called by the main application to give a reference back to itself.
-     * @author Griffin Toyoda
-     * @param mainApp
-     */
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-    }
-	
+
+	// Reference to the main application.
+	private Main mainApp;
+
 	/**
-	 *@author Griffin Toyoda
+	 * Is called by the main application to give a reference back to itself.
+	 * 
+	 * @author Griffin Toyoda
+	 * @param mainApp
+	 */
+	public void setMainApp(Main mainApp) {
+		this.mainApp = mainApp;
+	}
+
+	/**
+	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void submitButtonClicked(){
-		if(attendeeRButton.isSelected()){
-			mainApp.currentUser.setUserType(UserType.ATTENDEE);
-			// Load event page
-			mainApp.showEventPage();
-		}
-		else if(judgeRButton.isSelected()){
-			mainApp.currentUser.setUserType(UserType.JUDGE);
-			// Load login page
+	private void cancelButtonClicked() {
+		if (mainApp != null) {
 			mainApp.showLoginPage();
 		}
-		else if(adminRButton.isSelected()){
-			mainApp.currentUser.setUserType(UserType.ADMIN);
-			// Load login page
-			mainApp.showLoginPage();
+	}
+
+	/**
+	 * @author Griffin Toyoda
+	 */
+	@FXML
+	private void submitButtonClicked() {
+		if (mainApp != null) {
+			if (attendeeRButton.isSelected()) {
+				mainApp.currentUser.setUserType(UserType.ATTENDEE);
+			} else if (judgeRButton.isSelected()) {
+				mainApp.currentUser.setUserType(UserType.JUDGE);
+			}
+			mainApp.showRegisterPage();
 		}
 	}
 }

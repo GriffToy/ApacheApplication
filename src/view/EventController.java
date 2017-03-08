@@ -86,7 +86,7 @@ public class EventController {
 	 */
 	@FXML
 	private void cancelButtonClicked(){
-		mainApp.showUserSelectPage();
+		mainApp.showLoginPage();
 	}
 	
 	/**

@@ -71,8 +71,9 @@ public class Main extends Application {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Apache Application");
 		this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
+    	currentUser = new User();
 	    initRootLayout();
-	    showUserSelectPage();
+	    showLoginPage();
 	}
 
     /**
@@ -101,7 +102,6 @@ public class Main extends Application {
      */
     public void showUserSelectPage() {
         try {
-        	currentUser = new User();
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/UserSelectPage.fxml"));
@@ -124,8 +124,6 @@ public class Main extends Application {
      */
     public void showLoginPage() {
         try {
-        	System.out.println("User is of type: " + currentUser.getUserType());
-        	System.out.println("User is attending event: " + currentUser.getEventID());
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/LoginPage.fxml"));

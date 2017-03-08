@@ -18,10 +18,10 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="judgeRButton" mnemonicParsing="false" text="Judge" toggleGroup="$group" />
-            <RadioButton fx:id="adminRButton" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
-            <HBox>
+            <HBox spacing="10.0">
                <children>
                   <Region maxHeight="25.0" minWidth="70.0" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
                   <Button fx:id="submitButton" defaultButton="true" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
                </children>
             </HBox>

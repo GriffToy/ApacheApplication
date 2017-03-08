@@ -55,7 +55,7 @@ public class AttendeeController {
 	@FXML
 	private void logoutButtonClicked(){
 		if(mainApp != null){
-			mainApp.showUserSelectPage();
+			mainApp.showLoginPage();
 		}
 	}
 }
