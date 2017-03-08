@@ -39,8 +39,8 @@
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
-                  <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Ok" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
+                  <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Ok" />
                </children>
             </HBox>
          </children>

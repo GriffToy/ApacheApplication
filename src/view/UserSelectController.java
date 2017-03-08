@@ -12,9 +12,9 @@ public class UserSelectController {
 	@FXML
 	private RadioButton judgeRButton;
 	@FXML
-	private Button cancelButton;
+	private Button backButton;
 	@FXML
-	private Button submitButton;
+	private Button nextButton;
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -33,7 +33,7 @@ public class UserSelectController {
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void cancelButtonClicked() {
+	private void backButtonClicked() {
 		if (mainApp != null) {
 			mainApp.showLoginPage();
 		}
@@ -43,7 +43,7 @@ public class UserSelectController {
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void submitButtonClicked() {
+	private void nextButtonClicked() {
 		if (mainApp != null) {
 			if (attendeeRButton.isSelected()) {
 				mainApp.currentUser.setUserType(UserType.ATTENDEE);

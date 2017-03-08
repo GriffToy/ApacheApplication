@@ -20,27 +20,29 @@ public class RegisterPageController {
 	private static int minLastNameLength = 1;
 	private static int minEmailLength = 1;
 	@FXML
-	TextField userNameField;
+	private TextField userNameField;
 	@FXML
-	PasswordField passwordField;
+	private PasswordField passwordField;
 	@FXML
-	TextField firstName;
+	private TextField firstName;
 	@FXML
-	TextField lastName;
+	private TextField lastName;
 	@FXML
-	TextField phoneNumber;
+	private TextField phoneNumber;
 	@FXML
-	TextField emailAddress;
+	private TextField emailAddress;
 	@FXML
-	ComboBox<String> category;
+	private ComboBox<String> category;
 	@FXML
-	ComboBox<String> action;
+	private ComboBox<String> action;
 	@FXML
-	Button cancelButton;
+	private Button backButton;
 	@FXML
-	Button submitButton;
+	private Button cancelButton;
 	@FXML
-	Label warningText;
+	private Button submitButton;
+	@FXML
+	private Label warningText;
 	
     // Reference to the main application.
     private Main mainApp;
@@ -52,6 +54,28 @@ public class RegisterPageController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
+    }
+    
+    /**
+     * @author Griffin Toyoda
+     */
+    @FXML
+    private void backButtonClicked(){
+    	if(mainApp != null){
+        	// Popup warning, go back to login page if user confirms they want to go back.
+        	Alert alert = new Alert(AlertType.CONFIRMATION);
+        	alert.setTitle("Confirmation Dialog");
+        	alert.setHeaderText("Are you sure you want to go back a page?");
+        	alert.setContentText("Registration details will be lost");
+
+        	Optional<ButtonType> result = alert.showAndWait();
+        	if (result.get() == ButtonType.OK){
+        	    // ... user chose OK
+        		mainApp.showUserSelectPage();
+        	} else {
+        	    // ... user chose CANCEL or closed the dialog
+        	}
+    	}
     }
     
     /**

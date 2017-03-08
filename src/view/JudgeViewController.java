@@ -18,7 +18,7 @@ public class JudgeViewController {
 	@FXML
 	private Label entryInfoLabel;
 	@FXML
-	private Button cancelButton;
+	private Button logoutButton;
 	@FXML
 	private Button okButton;
 	
@@ -38,7 +38,7 @@ public class JudgeViewController {
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void cancelButtonClicked(){
+	private void logoutButtonClicked(){
 		if(mainApp != null){
 			mainApp.showLoginPage();
 		}
