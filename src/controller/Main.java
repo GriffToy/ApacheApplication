@@ -69,6 +69,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		// TODO load list of events and map of users
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Apache Application");
 		this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
