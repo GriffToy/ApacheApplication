@@ -108,7 +108,6 @@ public class AttendeeController {
 	private void newEntryButtonClicked(){
 		if(mainApp != null){
 			mainApp.showEventPage();
-			//mainApp.showEntryRegistrationPage();
 		}
 	}
 	

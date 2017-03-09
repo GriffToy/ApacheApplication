@@ -30,9 +30,25 @@ public class Main extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
-    private User currentUser; // Testing purposes. I don't know where to create a user within the program.
+    private User currentUser; // Stores current user. Set to null each time the login page is shown
     public UserType attendeeType; // Stores attendee type when users are registering
     public HashMap<String, User> userNameUserMap; // Maps usernames to users
+
+	@Override
+	public void start(Stage primaryStage) {
+		// TODO load list of events and map of users
+		loadData();
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("Apache Application");
+		this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
+	    initRootLayout();
+	    showLoginPage();
+	}
+	
+	@Override
+	public void stop(){
+		saveData();
+	}
     
     /**
      * Constructor for testing purposes
@@ -62,7 +78,12 @@ public class Main extends Application {
     	
     	UserEntry testEntry = new UserEntry(fiberFest);
     	admin.addUserEntry(testEntry);
-    	
+    }
+    
+    /**
+     * Loads the eventList and userList from database. Called once at startup.
+     */
+    private void loadData(){
     	Connection conn = null;
     	conn = sqliteConnection.dbConnector();
     	
@@ -80,6 +101,8 @@ public class Main extends Application {
     			String cutDate = result.getString("eventCutDate").replaceAll("\\s", "");
     			LocalDate cut = LocalDate.parse(cutDate);
     			WeaveEvent loadedEvent = new WeaveEvent(name, id, loc, date, cut);
+    			
+    			// Dummy categories
     			loadedEvent.addCategory(new Category(-1, "A catgeory"));
     			loadedEvent.addCategory(new Category(-1, "Another catgeory"));
     			weaveEventList.add(loadedEvent);
@@ -89,6 +112,13 @@ public class Main extends Application {
     	}catch (Exception e){
     		System.out.println("Error connection!" + e.getMessage());
     	}
+    }
+    
+    /**
+     * Saves the weaveEventList and userNameUserMap to database. Called when application is closed.
+     */
+    private void saveData(){
+    	// TODO complete function
     }
     
     /**
@@ -107,16 +137,6 @@ public class Main extends Application {
     public void setCurrentUser(User currentUser){
     	this.currentUser = currentUser;
     }
-
-	@Override
-	public void start(Stage primaryStage) {
-		// TODO load list of events and map of users
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Apache Application");
-		this.primaryStage.getIcons().add(new Image("file:resources/images/Icon.png"));
-	    initRootLayout();
-	    showLoginPage();
-	}
 
     /**
      * Initializes the root layout with the menu bar.
