@@ -17,7 +17,14 @@ public class UserEntry {
 	
 	@Override
 	public String toString(){
-		return weaveEvent.toString() + ": " + category.toString();
+		if(weaveEvent != null && category != null){
+			return weaveEvent.toString() + ": " + category.toString();
+		}
+		else if(weaveEvent != null){
+			return weaveEvent.toString();
+		}
+		else
+			return "None";
 	}
 
 	public WeaveEvent getWeaveEvent() {

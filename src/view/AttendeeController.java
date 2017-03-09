@@ -58,12 +58,33 @@ public class AttendeeController {
         selectEntryComboBox.getSelectionModel().selectFirst();
     }
     
+    /*private void printEntries(){
+        		userEntryList.forEach((entry) -> { 
+        		    System.out.println(entry.getWeaveEvent());
+        		    System.out.println(entry.getCategory());
+        		    System.out.println(entry.getFibersInWeave());
+        		    System.out.println(entry.getOtherDetails());
+        		    System.out.println(entry.isHandspunYarn());
+        		    System.out.println(entry.isSelfDyedYarn());
+        		});
+    }*/
+    
     /**
      * @author Griffin Toyoda
      */
     private void showUserEntry(UserEntry userEntry){
-    	this.eventLabel.setText(userEntry.getWeaveEvent().toString());
-    	this.categoryLabel.setText(userEntry.getCategory().toString());
+    	if(userEntry.getWeaveEvent() != null){
+    		this.eventLabel.setText(userEntry.getWeaveEvent().toString());
+    	}
+    	else{
+    		this.eventLabel.setText("No event");
+    	}
+    	if(userEntry.getCategory() != null){
+    		this.categoryLabel.setText(userEntry.getCategory().toString());
+    	}
+    	else{
+    		this.categoryLabel.setText("No category");
+    	}
     	this.fibersLabel.setText(userEntry.getFibersInWeave());
     	if(userEntry.isHandspunYarn()){
     		this.handspunLabel.setText("Yes");

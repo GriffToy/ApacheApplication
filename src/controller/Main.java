@@ -79,8 +79,10 @@ public class Main extends Application {
     			LocalDate date = LocalDate.parse(str);
     			String cutDate = result.getString("eventCutDate").replaceAll("\\s", "");
     			LocalDate cut = LocalDate.parse(cutDate);
-    		
-    			weaveEventList.add(new WeaveEvent(name, id, loc, date, cut));
+    			WeaveEvent loadedEvent = new WeaveEvent(name, id, loc, date, cut);
+    			loadedEvent.addCategory(new Category(-1, "A catgeory"));
+    			loadedEvent.addCategory(new Category(-1, "Another catgeory"));
+    			weaveEventList.add(loadedEvent);
     		}
     		
     		pst.close();

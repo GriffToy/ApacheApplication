@@ -57,7 +57,10 @@ public class EventController {
     	    }
     	});
 		eventsComboBox.getSelectionModel().selectFirst();
+		
+		// Check if user has logged in yet
 		if(mainApp.getCurrentUser() != null){
+			// The user has logged in
 			leftButton.setText("Back");
 			leftButton.setVisible(true);
 			rightButton.setText("Next");
