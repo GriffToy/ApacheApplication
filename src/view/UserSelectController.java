@@ -46,11 +46,10 @@ public class UserSelectController {
 	private void nextButtonClicked() {
 		if (mainApp != null) {
 			if (attendeeRButton.isSelected()) {
-				mainApp.attendeeType = UserType.ATTENDEE;
+				mainApp.showRegisterPage(UserType.ATTENDEE);
 			} else if (judgeRButton.isSelected()) {
-				mainApp.attendeeType = UserType.JUDGE;
+				mainApp.showRegisterPage(UserType.JUDGE);
 			}
-			mainApp.showRegisterPage();
 		}
 	}
 }

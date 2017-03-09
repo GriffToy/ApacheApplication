@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
+import model.User.UserType;
 
 public class RegisterPageController {
 	private static int minUsernameLength = 1;
@@ -47,6 +48,7 @@ public class RegisterPageController {
 	
     // Reference to the main application.
     private Main mainApp;
+    private UserType attendeeType;
     
     /**
      * Is called by the main application to give a reference back to itself.
@@ -55,6 +57,10 @@ public class RegisterPageController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
+    }
+    
+    public void setAttendeeType(UserType attendeeType){
+    	this.attendeeType = attendeeType;
     }
     
     /**
@@ -88,7 +94,7 @@ public class RegisterPageController {
     	if(verifyFields()){
 	    	// Store data and go back to the login page.
     		User newUser = new User();
-    		newUser.setUserType(mainApp.attendeeType);
+    		newUser.setUserType(attendeeType);
     		newUser.setAttendeeID(-1);
     		newUser.setUsername(userNameField.getText());
     		newUser.setPassword(passwordField.getText());

@@ -31,7 +31,6 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
     private User currentUser; // Stores current user. Set to null each time the login page is shown
-    public UserType attendeeType; // Stores attendee type when users are registering
     public HashMap<String, User> userNameUserMap; // Maps usernames to users
 
 	@Override
@@ -75,6 +74,11 @@ public class Main extends Application {
     	judge.setPassword("password");
     	judge.setUserType(UserType.JUDGE);
     	userNameUserMap.put(judge.getUsername(), judge);
+    	User attendee = new User();
+    	attendee.setUsername("attendee");
+    	attendee.setPassword("password");
+    	attendee.setUserType(UserType.ATTENDEE);
+    	userNameUserMap.put(attendee.getUsername(), attendee);
     	
     	UserEntry testEntry = new UserEntry(fiberFest);
     	admin.addUserEntry(testEntry);
@@ -229,7 +233,7 @@ public class Main extends Application {
      * Shows the Register page inside the root layout.
      * @author Griffin Toyoda
      */
-    public void showRegisterPage() {
+    public void showRegisterPage(UserType attendeeType) {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
@@ -242,6 +246,7 @@ public class Main extends Application {
             // Give the controller access to the main app.
             RegisterPageController controller = loader.getController();
             controller.setMainApp(this);
+            controller.setAttendeeType(attendeeType);
         } catch (IOException e) {
             e.printStackTrace();
         }
