@@ -29,7 +29,7 @@
                   <ComboBox fx:id="eventsComboBox" GridPane.columnIndex="2" />
                   <Label text="Event Details" GridPane.rowIndex="1" />
                   <Label text="Date and Time" GridPane.rowIndex="3" />
-                  <Label text="Event Info" GridPane.rowIndex="4" />
+                  <Label text="Registration Cut-off Date" GridPane.rowIndex="4" />
                   <Label text="Sponsors" GridPane.rowIndex="5" />
                   <Label text="Contact Criteria &amp; Judges" GridPane.rowIndex="6" />
                   <Label fx:id="eventDetails" text="None" GridPane.columnIndex="2" GridPane.rowIndex="1" />

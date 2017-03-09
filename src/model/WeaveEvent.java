@@ -1,5 +1,9 @@
 package model;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
+
 /**
  * Model class for an event.
  * @author Griffin Toyoda
@@ -10,18 +14,19 @@ public class WeaveEvent {
 	private String eventName;
 	private String eventDetails;
 	private String location;
-	private String dateAndTime; // TODO change to LocalDateTime variable
-	private String eventInfo;
+	private LocalDate dateAndTime; // TODO change to LocalDateTime variable
+	private LocalDate cutOff;
 	private String sponsors;
 	private String criteriaAndJudges;
 	
-	public WeaveEvent(String eventName, int eventID){
+	public WeaveEvent(String eventName, int eventID, String location,
+			LocalDate dateAndTime, LocalDate cutOff){
 		this.eventID = eventID;
 		this.eventName = eventName;
 		this.eventDetails = eventName;
-		this.location = "Narnia";
-		this.dateAndTime = "3/14/2017";
-		this.eventInfo = "Boring";
+		this.location = location;
+		this.dateAndTime = dateAndTime;
+		this.cutOff = cutOff;
 		this.sponsors = "Nike";
 		this.criteriaAndJudges = "Hans";
 	}
@@ -55,17 +60,17 @@ public class WeaveEvent {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getDateAndTime() {
+	public LocalDate getDateAndTime() {
 		return dateAndTime;
 	}
-	public void setDateAndTime(String dateAndTime) {
+	public void setDateAndTime(LocalDate dateAndTime) {
 		this.dateAndTime = dateAndTime;
 	}
-	public String getEventInfo() {
-		return eventInfo;
+	public LocalDate getCutOffDate() {
+		return cutOff;
 	}
-	public void setEventInfo(String eventInfo) {
-		this.eventInfo = eventInfo;
+	public void setCutOffDate(LocalDate cutDate) {
+		this.cutOff = cutDate;
 	}
 	public String getSponsors() {
 		return sponsors;

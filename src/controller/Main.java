@@ -1,5 +1,6 @@
 package controller;
-
+import java.sql.*;
+import java.time.LocalDate;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -37,17 +38,14 @@ public class Main extends Application {
      */
     public Main(){        
     	// Add some sample data
-    	weaveEventList.add(new WeaveEvent("Yarnosphere", 1));
-    	weaveEventList.add(new WeaveEvent("Fiber Fair at Lambtown", 2));
-    	weaveEventList.add(new WeaveEvent("Stitches West", 3));
-    	WeaveEvent fiberFest = new WeaveEvent("Fiber Fest", 4);
-    	fiberFest.setLocation("Tacoma");
-    	fiberFest.setDateAndTime("12/21/12");
-    	fiberFest.setEventInfo("Be there or be square");
+    	//weaveEventList.add(new WeaveEvent("Yarnosphere", 1));
+    	//weaveEventList.add(new WeaveEvent("Fiber Fair at Lambtown", 2));
+    	//weaveEventList.add(new WeaveEvent("Stitches West", 3));
+    	WeaveEvent fiberFest = new WeaveEvent("Fiber Fest", 4, "Tacoma" , LocalDate.now(), LocalDate.now());
+    	fiberFest.setEventDetails("Be there or be square");
     	fiberFest.setSponsors("Redbull");
     	fiberFest.setCriteriaAndJudges("Tony Hawk");
     	weaveEventList.add(fiberFest);
-    	
     	userNameUserMap = new HashMap<String, User>();
     	User admin = new User();
     	admin.setUsername("admin");
@@ -61,6 +59,31 @@ public class Main extends Application {
     	
     	UserEntry testEntry = new UserEntry(fiberFest);
     	admin.addUserEntry(testEntry);
+    	
+    	Connection conn = null;
+    	//conn = sqliteConnection.dbConnector();
+    	
+    	try{
+    		String query = "select * from EventInfo";
+    		PreparedStatement pst = conn.prepareStatement(query);
+    		ResultSet result = pst.executeQuery();
+    		
+    		while(result.next()) {
+    			String name = result.getString("eventName");
+    			int id = result.getInt("eventID");
+    			String loc = result.getString("eventLocation");
+    			String str = result.getString("eventDate").replaceAll("\\s", "");
+    			LocalDate date = LocalDate.parse(str);
+    			String cutDate = result.getString("eventCutDate").replaceAll("\\s", "");
+    			LocalDate cut = LocalDate.parse(cutDate);
+    		
+    			weaveEventList.add(new WeaveEvent(name, id, loc, date, cut));
+    		}
+    		
+    		pst.close();
+    	}catch (Exception e){
+    		System.out.println("Error connection!" + e.getMessage());
+    	}
     }
     
     /**
