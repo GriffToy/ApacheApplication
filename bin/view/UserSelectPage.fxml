@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -8,21 +9,24 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserSelectController">
    <children>
-      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="330.0" prefWidth="374.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Just BeWeave" />
-            <Label text="Please select your role:" />
-            <RadioButton fx:id="attendeeRButton" mnemonicParsing="false" selected="true" text="Attendee">
+            <Label prefHeight="47.0" prefWidth="282.0" text="Just BeWeave Event Attendee">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Label text="Please select your role :" />
+            <RadioButton fx:id="attendeeRButton" mnemonicParsing="false" prefHeight="63.0" prefWidth="116.0" selected="true" text="Attendee">
                <toggleGroup>
                   <ToggleGroup fx:id="group" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="judgeRButton" mnemonicParsing="false" text="Judge" toggleGroup="$group" />
-            <RadioButton fx:id="adminRButton" mnemonicParsing="false" text="Admin" toggleGroup="$group" />
-            <HBox>
+            <RadioButton fx:id="judgeRButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="107.0" text="Judge" toggleGroup="$group" />
+            <HBox spacing="10.0">
                <children>
                   <Region maxHeight="25.0" minWidth="70.0" />
-                  <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="31.0" prefWidth="166.0" text="Back" />
+                  <Button fx:id="nextButton" defaultButton="true" mnemonicParsing="false" onAction="#nextButtonClicked" prefHeight="31.0" prefWidth="164.0" text="Next" />
                </children>
             </HBox>
          </children>
