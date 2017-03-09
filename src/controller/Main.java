@@ -61,7 +61,7 @@ public class Main extends Application {
     	admin.addUserEntry(testEntry);
     	
     	Connection conn = null;
-    	//conn = sqliteConnection.dbConnector();
+    	conn = sqliteConnection.dbConnector();
     	
     	try{
     		String query = "select * from EventInfo";
