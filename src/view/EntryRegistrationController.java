@@ -7,11 +7,14 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
+import model.Category;
+import model.UserEntry;
 import model.WeaveEvent;
 
 public class EntryRegistrationController {
 	@FXML
-	private ComboBox<String> categoryComboBox;
+	private ComboBox<Category> categoryComboBox;
 	@FXML
 	private TextField fibersTextField;
 	@FXML
@@ -38,6 +41,19 @@ public class EntryRegistrationController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
+        categoryComboBox.setItems(weaveEventSelected.getEventCategories());
+        categoryComboBox.setConverter(new StringConverter<Category>() {
+    	    @Override
+    	    public String toString(Category object) {
+    	        return object.getCategoryName();
+    	    }
+
+    	    @Override
+    	    public Category fromString(String string) {
+    	        return null;
+    	    }
+    	});
+        categoryComboBox.getSelectionModel().selectFirst();
     }
     
     /**
@@ -73,10 +89,16 @@ public class EntryRegistrationController {
 	 */
 	@FXML
 	private void submitButtonClicked(){
-		System.out.println("This feature has not been implemented yet");
 		if(isValidEntry()){
 			if(mainApp != null){
 				mainApp.showAttendeePage();
+				UserEntry newEntry = new UserEntry(weaveEventSelected);
+				newEntry.setFibersInWeave(fibersTextField.getText());
+				newEntry.setSelfDyedYarn(selfDyedCheckBox.isSelected());
+				newEntry.setHandspunYarn(handSpunCheckBox.isSelected());
+				newEntry.setOtherDetails(otherDetailsTextArea.getText());
+				newEntry.setCategory(categoryComboBox.getValue());
+				mainApp.getCurrentUser().addUserEntry(newEntry);
 			}
 		}
 	}

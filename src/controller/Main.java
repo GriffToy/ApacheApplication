@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Category;
 import model.User;
 import model.User.UserType;
 import model.UserEntry;
@@ -45,6 +46,8 @@ public class Main extends Application {
     	fiberFest.setEventDetails("Be there or be square");
     	fiberFest.setSponsors("Redbull");
     	fiberFest.setCriteriaAndJudges("Tony Hawk");
+    	fiberFest.addCategory(new Category());
+    	fiberFest.addCategory(new Category(-2, "Another category"));
     	weaveEventList.add(fiberFest);
     	userNameUserMap = new HashMap<String, User>();
     	User admin = new User();

@@ -73,7 +73,7 @@ public class EventController {
 			eventLocation.setText(eventToShow.getLocation());
 			dateAndTime.setText(eventToShow.getDateAndTime().toString());	
 			sponsors.setText(eventToShow.getSponsors());
-			//cutOff.setText(eventToShow.getCutOffDate().toString());
+			cutOff.setText(eventToShow.getCutOffDate().toString());
 			judges.setText(eventToShow.getCriteriaAndJudges());
 		}
 		else{

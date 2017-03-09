@@ -34,7 +34,7 @@
                   <Label text="Contact Criteria &amp; Judges" GridPane.rowIndex="6" />
                   <Label fx:id="eventDetails" text="None" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="eventInfo" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="cutOff" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Label fx:id="judges" text="None" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                   <Label text="Location" GridPane.rowIndex="2" />

@@ -25,7 +25,19 @@ public class Category {
 		return categoryName;
 	}
 	
-	Category(Category anotherCategory){
+	// Constructor for testing purposes
+	public Category(){
+		this.categoryID = -1;
+		this.categoryName = "A test category";
+	}
+	
+	// Constructor for testing purposes
+	public Category(int categoryID, String categoryName){
+		this.categoryID = categoryID;
+		this.categoryName = categoryName;
+	}
+	
+	public Category(Category anotherCategory){
 		this.categoryID = anotherCategory.getCategoryID();
 		this.categoryName = new String(anotherCategory.getCategoryName());
 	}

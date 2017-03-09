@@ -40,7 +40,7 @@
                   <Label fx:id="handspunLabel" text="None" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label fx:id="otherDetailsLabel" text="None" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="View Entry:" />
-                  <ComboBox fx:id="selectEntryComboBox" prefHeight="25.0" prefWidth="114.0" promptText="None" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="selectEntryComboBox" prefHeight="25.0" prefWidth="336.0" promptText="None" GridPane.columnIndex="1" />
                   <Label text="Entry Details" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="12.0" />

@@ -47,7 +47,7 @@ public class AttendeeController {
         selectEntryComboBox.setConverter(new StringConverter<UserEntry>() {
     	    @Override
     	    public String toString(UserEntry object) {
-    	        return object.getEntryName();
+    	    	return object.toString();
     	    }
 
     	    @Override

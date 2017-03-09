@@ -31,7 +31,7 @@
                </children>
             </GridPane>
             <Label text="Other Details:" />
-            <TextArea prefHeight="75.0" prefWidth="300.0" wrapText="true" />
+            <TextArea fx:id="otherDetailsTextArea" prefHeight="75.0" prefWidth="300.0" wrapText="true" />
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />

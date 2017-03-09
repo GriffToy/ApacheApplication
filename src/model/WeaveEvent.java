@@ -3,6 +3,9 @@ package model;
 import java.sql.Date;
 import java.time.LocalDate;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  * Model class for an event.
@@ -18,6 +21,7 @@ public class WeaveEvent {
 	private LocalDate cutOff;
 	private String sponsors;
 	private String criteriaAndJudges;
+	private ObservableList<Category> eventCategories = FXCollections.observableArrayList();
 	
 	public WeaveEvent(String eventName, int eventID, String location,
 			LocalDate dateAndTime, LocalDate cutOff){
@@ -34,6 +38,14 @@ public class WeaveEvent {
 	@Override
 	public String toString(){
 		return eventName;
+	}
+	
+	public void addCategory(Category newCategory){
+		this.eventCategories.add(newCategory);
+	}
+	
+	public ObservableList<Category> getEventCategories(){
+		return this.eventCategories;
 	}
 	
 	public int getEventID() {

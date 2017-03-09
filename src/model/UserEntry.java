@@ -1,28 +1,23 @@
 package model;
 
 public class UserEntry {
-	private String entryName;
 	private WeaveEvent weaveEvent;
-	private String category;
+	private Category category;
 	private String fibersInWeave;
 	private boolean selfDyedYarn;
 	private boolean handspunYarn;
 	private String otherDetails;
 	
 	public UserEntry(WeaveEvent weaveEvent){
-		this.entryName = "Some name";
 		this.weaveEvent = weaveEvent;
-		this.category = "Testing";
+		this.category = new Category();
 		this.fibersInWeave = "Testing 1";
 		this.otherDetails = "Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123";
 	}
 	
-	public String getEntryName() {
-		return entryName;
-	}
-
-	public void setEntryName(String entryName) {
-		this.entryName = entryName;
+	@Override
+	public String toString(){
+		return weaveEvent.toString() + ": " + category.toString();
 	}
 
 	public WeaveEvent getWeaveEvent() {
@@ -31,10 +26,10 @@ public class UserEntry {
 	public void setWeaveEvent(WeaveEvent weaveEvent) {
 		this.weaveEvent = weaveEvent;
 	}
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 	public String getFibersInWeave() {
