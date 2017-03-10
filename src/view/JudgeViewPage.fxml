@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.JudgeViewController">
+<AnchorPane prefHeight="325.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.JudgeViewController">
    <children>
-      <VBox spacing="10.0">
+      <VBox prefHeight="325.0" prefWidth="450.0" spacing="10.0">
          <children>
             <Label text="Please select items to view:" />
             <GridPane hgap="10.0" vgap="10.0">
@@ -26,8 +26,8 @@
                <children>
                   <Label text="Event" />
                   <Label text="Category" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="eventComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ComboBox fx:id="categoryComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="eventComboBox" prefHeight="25.0" prefWidth="210.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="210.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Entry Number" GridPane.rowIndex="2" />
                   <Label text="Contestant ID" GridPane.rowIndex="3" />
                   <Label text="Entry Info" GridPane.rowIndex="4" />
@@ -39,8 +39,8 @@
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
-                  <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Ok" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" prefWidth="90.0" text="Logout" />
+                  <Button fx:id="okButton" defaultButton="true" mnemonicParsing="false" onAction="#logoutButtonClicked" prefWidth="90.0" text="Ok" />
                </children>
             </HBox>
          </children>

@@ -6,15 +6,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EntryRegistrationController">
+<AnchorPane prefHeight="325.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EntryRegistrationController">
    <children>
-      <VBox spacing="10.0">
+      <VBox prefHeight="325.0" prefWidth="450.0" spacing="10.0">
          <children>
             <Label text="Entry Registration" />
             <GridPane hgap="10.0" vgap="10.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="132.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="288.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,21 +23,21 @@
               </rowConstraints>
                <children>
                   <Label text="Category:" />
-                  <ComboBox fx:id="categoryComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="214.0" GridPane.columnIndex="1" />
                   <Label text="Fibers in Weave:" GridPane.rowIndex="1" />
-                  <TextField fx:id="fibersTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="fibersTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <CheckBox fx:id="selfDyedCheckBox" mnemonicParsing="false" text="Self-dyed Yarn" GridPane.rowIndex="2" />
                   <CheckBox fx:id="handSpunCheckBox" mnemonicParsing="false" text="Handspun Yarn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
             <Label text="Other Details:" />
-            <TextArea fx:id="otherDetailsTextArea" prefHeight="75.0" prefWidth="300.0" wrapText="true" />
+            <TextArea fx:id="otherDetailsTextArea" prefHeight="96.0" prefWidth="430.0" wrapText="true" />
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" text="Cancel" />
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" />
-                  <Button fx:id="submitButton" defaultButton="true" mnemonicParsing="false" onAction="#submitButtonClicked" text="Submit" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClicked" prefWidth="90.0" text="Cancel" />
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="90.0" text="Back" />
+                  <Button fx:id="submitButton" defaultButton="true" mnemonicParsing="false" onAction="#submitButtonClicked" prefWidth="90.0" text="Submit" />
                </children>
             </HBox>
          </children>

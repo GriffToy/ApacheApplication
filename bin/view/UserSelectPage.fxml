@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserSelectController">
+<AnchorPane prefHeight="325.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserSelectController">
    <children>
-      <VBox spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="325.0" prefWidth="450.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Just BeWeave" />
             <Label text="Please select your role:" />
@@ -20,9 +20,9 @@
             <RadioButton fx:id="judgeRButton" mnemonicParsing="false" text="Judge" toggleGroup="$group" />
             <HBox spacing="10.0">
                <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="90.0" text="Back" />
+                  <Button fx:id="nextButton" defaultButton="true" mnemonicParsing="false" onAction="#nextButtonClicked" prefWidth="90.0" text="Next" />
                   <Region maxHeight="25.0" minWidth="70.0" />
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" />
-                  <Button fx:id="nextButton" defaultButton="true" mnemonicParsing="false" onAction="#nextButtonClicked" text="Next" />
                </children>
             </HBox>
          </children>

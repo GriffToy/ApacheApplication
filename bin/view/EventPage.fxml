@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventController">
+<AnchorPane prefHeight="325.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EventController">
    <children>
       <VBox spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -16,6 +17,7 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.0" minWidth="10.0" prefWidth="152.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,27 +27,32 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Select Event:" />
-                  <ComboBox fx:id="eventsComboBox" GridPane.columnIndex="2" />
-                  <Label text="Event Details" GridPane.rowIndex="1" />
-                  <Label text="Date and Time" GridPane.rowIndex="3" />
-                  <Label text="Registration Cut-off Date" GridPane.rowIndex="4" />
-                  <Label text="Sponsors" GridPane.rowIndex="5" />
-                  <Label text="Contact Criteria &amp; Judges" GridPane.rowIndex="6" />
-                  <Label fx:id="eventDetails" text="None" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="cutOff" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label fx:id="judges" text="None" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <Label text="Location" GridPane.rowIndex="2" />
-                  <Label fx:id="eventLocation" text="None" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label text="Select Event:" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="eventsComboBox" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label text="Event Details" GridPane.rowIndex="2" />
+                  <Label text="Date and Time" GridPane.rowIndex="4" />
+                  <Label text="Registration Cut-off Date" GridPane.rowIndex="5" />
+                  <Label text="Sponsors" GridPane.rowIndex="6" />
+                  <Label text="Judges" GridPane.rowIndex="7" />
+                  <Label fx:id="eventDetails" text="None" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="cutOff" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Label fx:id="judges" text="None" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Label text="Location" GridPane.rowIndex="3" />
+                  <Label fx:id="eventLocation" text="None" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Event List">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
             <HBox spacing="10.0">
                <children>
                   <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" HBox.hgrow="ALWAYS" />
-                  <Button fx:id="leftButton" mnemonicParsing="false" onAction="#leftButtonClicked" text=" " visible="false" />
-                  <Button fx:id="rightButton" defaultButton="true" mnemonicParsing="false" onAction="#rightButtonClicked" text="Back" />
+                  <Button fx:id="leftButton" mnemonicParsing="false" onAction="#leftButtonClicked" prefWidth="90.0" text=" " visible="false" />
+                  <Button fx:id="rightButton" defaultButton="true" mnemonicParsing="false" onAction="#rightButtonClicked" prefWidth="90.0" text="Back" />
                </children>
             </HBox>
          </children>

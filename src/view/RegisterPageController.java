@@ -34,9 +34,7 @@ public class RegisterPageController {
 	@FXML
 	private TextField emailAddress;
 	@FXML
-	private ComboBox<String> category;
-	@FXML
-	private ComboBox<String> action;
+	private ComboBox<String> eventComboBox;
 	@FXML
 	private Button cancelButton;
 	@FXML

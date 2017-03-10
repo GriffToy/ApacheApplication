@@ -13,8 +13,8 @@
          <children>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="111.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="319.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="128.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="319.0" minWidth="10.0" prefWidth="302.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,7 +40,7 @@
                   <Label fx:id="selfDyedLabel" text="None" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label fx:id="handspunLabel" text="None" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="View Entry:" />
-                  <ComboBox fx:id="selectEntryComboBox" prefHeight="25.0" prefWidth="336.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="selectEntryComboBox" prefHeight="25.0" prefWidth="336.0" promptText="None" GridPane.columnIndex="1" />
                   <Label text="Entry Details" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -59,8 +59,8 @@
             <HBox spacing="10.0">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Button fx:id="newEntryButton" defaultButton="true" mnemonicParsing="false" onAction="#newEntryButtonClicked" text="New Entry" />
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" text="Logout" />
+                  <Button fx:id="newEntryButton" defaultButton="true" mnemonicParsing="false" onAction="#newEntryButtonClicked" prefWidth="90.0" text="New Entry" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" prefWidth="90.0" text="Logout" />
                </children>
             </HBox>
          </children>
