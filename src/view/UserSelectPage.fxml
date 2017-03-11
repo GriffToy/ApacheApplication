@@ -18,11 +18,12 @@
                </toggleGroup>
             </RadioButton>
             <RadioButton fx:id="judgeRButton" mnemonicParsing="false" text="Judge" toggleGroup="$group" />
+            <Region VBox.vgrow="ALWAYS" />
             <HBox spacing="10.0">
                <children>
+                  <Region maxHeight="25.0" minWidth="70.0" HBox.hgrow="ALWAYS" />
                   <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="90.0" text="Back" />
                   <Button fx:id="nextButton" defaultButton="true" mnemonicParsing="false" onAction="#nextButtonClicked" prefWidth="90.0" text="Next" />
-                  <Region maxHeight="25.0" minWidth="70.0" />
                </children>
             </HBox>
          </children>

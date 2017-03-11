@@ -18,7 +18,9 @@ import model.User;
 import model.User.UserType;
 import model.UserEntry;
 import model.WeaveEvent;
+import view.AdminController;
 import view.AttendeeController;
+import view.CreateEventController;
 import view.EntryRegistrationController;
 import view.EventController;
 import view.JudgeViewController;
@@ -68,6 +70,7 @@ public class Main extends Application {
     	User admin = new User();
     	admin.setUsername("admin");
     	admin.setPassword("password");
+    	admin.setUserType(UserType.ADMIN);
     	userNameUserMap.put(admin.getUsername(), admin);
     	User judge = new User();
     	judge.setUsername("judge");
@@ -313,6 +316,50 @@ public class Main extends Application {
 
             // Give the controller access to the main app.
             JudgeViewController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Shows the Admin page inside the root layout.
+     * @author Griffin Toyoda
+     */
+    public void showAdminPage() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/AdminPage.fxml"));
+            AnchorPane adminPage = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(adminPage);
+
+            // Give the controller access to the main app.
+            AdminController controller = loader.getController();
+            controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Shows the CreateEvent page inside the root layout.
+     * @author Griffin Toyoda
+     */
+    public void showCreateEventPage() {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/CreateEventPage.fxml"));
+            AnchorPane createEventPage = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(createEventPage);
+
+            // Give the controller access to the main app.
+            CreateEventController controller = loader.getController();
             controller.setMainApp(this);
         } catch (IOException e) {
             e.printStackTrace();

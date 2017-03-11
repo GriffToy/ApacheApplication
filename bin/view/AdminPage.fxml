@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="325.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AdminController">
+   <children>
+      <VBox prefHeight="325.0" prefWidth="450.0" spacing="10.0">
+         <children>
+            <HBox>
+               <children>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label text="Admin Home Page">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <Label text="What do you want to do?" />
+            <RadioButton fx:id="createEventRButton" mnemonicParsing="false" selected="true" text="Create an event">
+               <toggleGroup>
+                  <ToggleGroup fx:id="options" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="editEventRButton" mnemonicParsing="false" text="Edit an event" toggleGroup="$options" />
+            <RadioButton fx:id="viewEventRButton" mnemonicParsing="false" text="View an event" toggleGroup="$options" />
+            <RadioButton fx:id="reportEventRButton" mnemonicParsing="false" text="Generate event reports" toggleGroup="$options" />
+            <Region VBox.vgrow="ALWAYS" />
+            <HBox spacing="10.0">
+               <children>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutButtonClicked" prefWidth="90.0" text="Logout" />
+                  <Button fx:id="okayButton" defaultButton="true" mnemonicParsing="false" onAction="#okayButtonClicked" prefWidth="90.0" text="OK" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

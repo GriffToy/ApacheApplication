@@ -2,10 +2,12 @@ package view;
 
 import controller.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import model.User.UserType;
 
 public class LoginPageController {
@@ -60,11 +62,19 @@ public class LoginPageController {
 				// Check to see which type of user they are
 				if (mainApp.getCurrentUser().getUserType() == UserType.ATTENDEE) {
 					mainApp.showAttendeePage();
-				} else if (mainApp.getCurrentUser().getUserType() == UserType.JUDGE) {
+				} 
+				else if (mainApp.getCurrentUser().getUserType() == UserType.JUDGE) {
 					mainApp.showJudgeViewPage();
-				} else {
-					// Show entry registration page anyways (testing)
-					mainApp.showAttendeePage();
+				} 
+				else if (mainApp.getCurrentUser().getUserType() == UserType.ADMIN){
+					mainApp.showAdminPage();
+				}
+				else{
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("Warning Dialog");
+					alert.setHeaderText("Error!");
+					alert.setContentText("You are not an Attendee, Judge, or Admin.");
+					alert.showAndWait();
 				}
 			} else {
 				// Alert the user that the username and password is incorrect

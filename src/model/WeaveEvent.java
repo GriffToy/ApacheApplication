@@ -23,6 +23,17 @@ public class WeaveEvent {
 	private String criteriaAndJudges;
 	private ObservableList<Category> eventCategories = FXCollections.observableArrayList();
 	
+	public WeaveEvent(){
+		this.eventID = -1;
+		this.eventName = null;
+		this.eventDetails = null;
+		this.location = null;
+		this.dateAndTime = null;
+		this.cutOff = null;
+		this.sponsors = null;
+		this.criteriaAndJudges = null;
+	}
+	
 	public WeaveEvent(String eventName, int eventID, String location,
 			LocalDate dateAndTime, LocalDate cutOff){
 		this.eventID = eventID;
