@@ -29,68 +29,70 @@ public class EntryRegistrationController {
 	private Button backButton;
 	@FXML
 	private Button submitButton;
-	
-    // Reference to the main application.
-    private Main mainApp;
-    private WeaveEvent weaveEventSelected;
-    
-    /**
-     * Is called by the main application to give a reference back to itself.
-     * @author Griffin Toyoda
-     * @param mainApp
-     */
-    public void setMainApp(Main mainApp) {
-        this.mainApp = mainApp;
-        categoryComboBox.setItems(weaveEventSelected.getEventCategories());
-        categoryComboBox.setConverter(new StringConverter<Category>() {
-    	    @Override
-    	    public String toString(Category object) {
-    	        return object.getCategoryName();
-    	    }
 
-    	    @Override
-    	    public Category fromString(String string) {
-    	        return null;
-    	    }
-    	});
-        categoryComboBox.getSelectionModel().selectFirst();
-    }
-    
-    /**
-     * Sets the event that the user selected.
-     * @author Griffin Toyoda
-     */
-    public void setWeaveEvent(WeaveEvent weaveEventSelected){
-    	this.weaveEventSelected = weaveEventSelected;
-    }
-	
+	// Reference to the main application.
+	private Main mainApp;
+	private WeaveEvent weaveEventSelected;
+
+	/**
+	 * Is called by the main application to give a reference back to itself.
+	 * 
+	 * @author Griffin Toyoda
+	 * @param mainApp
+	 */
+	public void setMainApp(Main mainApp) {
+		this.mainApp = mainApp;
+		categoryComboBox.setItems(weaveEventSelected.getEventCategories());
+		categoryComboBox.setConverter(new StringConverter<Category>() {
+			@Override
+			public String toString(Category object) {
+				return object.getCategoryName();
+			}
+
+			@Override
+			public Category fromString(String string) {
+				return null;
+			}
+		});
+		categoryComboBox.getSelectionModel().selectFirst();
+	}
+
+	/**
+	 * Sets the event that the user selected.
+	 * 
+	 * @author Griffin Toyoda
+	 */
+	public void setWeaveEvent(WeaveEvent weaveEventSelected) {
+		this.weaveEventSelected = weaveEventSelected;
+	}
+
 	/**
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void cancelButtonClicked(){
-		if(mainApp != null){
+	private void cancelButtonClicked() {
+		if (mainApp != null) {
 			mainApp.showAttendeePage();
 		}
 	}
-	
+
 	/**
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void backButtonClicked(){
-		if(mainApp != null){
+	private void backButtonClicked() {
+		if (mainApp != null) {
 			mainApp.showEventPage();
 		}
 	}
-	
+
 	/**
 	 * @author Griffin Toyoda
 	 */
 	@FXML
-	private void submitButtonClicked(){
-		if(isValidEntry()){
-			if(mainApp != null){
+	private void submitButtonClicked() {
+		if (isValidEntry()) {
+			if (mainApp != null) {
 				mainApp.showAttendeePage();
 				UserEntry newEntry = new UserEntry(weaveEventSelected);
 				newEntry.setFibersInWeave(fibersTextField.getText());
@@ -102,13 +104,14 @@ public class EntryRegistrationController {
 			}
 		}
 	}
-	
+
 	/**
 	 * @author Griffin Toyoda
-	 * @return true if all fields are filled out, false if fields are not
-	 * filled out or if the user has already submitted an entry for the selected category
+	 * @return true if all fields are filled out, false if fields are not filled
+	 *         out or if the user has already submitted an entry for the
+	 *         selected category
 	 */
-	private boolean isValidEntry(){
+	private boolean isValidEntry() {
 		// TODO Validate entry
 		return true;
 	}

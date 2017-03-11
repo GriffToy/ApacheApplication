@@ -89,6 +89,10 @@ public class EventController {
 	}
 
 	/**
+	 * This button is set to not visible by default. It is only set to visible after the user has logged in
+	 * (in the setMainApp() function). After logging in, this button's text will change to "Back", 
+	 * which takes the user back to the attendee homepage.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
@@ -99,6 +103,10 @@ public class EventController {
 	}
 	
 	/**
+	 * The default text of this button is "Back". When the user is not logged in, the back button will take 
+	 * them back to the login page. Only after the user logs in does the text change to "Next". When the 
+	 * user is logged in, the "Next" button will take them to the entry registration page.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
