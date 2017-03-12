@@ -85,6 +85,7 @@ public class Main extends Application {
     	
     	UserEntry testEntry = new UserEntry(fiberFest);
     	admin.addUserEntry(testEntry);
+    	attendee.addUserEntry(testEntry);
     }
     
     /**
