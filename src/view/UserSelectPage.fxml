@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -10,7 +11,10 @@
    <children>
       <VBox prefHeight="325.0" prefWidth="450.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Just BeWeave" />
+            <Label text="Just BeWeave">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font></Label>
             <Label text="Please select your role:" />
             <RadioButton fx:id="attendeeRButton" mnemonicParsing="false" selected="true" text="Attendee">
                <toggleGroup>

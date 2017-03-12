@@ -42,8 +42,7 @@
                   <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <Label text="Email Address:*" GridPane.rowIndex="5" />
                   <TextField fx:id="emailAddress" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label text="Event*:" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="eventComboBox" prefHeight="25.0" prefWidth="327.0" promptText="Choose An Event" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label text="*Denotes Required Field" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <Label fx:id="warningText" text=" " textFill="RED" />
