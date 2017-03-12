@@ -52,7 +52,7 @@
                   <ListView fx:id="categoryListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="3" />
                   <Button fx:id="addCategoryButton" mnemonicParsing="false" onAction="#addCategoryButtonClicked" prefWidth="90.0" text="Add Category" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <Label text="Other Details:" GridPane.rowIndex="5" />
-                  <TextArea fx:id="otherDetailsTextArea" prefHeight="116.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" GridPane.rowSpan="3" />
+                  <TextArea fx:id="otherDetailsTextArea" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="86.0" prefWidth="330.0" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" GridPane.rowSpan="3" />
                   <Button fx:id="removeCategoryButton" mnemonicParsing="false" onAction="#removeCategoryButtonClicked" text="Remove Category" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                </children>
             </GridPane>
