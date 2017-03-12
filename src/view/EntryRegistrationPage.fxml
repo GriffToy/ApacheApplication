@@ -30,7 +30,13 @@
                   <CheckBox fx:id="handSpunCheckBox" mnemonicParsing="false" text="Handspun Yarn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <Label text="Other Details:" />
+            <HBox>
+               <children>
+                  <Label text="Other Details:" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="warningLabel" text=" " textFill="RED" />
+               </children>
+            </HBox>
             <TextArea fx:id="otherDetailsTextArea" prefHeight="96.0" prefWidth="430.0" wrapText="true" />
             <HBox spacing="10.0">
                <children>

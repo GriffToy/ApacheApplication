@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
@@ -29,6 +30,8 @@ public class EntryRegistrationController {
 	private Button backButton;
 	@FXML
 	private Button submitButton;
+	@FXML
+	private Label warningLabel;
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -120,6 +123,10 @@ public class EntryRegistrationController {
 	 */
 	private boolean isValidEntry() {
 		// TODO Validate entry
+		if(mainApp.getCurrentUser().containsCategory(categoryComboBox.getValue(), weaveEventSelected)){
+			warningLabel.setText("Already submitted an entry for this category. Choose another.");
+			return false;
+		}
 		return true;
 	}
 }

@@ -55,6 +55,29 @@ public class User {
 		return returnString.toString();
 	}
 	
+	/**
+	 * Checks via a comparison of category names and event names. TODO create a better comparison method as an event can have
+	 * multiple categories with the same name.
+	 * 
+	 * @author Griffin Toyoda
+	 * @param targetEvent to check.
+	 * @param targetCategory category to check.
+	 * @return true if the user has submitted an entry in targetCategory,
+	 * false otherwise.
+	 */
+	public boolean containsCategory(Category targetCategory, WeaveEvent targetEvent){
+		if(userEntries.size() == 0){
+			return false;
+		}
+		for(UserEntry a: userEntries){
+		    if(a.getCategory().getCategoryName().equals(targetCategory.getCategoryName())
+		    		&& a.getWeaveEvent().getEventName().equals(targetEvent.getEventName())){
+		        return true;
+		    }
+		}
+		return false;
+	}
+	
 	public ObservableList<UserEntry> getUserEntries() {
 		return userEntries;
 	}

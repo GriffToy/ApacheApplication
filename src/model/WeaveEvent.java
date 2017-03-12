@@ -18,7 +18,7 @@ public class WeaveEvent {
 	private String eventName;
 	private String eventDetails;
 	private String location;
-	private LocalDate dateAndTime; // TODO change to LocalDateTime variable
+	private LocalDate dateAndTime;
 	private LocalDate cutOff;
 	private String sponsors;
 	private String criteriaAndJudges;
