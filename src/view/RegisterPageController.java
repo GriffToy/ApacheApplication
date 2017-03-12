@@ -67,7 +67,7 @@ public class RegisterPageController {
     @FXML
     private void backButtonClicked(){
     	if(mainApp != null){
-        	// Popup warning, go back to login page if user confirms they want to go back.
+        	// Popup warning: go back to login page if user confirms they want to go back.
         	Alert alert = new Alert(AlertType.CONFIRMATION);
         	alert.setTitle("Confirmation Dialog");
         	alert.setHeaderText("Are you sure you want to go back a page?");

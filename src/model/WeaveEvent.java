@@ -1,7 +1,8 @@
 package model;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +54,25 @@ public class WeaveEvent {
 	
 	public void addCategory(Category newCategory){
 		this.eventCategories.add(newCategory);
+	}
+	
+	/**
+	 * @author Griffin Toyoda
+	 * @param name of category
+	 * @return 
+	 */
+	public boolean removeCategory(String name){
+		List<Object> toRemove = new ArrayList<Object>();
+		for(Object a: eventCategories){
+		    if(a.toString().equals(name)){
+		        toRemove.add(a);
+		    }
+		}
+		eventCategories.removeAll(toRemove);
+		if(toRemove.size() > 0){
+			return true;
+		}
+		return false;
 	}
 	
 	public ObservableList<Category> getEventCategories(){
