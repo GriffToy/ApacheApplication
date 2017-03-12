@@ -107,7 +107,7 @@ public class AttendeeController {
 	@FXML
 	private void newEntryButtonClicked(){
 		if(mainApp != null){
-			mainApp.showEventPage();
+			mainApp.showEventPage("AttendeePage");
 		}
 	}
 	

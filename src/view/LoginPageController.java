@@ -43,7 +43,7 @@ public class LoginPageController {
 	@FXML
 	private void showEventsButtonClicked() {
 		if (mainApp != null) {
-			mainApp.showEventPage();
+			mainApp.showEventPage("LoginPage");
 		}
 	}
 

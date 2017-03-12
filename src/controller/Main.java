@@ -214,7 +214,7 @@ public class Main extends Application {
      * Shows the Event page inside the root layout.
      * @author Griffin Toyoda
      */
-    public void showEventPage() {
+    public void showEventPage(String action) {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
@@ -226,7 +226,7 @@ public class Main extends Application {
 
             // Give the controller access to the main app.
             EventController controller = loader.getController();
-            controller.setMainApp(this);
+            controller.setMainApp(this, action);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -82,7 +82,7 @@ public class EntryRegistrationController {
 	@FXML
 	private void backButtonClicked() {
 		if (mainApp != null) {
-			mainApp.showEventPage();
+			mainApp.showEventPage("AttendeePage");
 		}
 	}
 

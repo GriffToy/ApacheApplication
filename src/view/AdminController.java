@@ -57,18 +57,15 @@ public class AdminController {
 				mainApp.showCreateEventPage();
 			}
 			else if(editEventRButton.isSelected()){
+				//mainApp.showEventPage("EditEvent");
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
 				alert.setHeaderText("This functionality has not been implemented yet");
-				alert.setContentText("Edit an event selected");
+				alert.setContentText("Edit event selected");
 				alert.showAndWait();
 			}
 			else if(viewEventRButton.isSelected()){
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("This functionality has not been implemented yet");
-				alert.setContentText("View an event selected");
-				alert.showAndWait();
+				mainApp.showEventPage("ViewEvent");
 			}
 			else{
 				Alert alert = new Alert(AlertType.WARNING);

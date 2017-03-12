@@ -33,14 +33,16 @@ public class EventController {
 	
     // Reference to the main application.
     private Main mainApp;
+    private String action;
     
     /**
      * Is called by the main application to give a reference back to itself.
      * @author Griffin Toyoda
      * @param mainApp
      */
-    public void setMainApp(Main mainApp) {
+    public void setMainApp(Main mainApp, String action) {
         this.mainApp = mainApp;
+        this.action = action;
 		// Populate combobox dropdown menu.
         this.weaveEventList = mainApp.getWeaveEventList();
     	eventsComboBox.setItems(weaveEventList);
@@ -58,8 +60,9 @@ public class EventController {
     	});
 		eventsComboBox.getSelectionModel().selectFirst();
 		// Check if user has logged in yet
-		if(mainApp.getCurrentUser() != null){
-			// The user has logged in
+		if(this.action.equals("AttendeePage") || this.action.equals("EditEvent")){
+			// Two buttons when going from attendee page to viewing events or from
+			// admin page to edit event page.
 			leftButton.setText("Back");
 			leftButton.setVisible(true);
 			rightButton.setText("Next");
@@ -91,14 +94,22 @@ public class EventController {
 	/**
 	 * This button is set to not visible by default. It is only set to visible after the user has logged in
 	 * (in the setMainApp() function). After logging in, this button's text will change to "Back", 
-	 * which takes the user back to the attendee homepage.
+	 * which takes the user back to the attendee home page.
 	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
 	private void leftButtonClicked(){
 		if(mainApp != null){
-			mainApp.showAttendeePage();
+			if(this.action.equals("AttendeePage")){
+				// Called from the attendee home page.
+				// Pass the weave event selected to the next page
+				mainApp.showAttendeePage();
+			}
+			else if(this.action.equals("EditEvent")){
+				// Called from admin page. User selected to edit an event.
+				mainApp.showAdminPage();
+			}
 		}
 	}
 	
@@ -112,13 +123,21 @@ public class EventController {
 	@FXML
 	private void rightButtonClicked(){
 		if(mainApp != null){
-			if(mainApp.getCurrentUser() != null){
+			if(this.action.equals("AttendeePage")){
+				// Called from the attendee home page.
 				// Pass the weave event selected to the next page
 				mainApp.showEntryRegistrationPage(eventsComboBox.getValue());
 			}
-			else{
-				// The user has yet to login
+			else if(this.action.equals("LoginPage")){
+				// Called from the login page.
 				mainApp.showLoginPage();
+			}
+			else if(this.action.equals("EditEvent")){
+				// Called from admin page. User selected to edit an event.
+			}
+			else if(this.action.equals("ViewEvent")){
+				// Called from admin page. User selected to view an event.
+				mainApp.showAdminPage();
 			}
 		}
 	}
