@@ -1,6 +1,5 @@
-package view;
+package controller;
 
-import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

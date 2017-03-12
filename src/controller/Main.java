@@ -18,15 +18,6 @@ import model.User;
 import model.User.UserType;
 import model.UserEntry;
 import model.WeaveEvent;
-import view.AdminController;
-import view.AttendeeController;
-import view.CreateEventController;
-import view.EntryRegistrationController;
-import view.EventController;
-import view.JudgeViewController;
-import view.LoginPageController;
-import view.RegisterPageController;
-import view.UserSelectController;
 
 public class Main extends Application {
     private Stage primaryStage;

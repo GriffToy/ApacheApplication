@@ -1,10 +1,11 @@
-package view;
+package controller;
 
-import controller.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 
 public class JudgeViewController {
 	@FXML
@@ -49,6 +50,10 @@ public class JudgeViewController {
 	 */
 	@FXML
 	private void okButtonClicked(){
-		System.out.println("This feature has not been implemented yet.");
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Warning Dialog");
+		alert.setHeaderText("This functionality has not been implemented yet");
+		alert.setContentText("Okay button selected");
+		alert.showAndWait();
 	}
 }

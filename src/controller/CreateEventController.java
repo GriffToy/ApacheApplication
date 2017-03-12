@@ -1,9 +1,8 @@
-package view;
+package controller;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
-import controller.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

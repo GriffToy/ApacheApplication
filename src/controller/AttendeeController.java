@@ -1,8 +1,7 @@
-package view;
+package controller;
 
 import java.util.Optional;
 
-import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
