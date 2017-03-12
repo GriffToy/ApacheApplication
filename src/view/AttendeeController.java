@@ -78,7 +78,11 @@ public class AttendeeController {
     }*/
     
     /**
+     * If the userEntry is null, all labels are set to "None". Otherwise, the labels on the attendee
+     * home page are set to the relevant labels of the userEntry.
+     * 
      * @author Griffin Toyoda
+     * @param userEntry an entry to display
      */
     private void showUserEntry(UserEntry userEntry){
     	if(userEntry == null){
@@ -147,6 +151,9 @@ public class AttendeeController {
 	}
 	
 	/**
+	 * Deletes the currently selected entry if the user has an entry in their userEntry list.
+	 * Confirms via a pop-up box if the user really wants to delete their entry.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML

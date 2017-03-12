@@ -62,6 +62,8 @@ public class RegisterPageController {
     }
     
     /**
+     * Confirms with the user that the registration details will be lost, before displaying the userSelectPage.
+     * 
      * @author Griffin Toyoda
      */
     @FXML
@@ -84,6 +86,8 @@ public class RegisterPageController {
     }
     
     /**
+     * If all fields are filled out correctly, according to verifyFields(), a new user is created and added to the user map.
+     * 
      * @author Griffin Toyoda
      */
     @FXML
@@ -102,13 +106,15 @@ public class RegisterPageController {
     		newUser.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
     		newUser.setEmailAddress(emailAddress.getText());
 	    	mainApp.userNameUserMap.put(userNameField.getText(), newUser);
+	    	// TODO Remove print user statement for final product.
 	    	System.out.println(newUser);
-	    	// TODO Append user to list of users file.
 	    	mainApp.showLoginPage();
     	}
     }
     
     /**
+     * Confirms with the user that the registration details will be lost, before displaying the loginPage.
+     * 
      * @author Griffin Toyoda
      */
     @FXML

@@ -38,6 +38,8 @@ public class LoginPageController {
 	}
 
 	/**
+	 * Displays the loginPage.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
@@ -48,6 +50,9 @@ public class LoginPageController {
 	}
 
 	/**
+	 * Validates that the username and password match a user and displays the attendee, judge, or admin
+	 * home page, depending on the type of user.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
@@ -84,6 +89,8 @@ public class LoginPageController {
 	}
 
 	/**
+	 * Displays the userSelectPage.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML

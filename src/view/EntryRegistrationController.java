@@ -67,6 +67,8 @@ public class EntryRegistrationController {
 	}
 
 	/**
+	 * Shows the attendee page.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
@@ -77,6 +79,8 @@ public class EntryRegistrationController {
 	}
 
 	/**
+	 * Shows the event page.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML
@@ -87,6 +91,9 @@ public class EntryRegistrationController {
 	}
 
 	/**
+	 * Gets the entry information from the text fields, creates a new entry with those values, 
+	 * and adds the entry to the user's list of entries.
+	 * 
 	 * @author Griffin Toyoda
 	 */
 	@FXML

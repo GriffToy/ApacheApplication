@@ -46,6 +46,9 @@ public class Main extends Application {
 	    showLoginPage();
 	}
 	
+	/**
+	 * Called when Platform.exit() or the main window is closed.
+	 */
 	@Override
 	public void stop(){
 		saveData();
