@@ -24,7 +24,7 @@
                <children>
                   <Label text="Category:" />
                   <ComboBox fx:id="categoryComboBox" prefHeight="25.0" prefWidth="214.0" GridPane.columnIndex="1" />
-                  <Label text="Fibers in Weave:" GridPane.rowIndex="1" />
+                  <Label text="Fibers in Weave*:" GridPane.rowIndex="1" />
                   <TextField fx:id="fibersTextField" maxWidth="-Infinity" prefHeight="25.0" prefWidth="215.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <CheckBox fx:id="selfDyedCheckBox" mnemonicParsing="false" text="Self-dyed Yarn" GridPane.rowIndex="2" />
                   <CheckBox fx:id="handSpunCheckBox" mnemonicParsing="false" text="Handspun Yarn" GridPane.columnIndex="1" GridPane.rowIndex="2" />

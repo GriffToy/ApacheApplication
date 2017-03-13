@@ -75,6 +75,20 @@ public class WeaveEvent {
 		return false;
 	}
 	
+	/**
+	 * @author Griffin Toyoda
+	 * @param name of category
+	 * @return true if event contains a category with the name name, false otherwise.
+	 */
+	public boolean containsCategory(String name){
+		for(Object a: eventCategories){
+		    if(a.toString().equals(name)){
+		        return true;
+		    }
+		}
+		return false;
+	}
+	
 	public ObservableList<Category> getEventCategories(){
 		return this.eventCategories;
 	}

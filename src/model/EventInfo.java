@@ -13,7 +13,7 @@ public class EventInfo {
 	private String eventName;
 	private String eventDetails;
 	private String location;
-	private Date dateAndTime; // TODO change to LocalDateTime variable
+	private Date dateAndTime; 
 	private Date cutOff;
 	private String sponsors;
 	private String criteriaAndJudges;

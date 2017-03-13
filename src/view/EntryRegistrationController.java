@@ -14,6 +14,7 @@ import model.UserEntry;
 import model.WeaveEvent;
 
 public class EntryRegistrationController {
+	private static int minFibersTextFieldLength = 1;
 	@FXML
 	private ComboBox<Category> categoryComboBox;
 	@FXML
@@ -122,9 +123,12 @@ public class EntryRegistrationController {
 	 *         selected category
 	 */
 	private boolean isValidEntry() {
-		// TODO Validate entry
 		if(mainApp.getCurrentUser().containsCategory(categoryComboBox.getValue(), weaveEventSelected)){
 			warningLabel.setText("Already submitted an entry for this category. Choose another.");
+			return false;
+		}
+		else if(fibersTextField.getText().length() < minFibersTextFieldLength){
+			warningLabel.setText("Please enter the fibers used in weave.");
 			return false;
 		}
 		return true;

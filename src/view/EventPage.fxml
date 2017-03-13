@@ -34,7 +34,7 @@
                   <Label text="Registration Cut-off Date" GridPane.rowIndex="5" />
                   <Label text="Sponsors" GridPane.rowIndex="6" />
                   <Label text="Judges" GridPane.rowIndex="7" />
-                  <Label fx:id="eventDetails" text="None" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="eventDetails" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="180.0" text="None" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label fx:id="cutOff" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="6" />

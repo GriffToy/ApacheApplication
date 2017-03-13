@@ -78,6 +78,11 @@ public class EditEventController {
 		}
 	}
 	
+	/**
+	 * Shows existing event details.
+	 * 
+	 * @author Griffin Toyoda
+	 */
 	private void showEventDetails(){
 		this.eventNameTextField.setText(eventToEdit.getEventName());
 		this.eventDateDatePicker.setValue(eventToEdit.getDateAndTime());
@@ -94,7 +99,6 @@ public class EditEventController {
 	 */
 	@FXML
 	private void addCategoryButtonClicked(){
-		// TODO Verify the category name does not already exist.
 		TextInputDialog dialog = new TextInputDialog();
 		dialog.setTitle("Text Input Dialog");
 		dialog.setHeaderText("Add a category");
@@ -102,18 +106,29 @@ public class EditEventController {
 
 		// Get the response
 		Optional<String> result = dialog.showAndWait();
+		// Check if user clicked cancel or ok.
 		if (result.isPresent()){
+			// User clicked ok, check if there is a response.
 			if(result.get().length() > minCategoryLength){
-				// Create a new event with the ID number equal to the number of categories and name equal to user input.
-				Category newCategory = new Category(eventToEdit.getEventCategories().size(), result.get());
-				eventToEdit.addCategory(newCategory);
+				// Check if category already exists.
+				if(!eventToEdit.containsCategory(result.get())){
+					// Category does not exist.
+					// Create a new event with the ID number equal to the number of categories and name equal to user input.
+					Category newCategory = new Category(eventToEdit.getEventCategories().size(), result.get());
+					eventToEdit.addCategory(newCategory);
+				}
+				else{
+					// Category already exist for the event.
+					warningLabel.setText("Category already exists");
+				}
 			}
 			else{
+				// No text entered by user.
 				warningLabel.setText("Category length has to be greater than " + minCategoryLength);
 			}
 		}
 		else{
-			// User clicked cancel
+			// User clicked cancel.
 			warningLabel.setText(" ");
 		}
 	}
