@@ -1,7 +1,6 @@
 package Testing;
 
 import java.time.LocalDate;
-import javafx.collections.ObservableList;
 import model.Category;
 import model.WeaveEvent;
 import org.junit.Test;
@@ -58,7 +57,7 @@ public class WeaveEventTest {
         ObservableList<Category> result = instance.getEventCategories();
         assertEquals(expResult, result);
     }*/
-    //not sure how to trst this
+    //not sure how to test this
 
     /**
      * Test of getEventID method, of class WeaveEvent.

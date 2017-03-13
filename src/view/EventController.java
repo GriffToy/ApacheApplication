@@ -1,5 +1,6 @@
-package controller;
+package view;
 
+import controller.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -93,7 +94,7 @@ public class EventController {
 	/**
 	 * This button is set to not visible by default. It is only set to visible after the user has logged in
 	 * (in the setMainApp() function). After logging in, this button's text will change to "Back", 
-	 * which takes the user back to the attendee home page.
+	 * which takes the user back a page.
 	 * 
 	 * @author Griffin Toyoda
 	 */
@@ -133,6 +134,8 @@ public class EventController {
 			}
 			else if(this.action.equals("EditEvent")){
 				// Called from admin page. User selected to edit an event.
+				// Pass the weave event selected to the next page
+				mainApp.showEditEventPage(eventsComboBox.getValue());
 			}
 			else if(this.action.equals("ViewEvent")){
 				// Called from admin page. User selected to view an event.

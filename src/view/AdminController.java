@@ -1,5 +1,6 @@
-package controller;
+package view;
 
+import controller.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -57,11 +58,7 @@ public class AdminController {
 			}
 			else if(editEventRButton.isSelected()){
 				//mainApp.showEventPage("EditEvent");
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Warning Dialog");
-				alert.setHeaderText("This functionality has not been implemented yet");
-				alert.setContentText("Edit event selected");
-				alert.showAndWait();
+				mainApp.showEventPage("EditEvent");
 			}
 			else if(viewEventRButton.isSelected()){
 				mainApp.showEventPage("ViewEvent");

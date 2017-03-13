@@ -16,6 +16,16 @@ import javafx.stage.Stage;
 import model.Category;
 import model.User;
 import model.User.UserType;
+import view.AdminController;
+import view.AttendeeController;
+import view.CreateEventController;
+import view.EditEventController;
+import view.EntryRegistrationController;
+import view.EventController;
+import view.JudgeViewController;
+import view.LoginPageController;
+import view.RegisterPageController;
+import view.UserSelectController;
 import model.UserEntry;
 import model.WeaveEvent;
 
@@ -356,6 +366,29 @@ public class Main extends Application {
             // Give the controller access to the main app.
             CreateEventController controller = loader.getController();
             controller.setMainApp(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Shows the EditEvent page inside the root layout.
+     * @author Griffin Toyoda
+     */
+    public void showEditEventPage(WeaveEvent selectedWeaveEvent) {
+        try {
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/EditEventPage.fxml"));
+            AnchorPane editEventPage = (AnchorPane) loader.load();
+
+            // Set person overview into the center of root layout.
+            rootLayout.setCenter(editEventPage);
+
+            // Give the controller access to the main app.
+            EditEventController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setEventToEdit(selectedWeaveEvent);
         } catch (IOException e) {
             e.printStackTrace();
         }
