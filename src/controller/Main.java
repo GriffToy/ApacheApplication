@@ -115,8 +115,8 @@ public class Main extends Application {
     			WeaveEvent loadedEvent = new WeaveEvent(name, id, loc, date, cut);
     			
     			// Dummy categories
-    			loadedEvent.addCategory(new Category(-1, "A catgeory"));
-    			loadedEvent.addCategory(new Category(-1, "Another catgeory"));
+    			loadedEvent.addCategory(new Category(-1, "Knitting"));
+    			loadedEvent.addCategory(new Category(-1, "Crochet"));
     			weaveEventList.add(loadedEvent);
     		}
     		

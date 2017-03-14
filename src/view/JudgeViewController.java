@@ -93,6 +93,8 @@ public class JudgeViewController {
 		// TODO Auto-generated method stub
 		if (this.event != null && this.category != null){
 			System.out.println("test");
+			// Implement a sql query function that finds entries with the this event and category
+			// Create a new VBox and put it in the scroll pane
 		}
 	}
 
