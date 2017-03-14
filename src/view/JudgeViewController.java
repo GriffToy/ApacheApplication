@@ -1,6 +1,12 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -90,11 +96,29 @@ public class JudgeViewController {
 	}
 
 	private void updateList() {
-		// TODO Auto-generated method stub
 		if (this.event != null && this.category != null){
-			System.out.println("test");
 			// Implement a sql query function that finds entries with the this event and category
 			// Create a new VBox and put it in the scroll pane
+			Connection conn = null;
+			conn = sqliteConnection.dbConnector();
+			StringBuilder query = new StringBuilder();
+			query.append("SELECT * FROM Entry WHERE CategoryID == ");
+			query.append(category.getCategoryID());
+			System.out.println(query.toString());
+			try {
+				PreparedStatement pst = conn.prepareStatement(query.toString());
+				ResultSet result = pst.executeQuery();
+				
+				while(result.next()){
+					System.out.println(result.getString(8));
+					
+				}
+			} catch (SQLException e) {
+				System.out.println("Connection Error" + e.getMessage());
+				
+			}
+			
+			
 		}
 	}
 

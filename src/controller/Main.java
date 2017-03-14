@@ -67,8 +67,8 @@ public class Main extends Application {
     	fiberFest.setEventDetails("Be there or be square");
     	fiberFest.setSponsors("Redbull");
     	fiberFest.setCriteriaAndJudges("Tony Hawk");
-    	fiberFest.addCategory(new Category());
-    	fiberFest.addCategory(new Category(-2, "Another category"));
+    	fiberFest.addCategory(new Category(1, "Test Category"));
+    	fiberFest.addCategory(new Category(2, "Another category"));
     	weaveEventList.add(fiberFest);
     	userNameUserMap = new HashMap<String, User>();
     	User admin = new User();
@@ -100,7 +100,7 @@ public class Main extends Application {
     	conn = sqliteConnection.dbConnector();
     	
     	try{
-    		String query = "select * from EventInfo";
+    		String query = "select * from Event";
     		PreparedStatement pst = conn.prepareStatement(query);
     		ResultSet result = pst.executeQuery();
     		
