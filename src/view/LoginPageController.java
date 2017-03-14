@@ -66,8 +66,6 @@ public class LoginPageController {
 	 */
 	@FXML
 	private void loginButtonClicked() {
-		System.out.println("The user's username is: " + userNameField.getText());
-		System.out.println("The user's password is: " + passwordField.getText());
 		if (mainApp != null) {
 			if (validateUser()) {
 				// Go on to next screen
@@ -152,3 +150,4 @@ public class LoginPageController {
     	return true;
 	}
 }
+
