@@ -61,7 +61,7 @@ public class LoginPageController {
 	/**
 	 * Validates that the username and password match a user and displays the attendee, judge, or admin
 	 * home page, depending on the type of user.
-	 * 
+	 * Modified by Jorie Fernandez based from the query on database
 	 * @author Griffin Toyoda
 	 */
 	@FXML
@@ -74,10 +74,10 @@ public class LoginPageController {
 				System.out.println("Valid user");
 				mainApp.setCurrentUser(mainApp.userNameUserMap.get(userNameField.getText()));
 				// Check to see which type of user they are
-				if (mainApp.getCurrentUser().getUserType() == UserType.ATTENDEE) {
+				if (userType.equals((UserType.ATTENDEE).toString())) {
 					mainApp.showAttendeePage();
 				} 
-				else if (mainApp.getCurrentUser().getUserType() == UserType.JUDGE) {
+				else if (userType.equals((UserType.JUDGE).toString())) {
 					mainApp.showJudgeViewPage();
 				} 
 				else if (mainApp.getCurrentUser().getUserType() == UserType.ADMIN){
@@ -136,6 +136,8 @@ public class LoginPageController {
     		if(!result.next()){
     			JOptionPane.showMessageDialog(null, "Invalid user! Please click Register to create an account",
     					"Error", JOptionPane.ERROR_MESSAGE);
+    			userNameField.setText(null);
+    			passwordField.setText(null);
     			return false;
     		} else {
     			userType = result.getString("attendeeType");
