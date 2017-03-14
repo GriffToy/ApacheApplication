@@ -1,8 +1,15 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.Optional;
 
+import javax.swing.JOptionPane;
+
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -12,7 +19,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.Category;
 import model.User;
+import model.WeaveEvent;
 import model.User.UserType;
 
 public class RegisterPageController {
@@ -106,9 +115,39 @@ public class RegisterPageController {
     		newUser.setPhoneNumber(Long.parseLong(phoneNumber.getText()));
     		newUser.setEmailAddress(emailAddress.getText());
 	    	mainApp.userNameUserMap.put(userNameField.getText(), newUser);
-	    	// TODO Remove print user statement for final product.
-	    	System.out.println(newUser);
+	    	
+	    	/** Save information to Attendee table. */
+	    	insertData();
+	    	
 	    	mainApp.showLoginPage();
+    	}
+    }
+    
+    private void insertData(){
+    	Connection conn = null;
+    	conn = sqliteConnection.dbConnector();
+    	
+    	try{
+    		String query = "insert into Attendee(attendeeLastName, attendeeFirstName,"
+    				+ "attendeeUserName, attendeePW, attendeeEmail, attendeePhone, attendeeType)"
+    				+ " VALUES (?,?,?,?,?,?,?)";
+    		PreparedStatement pst = conn.prepareStatement(query);
+    		
+    		pst.setString(1, lastName.getText());
+    		pst.setString(2, firstName.getText());
+    		pst.setString(3,  userNameField.getText());
+    		pst.setString(4,  passwordField.getText());
+    		pst.setString(5,  emailAddress.getText());
+    		pst.setDouble(6,  Double.parseDouble(phoneNumber.getText()));
+    		pst.setString(7,  attendeeType.toString());
+    		
+    		pst.execute();
+    		
+    		JOptionPane.showMessageDialog(null, "Submission Confirmed");
+    		
+    		pst.close();
+    	}catch (Exception e){
+    		System.out.println("Error connection!" + e.getMessage());
     	}
     }
     

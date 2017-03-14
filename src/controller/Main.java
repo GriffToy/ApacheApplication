@@ -59,10 +59,7 @@ public class Main extends Application {
      * Constructor for testing purposes
      */
     public Main(){        
-    	// Add some sample data
-    	//weaveEventList.add(new WeaveEvent("Yarnosphere", 1));
-    	//weaveEventList.add(new WeaveEvent("Fiber Fair at Lambtown", 2));
-    	//weaveEventList.add(new WeaveEvent("Stitches West", 3));
+    	
     	WeaveEvent fiberFest = new WeaveEvent("Fiber Fest", 4, "Tacoma" , LocalDate.now(), LocalDate.now());
     	fiberFest.setEventDetails("Be there or be square");
     	fiberFest.setSponsors("Redbull");
@@ -94,6 +91,7 @@ public class Main extends Application {
     
     /**
      * Loads the eventList and userList from database. Called once at startup.
+     * @author Jorie Fernandez
      */
     private void loadData(){
     	Connection conn = null;
@@ -131,6 +129,7 @@ public class Main extends Application {
      */
     private void saveData(){
     	// TODO complete function
+    	
     }
     
     /**
