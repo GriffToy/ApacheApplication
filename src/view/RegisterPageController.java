@@ -96,7 +96,7 @@ public class RegisterPageController {
     
     /**
      * If all fields are filled out correctly, according to verifyFields(), a new user is created and added to the user map.
-     * 
+     * Modified by Jorie Fernandez to save the information into the database
      * @author Griffin Toyoda
      */
     @FXML
@@ -124,31 +124,62 @@ public class RegisterPageController {
     }
     
     private void insertData(){
+    	if(validNewUser()){
+    		Connection conn = null;
+    		conn = sqliteConnection.dbConnector();
+    	
+    		try{
+    			String query = "insert into Attendee(attendeeLastName, attendeeFirstName,"
+    				+ "attendeeUserName, attendeePW, attendeeEmail, attendeePhone, attendeeType)"
+    				+ " VALUES (?,?,?,?,?,?,?)";
+    			PreparedStatement pst = conn.prepareStatement(query);
+    		
+    			pst.setString(1, lastName.getText());
+    			pst.setString(2, firstName.getText());
+    			pst.setString(3,  userNameField.getText());
+    			pst.setString(4,  passwordField.getText());
+    			pst.setString(5,  emailAddress.getText());
+    			pst.setDouble(6,  Double.parseDouble(phoneNumber.getText()));
+    			pst.setString(7,  attendeeType.toString());
+    		
+    			pst.execute();
+    		
+    			JOptionPane.showMessageDialog(null, "Submission Confirmed");
+    		
+    			pst.close();
+    		}catch (Exception e){
+    			System.out.println("Error connection!" + e.getMessage());
+    		}
+    	}
+    }
+    
+    private boolean validNewUser(){
     	Connection conn = null;
     	conn = sqliteConnection.dbConnector();
     	
+    	String query = "select * from Attendee where attendeeEmail = ? "
+    				+ "or attendeeUserName = ?";
     	try{
-    		String query = "insert into Attendee(attendeeLastName, attendeeFirstName,"
-    				+ "attendeeUserName, attendeePW, attendeeEmail, attendeePhone, attendeeType)"
-    				+ " VALUES (?,?,?,?,?,?,?)";
+    			
     		PreparedStatement pst = conn.prepareStatement(query);
+    		pst.setString(1, emailAddress.getText().replaceAll("\\s", ""));
+    		pst.setString(2, userNameField.getText().replaceAll("\\s", ""));
+    		ResultSet result = pst.executeQuery();
     		
-    		pst.setString(1, lastName.getText());
-    		pst.setString(2, firstName.getText());
-    		pst.setString(3,  userNameField.getText());
-    		pst.setString(4,  passwordField.getText());
-    		pst.setString(5,  emailAddress.getText());
-    		pst.setDouble(6,  Double.parseDouble(phoneNumber.getText()));
-    		pst.setString(7,  attendeeType.toString());
-    		
-    		pst.execute();
-    		
-    		JOptionPane.showMessageDialog(null, "Submission Confirmed");
+    		if(result.next()){
+    			JOptionPane.showMessageDialog(null, "Duplicate user!", "Error",
+    					JOptionPane.ERROR_MESSAGE);
+    			return false;
+    		}
     		
     		pst.close();
     	}catch (Exception e){
-    		System.out.println("Error connection!" + e.getMessage());
+    		JOptionPane.showMessageDialog(null, "Error Connection!" + e.getMessage(), "Database Error",
+					JOptionPane.ERROR_MESSAGE);
+    		
     	}
+    	
+    	return true;
     }
     
     /**
@@ -180,6 +211,8 @@ public class RegisterPageController {
      */
     private boolean verifyFields(){
     	boolean phoneNumberIsInt = false;
+    	
+    	
     	try{
     		Long.parseLong(phoneNumber.getText());
     		phoneNumberIsInt = true;
@@ -222,6 +255,8 @@ public class RegisterPageController {
     		warningText.setText("Please enter a valid email address.");
     		return false;
     	}
+    	
+    
     	return true;
     }
 }

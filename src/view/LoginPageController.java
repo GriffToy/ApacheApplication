@@ -1,6 +1,13 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JOptionPane;
+
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -23,6 +30,8 @@ public class LoginPageController {
 	private PasswordField passwordField;
 	@FXML
 	private Label invalidLoginLabel;
+	
+	private String userType;
 
 	// Reference to the main application.
 	private Main mainApp;
@@ -60,7 +69,7 @@ public class LoginPageController {
 		System.out.println("The user's username is: " + userNameField.getText());
 		System.out.println("The user's password is: " + passwordField.getText());
 		if (mainApp != null) {
-			if (validateUser(userNameField.getText(), passwordField.getText())) {
+			if (validateUser()) {
 				// Go on to next screen
 				System.out.println("Valid user");
 				mainApp.setCurrentUser(mainApp.userNameUserMap.get(userNameField.getText()));
@@ -101,21 +110,43 @@ public class LoginPageController {
 	}
 
 	/**
-	 * @author Griffin Toyoda
+	 * 
+	 * Validates if the user has an existing account
+	 * @author Jorie Fernandez
 	 * @param username
 	 *            entered on login screen
 	 * @param password
 	 *            entered on login screen
 	 * @return true if username and password is valid pair, false otherwise
 	 */
-	private boolean validateUser(String username, String password) {
+	private boolean validateUser() {
 		// Check if there is a user with given username.
-		if (mainApp.userNameUserMap.containsKey(username)) {
-			// Check if password of user matches given password.
-			if (mainApp.userNameUserMap.get(username).getPassword().equals(password)) {
-				return true;
-			}
-		}
-		return false;
+		Connection conn = null;
+    	conn = sqliteConnection.dbConnector();
+    	
+    	String query = "select * from Attendee where attendeeUserName = ? "
+    				+ "and attendeePW = ?";
+    	try{
+    			
+    		PreparedStatement pst = conn.prepareStatement(query);
+    		pst.setString(1, userNameField.getText().replaceAll("\\s", ""));
+    		pst.setString(2, passwordField.getText().replaceAll("\\s", ""));
+    		ResultSet result = pst.executeQuery();
+    		
+    		if(!result.next()){
+    			JOptionPane.showMessageDialog(null, "Invalid user! Please click Register to create an account",
+    					"Error", JOptionPane.ERROR_MESSAGE);
+    			return false;
+    		} else {
+    			userType = result.getString("attendeeType");
+    		}
+    		
+    		pst.close();
+    	}catch (Exception e){
+    		JOptionPane.showMessageDialog(null, "Error Connection!" + e.getMessage(), "Database Error",
+					JOptionPane.ERROR_MESSAGE);
+    		
+    	}
+    	return true;
 	}
 }
