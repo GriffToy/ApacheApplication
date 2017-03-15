@@ -27,7 +27,33 @@ public class User {
 		this.lastName = null;
 		this.emailAddress = null;
 		this.phoneNumber = -1;
-		this.eventID = -1;
+		//this.eventID = -1;
+	}
+	
+	/**
+	 *  Constructor for user 
+	 *  
+	 *  @author Jorie Fernandez
+	 * @param usertype
+	 * @param id
+	 * @param userName
+	 * @param pass
+	 * @param first
+	 * @param last
+	 * @param email
+	 * @param phone
+	 */
+	public User(UserType usertype, int id, String userName, String pass, String first,
+			String last, String email, long phone){ 
+	this.userType = usertype;
+	this.attendeeID = id;
+	this.username = userName;
+	this.password = pass;
+	this.firstName = first;
+	this.lastName = last;
+	this.emailAddress =  email;
+	this.phoneNumber = phone;
+	//this.eventID = -1;
 	}
 	
 	@Override

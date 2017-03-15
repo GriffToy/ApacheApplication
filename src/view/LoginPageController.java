@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import model.User;
 import model.User.UserType;
 
 public class LoginPageController {
@@ -139,6 +140,15 @@ public class LoginPageController {
     			return false;
     		} else {
     			userType = result.getString("attendeeType");
+    			UserType user = UserType.valueOf(userType);
+    			User currentUser = new User(user, result.getInt("attendeeID"),
+    					result.getString("attendeeUserName"),
+    					result.getString("attendeePW"),
+    					result.getString("attendeeFirstName"),
+    					result.getString("attendeeLastName"),
+    					result.getString("attendeeEmail"),
+    					(long) result.getDouble("attendeePhone"));
+    			mainApp.setCurrentUser(currentUser);
     		}
     		
     		pst.close();

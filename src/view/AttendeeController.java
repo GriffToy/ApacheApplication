@@ -66,16 +66,7 @@ public class AttendeeController {
         selectEntryComboBox.getSelectionModel().selectFirst();
     }
     
-    /*private void printEntries(){
-        		userEntryList.forEach((entry) -> { 
-        		    System.out.println(entry.getWeaveEvent());
-        		    System.out.println(entry.getCategory());
-        		    System.out.println(entry.getFibersInWeave());
-        		    System.out.println(entry.getOtherDetails());
-        		    System.out.println(entry.isHandspunYarn());
-        		    System.out.println(entry.isSelfDyedYarn());
-        		});
-    }*/
+  
     
     /**
      * If the userEntry is null, all labels are set to "None". Otherwise, the labels on the attendee
