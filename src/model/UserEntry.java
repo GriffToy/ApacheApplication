@@ -1,20 +1,27 @@
 package model;
 
 public class UserEntry {
-	private WeaveEvent weaveEvent;
-	private Category category;
+	public WeaveEvent weaveEvent;
+	public Category category;
 	private String fibersInWeave;
 	private boolean selfDyedYarn;
 	private boolean handspunYarn;
 	private String otherDetails;
-	
-	public UserEntry(WeaveEvent weaveEvent){
-		this.weaveEvent = weaveEvent;
-		this.category = new Category();
-		this.fibersInWeave = "Testing 1";
-		this.otherDetails = "Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123";
+
+
+	public UserEntry(WeaveEvent wv) {
+		weaveEvent = wv;
 	}
-	
+
+	public UserEntry() {
+		weaveEvent = null;
+		category = new Category();
+		fibersInWeave = null;
+		selfDyedYarn = false;
+		handspunYarn = false;
+		otherDetails = null;
+	}
+
 	@Override
 	public String toString(){
 		if(weaveEvent != null && category != null){

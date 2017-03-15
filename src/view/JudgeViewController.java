@@ -138,7 +138,8 @@ public class JudgeViewController {
 	private void selectEvent(WeaveEvent newVal) {
 		// TODO Auto-generated method stub
 		this.event = newVal;
-		updateList();
+		categoryComboBox.setItems(event.getEventCategories());
+		data.clear();
 	}
 
 	private void updateList() {
@@ -148,7 +149,7 @@ public class JudgeViewController {
 			data.clear();
 			Connection conn = null;
 			conn = sqliteConnection.dbConnector();
-			String query = "SELECT * FROM Entry WHERE CategoryID == " + category.getCategoryID() + " AND EventID == " + event.getEventID();
+			String query = "SELECT * FROM Entry WHERE CategoryID == " + category.getCategoryID();
 			System.out.println(query);
 			try {
 				PreparedStatement pst = conn.prepareStatement(query.toString());

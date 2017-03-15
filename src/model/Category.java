@@ -26,8 +26,8 @@ public class Category {
 	}
 	
 	// Constructor for testing purposes
-	public Category(){
-		this.categoryID = -1;
+	public Category(int i){
+		this.categoryID = i;
 		this.categoryName = "A test category";
 	}
 	
@@ -40,5 +40,10 @@ public class Category {
 	public Category(Category anotherCategory){
 		this.categoryID = anotherCategory.getCategoryID();
 		this.categoryName = new String(anotherCategory.getCategoryName());
+	}
+
+	public Category() {
+		categoryID = 0;
+		categoryName = null;
 	}
 }

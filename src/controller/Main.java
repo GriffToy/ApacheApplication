@@ -2,8 +2,8 @@ package controller;
 import java.sql.*;
 import java.time.LocalDate;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +38,6 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		// TODO load list of events and map of users
 		loadData();
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Apache Application");
@@ -52,44 +51,14 @@ public class Main extends Application {
 	 */
 	@Override
 	public void stop(){
-		saveData();
+		//saveData();
 	}
     
     /**
      * Constructor for testing purposes
      */
     public Main(){        
-    	// Add some sample data
-    	//weaveEventList.add(new WeaveEvent("Yarnosphere", 1));
-    	//weaveEventList.add(new WeaveEvent("Fiber Fair at Lambtown", 2));
-    	//weaveEventList.add(new WeaveEvent("Stitches West", 3));
-    	WeaveEvent fiberFest = new WeaveEvent("Fiber Fest", 4, "Tacoma" , LocalDate.now(), LocalDate.now());
-    	fiberFest.setEventDetails("Be there or be square");
-    	fiberFest.setSponsors("Redbull");
-    	fiberFest.setCriteriaAndJudges("Tony Hawk");
-    	fiberFest.addCategory(new Category(1, "Test Category"));
-    	fiberFest.addCategory(new Category(2, "Another category"));
-    	weaveEventList.add(fiberFest);
     	userNameUserMap = new HashMap<String, User>();
-    	User admin = new User();
-    	admin.setUsername("admin");
-    	admin.setPassword("password");
-    	admin.setUserType(UserType.ADMIN);
-    	userNameUserMap.put(admin.getUsername(), admin);
-    	User judge = new User();
-    	judge.setUsername("judge");
-    	judge.setPassword("password");
-    	judge.setUserType(UserType.JUDGE);
-    	userNameUserMap.put(judge.getUsername(), judge);
-    	User attendee = new User();
-    	attendee.setUsername("attendee");
-    	attendee.setPassword("password");
-    	attendee.setUserType(UserType.ATTENDEE);
-    	userNameUserMap.put(attendee.getUsername(), attendee);
-    	
-    	UserEntry testEntry = new UserEntry(fiberFest);
-    	admin.addUserEntry(testEntry);
-    	attendee.addUserEntry(testEntry);
     }
     
     /**
@@ -100,25 +69,96 @@ public class Main extends Application {
     	conn = sqliteConnection.dbConnector();
     	
     	try{
-    		String query = "select * from Event";
-    		PreparedStatement pst = conn.prepareStatement(query);
-    		ResultSet result = pst.executeQuery();
+    		PreparedStatement pst;
+    		ResultSet eventResult;
+    		ResultSet userResult;
+    		ResultSet entryResult;
+    		ResultSet categoryResult;
     		
-    		while(result.next()) {
-    			String name = result.getString("eventName");
-    			int id = result.getInt("eventID");
-    			String loc = result.getString("eventLocation");
-    			String str = result.getString("eventDate").replaceAll("\\s", "");
-    			LocalDate date = LocalDate.parse(str);
-    			String cutDate = result.getString("eventCutDate").replaceAll("\\s", "");
-    			LocalDate cut = LocalDate.parse(cutDate);
-    			WeaveEvent loadedEvent = new WeaveEvent(name, id, loc, date, cut);
-    			
-    			// Dummy categories
-    			loadedEvent.addCategory(new Category(-1, "Knitting"));
-    			loadedEvent.addCategory(new Category(-1, "Crochet"));
-    			weaveEventList.add(loadedEvent);
+    		HashMap<Integer,WeaveEvent> eventMap = new HashMap<Integer, WeaveEvent>();
+    		HashMap<Integer,String> categoryMap = new HashMap<Integer, String>();
+    		ArrayList<Integer> entryIdSet = new ArrayList<Integer>();
+    		ArrayList<UserEntry> entrySet = new ArrayList<UserEntry>();
+    		
+    		
+    		
+    		pst = conn.prepareStatement("select * from Event");
+    		eventResult = pst.executeQuery();
+    		
+    		pst = conn.prepareStatement("select * from User");
+    		userResult = pst.executeQuery();
+    		
+    		pst = conn.prepareStatement("select * from Entry");
+    		entryResult = pst.executeQuery();
+    		
+    		pst = conn.prepareStatement("select * from Category");
+    		categoryResult = pst.executeQuery();
+    		
+    		
+    		
+    		while(eventResult.next()) {
+    			WeaveEvent nEvent = new WeaveEvent();
+    			nEvent.setEventID(eventResult.getInt(1));
+    			nEvent.setEventName(eventResult.getString(2));
+    			nEvent.setLocation(eventResult.getString(3));
+    			nEvent.setDateAndTime(LocalDate.parse(eventResult.getString(4)));
+    			nEvent.setCutOffDate(LocalDate.parse(eventResult.getString(5)));
+    			weaveEventList.add(nEvent);
+    			eventMap.put(nEvent.getEventID(), nEvent);
     		}
+    		
+    		
+    		
+    		while(categoryResult.next()){
+    			Category nCategory = new Category();
+    			nCategory.setCategoryID(categoryResult.getInt(1));
+    			nCategory.setCategoryName(categoryResult.getString(2));
+    			for (WeaveEvent x : weaveEventList){
+    				if(x.getEventID() == categoryResult.getInt(3)){
+    					x.addCategory(nCategory);
+    				}
+    			}
+    			categoryMap.put(categoryResult.getInt(1), categoryResult.getString(2));
+    		}
+    		
+    		while(entryResult.next()){
+				UserEntry nEntry = new UserEntry();
+				nEntry.category.setCategoryID(entryResult.getInt(1));
+				nEntry.category.setCategoryName(categoryMap.get(nEntry.category.getCategoryID()));					nEntry.setWeaveEvent(eventMap.get(entryResult.getInt(3)));
+				nEntry.setFibersInWeave(entryResult.getString(5));
+				nEntry.setSelfDyedYarn(entryResult.getBoolean(6));
+				nEntry.setHandspunYarn(entryResult.getBoolean(7));
+				nEntry.setOtherDetails(entryResult.getString(8));
+				entryIdSet.add(entryResult.getInt(2));
+				entrySet.add(nEntry);
+				
+    		}
+    		
+    		
+    		while(userResult.next()){
+    			User nUser = new User();
+    			nUser.setAttendeeID(userResult.getInt("attendeeID"));
+    			nUser.setLastName(userResult.getString("attendeeLastName"));
+    			nUser.setFirstName(userResult.getString("attendeeFirstName"));
+    			nUser.setUsername(userResult.getString("attendeeUserName"));
+    			nUser.setPassword(userResult.getString("attendeePW"));
+    			nUser.setEmailAddress(userResult.getString("attendeeEmail"));
+    			nUser.setPhoneNumber(userResult.getLong("attendeePhone"));
+    			String userType = userResult.getString("attendeeType");
+    			if(userType.equals("admin")) nUser.setUserType(UserType.ADMIN);
+    			else if(userType.equals("judge")) nUser.setUserType(UserType.JUDGE);
+    			else if(userType.equals("attendee")) nUser.setUserType(UserType.ATTENDEE);
+    			else nUser.setUserType(UserType.NONE);
+    			for(int x : entryIdSet){
+    				if(x == nUser.getAttendeeID()){
+    					nUser.addUserEntry(entrySet.get(entryIdSet.indexOf(x)));
+    				}
+    			}
+    			userNameUserMap.put(nUser.getUsername(), nUser);	
+    		}
+    		
+    		
+    		
     		
     		pst.close();
     	}catch (Exception e){

@@ -22,7 +22,7 @@ public class WeaveEvent {
 	private LocalDate cutOff;
 	private String sponsors;
 	private String criteriaAndJudges;
-	private ObservableList<Category> eventCategories = FXCollections.observableArrayList();
+	public ObservableList<Category> eventCategories = FXCollections.observableArrayList();
 	
 	public WeaveEvent(){
 		this.eventID = -1;

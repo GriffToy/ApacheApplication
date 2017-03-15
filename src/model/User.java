@@ -1,5 +1,10 @@
 package model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import controller.sqliteConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -28,6 +33,7 @@ public class User {
 		this.emailAddress = null;
 		this.phoneNumber = -1;
 		this.eventID = -1;
+
 	}
 	
 	@Override
