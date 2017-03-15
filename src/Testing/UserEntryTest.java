@@ -1,6 +1,7 @@
 package Testing;
 
 import model.Category;
+import model.User;
 import model.UserEntry;
 import model.WeaveEvent;
 import org.junit.Test;
@@ -13,13 +14,14 @@ import static org.junit.Assert.*;
 public class UserEntryTest {
 	
 	WeaveEvent wv = new WeaveEvent();
+	User at = new User();
     /**
      * Test of toString method, of class UserEntry.
      */
     @Test
     public void testToString() {
         System.out.println("toString");
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         String expResult = "null: A test category";
         String result = instance.toString();
         assertEquals(expResult, result);
@@ -31,7 +33,7 @@ public class UserEntryTest {
     @Test
     public void testGetWeaveEvent() {
         System.out.println("getWeaveEvent");
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         WeaveEvent expResult = wv;
         WeaveEvent result = instance.getWeaveEvent();
         assertEquals(expResult, result);
@@ -44,7 +46,7 @@ public class UserEntryTest {
     public void testSetWeaveEvent() {
         System.out.println("setWeaveEvent");
         WeaveEvent weaveEvent = null;
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         instance.setWeaveEvent(weaveEvent);
     }
 
@@ -68,7 +70,7 @@ public class UserEntryTest {
     public void testSetCategory() {
         System.out.println("setCategory");
         Category category = null;
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         instance.setCategory(category);
     }
 
@@ -78,7 +80,7 @@ public class UserEntryTest {
     @Test
     public void testGetFibersInWeave() {
         System.out.println("getFibersInWeave");
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         String expResult = "Testing 1";
         String result = instance.getFibersInWeave();
         assertEquals(expResult, result);
@@ -91,7 +93,7 @@ public class UserEntryTest {
     public void testSetFibersInWeave() {
         System.out.println("setFibersInWeave");
         String fibersInWeave = "";
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         instance.setFibersInWeave(fibersInWeave);
     }
 
@@ -101,7 +103,7 @@ public class UserEntryTest {
     @Test
     public void testIsSelfDyedYarn() {
         System.out.println("isSelfDyedYarn");
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         boolean expResult = false;
         boolean result = instance.isSelfDyedYarn();
         assertEquals(expResult, result);
@@ -114,7 +116,7 @@ public class UserEntryTest {
     public void testSetSelfDyedYarn() {
         System.out.println("setSelfDyedYarn");
         boolean selfDyedYarn = false;
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         instance.setSelfDyedYarn(selfDyedYarn);
     }
 
@@ -124,7 +126,7 @@ public class UserEntryTest {
     @Test
     public void testIsHandspunYarn() {
         System.out.println("isHandspunYarn");
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         boolean expResult = false;
         boolean result = instance.isHandspunYarn();
         assertEquals(expResult, result);
@@ -137,7 +139,7 @@ public class UserEntryTest {
     public void testSetHandspunYarn() {
         System.out.println("setHandspunYarn");
         boolean handspunYarn = false;
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         instance.setHandspunYarn(handspunYarn);
     }
 
@@ -147,7 +149,7 @@ public class UserEntryTest {
     @Test
     public void testGetOtherDetails() {
         System.out.println("getOtherDetails");
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         String expResult = "Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123";
         String result = instance.getOtherDetails();
         assertEquals(expResult, result);
@@ -160,7 +162,7 @@ public class UserEntryTest {
     public void testSetOtherDetails() {
         System.out.println("setOtherDetails");
         String otherDetails = "";
-        UserEntry instance = new UserEntry(wv);
+        UserEntry instance = new UserEntry(wv, at);
         instance.setOtherDetails(otherDetails);
     }
     

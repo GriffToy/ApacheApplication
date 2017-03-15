@@ -34,11 +34,12 @@ public class Main extends Application {
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
     private User currentUser; // Stores current user. Set to null each time the login page is shown
+    private WeaveEvent selectedEvent;
+    private Connection conn = sqliteConnection.dbConnector();
     public HashMap<String, User> userNameUserMap; // Maps usernames to users
 
 	@Override
 	public void start(Stage primaryStage) {
-		// TODO load list of events and map of users
 		loadData();
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Apache Application");
@@ -84,7 +85,7 @@ public class Main extends Application {
     	attendee.setUserType(UserType.ATTENDEE);
     	userNameUserMap.put(attendee.getUsername(), attendee);
     	
-    	UserEntry testEntry = new UserEntry(fiberFest);
+    	UserEntry testEntry = new UserEntry(fiberFest, currentUser);
     	admin.addUserEntry(testEntry);
     	attendee.addUserEntry(testEntry);
     }
@@ -94,8 +95,7 @@ public class Main extends Application {
      * @author Jorie Fernandez
      */
     private void loadData(){
-    	Connection conn = null;
-    	conn = sqliteConnection.dbConnector();
+    	
     	
     	try{
     		String query = "select * from EventInfo";
@@ -112,10 +112,9 @@ public class Main extends Application {
     			LocalDate cut = LocalDate.parse(cutDate);
     			WeaveEvent loadedEvent = new WeaveEvent(name, id, loc, date, cut);
     			
-    			// Dummy categories
-    			loadedEvent.addCategory(new Category(-1, "A catgeory"));
-    			loadedEvent.addCategory(new Category(-1, "Another catgeory"));
-    			weaveEventList.add(loadedEvent);
+    			loadCategory(id, loadedEvent);
+    			
+    			
     		}
     		
     		pst.close();
@@ -130,6 +129,38 @@ public class Main extends Application {
     private void saveData(){
     	// TODO complete function
     	
+    }
+    /**
+     * Method to load the category/ies on the selected event
+     * 
+     * @author Jorie Fernandez
+     * @param id , event ID
+     * @param theEvent, selected event
+     */
+    private void loadCategory(int id, WeaveEvent theEvent) {
+
+    	try{
+    		String query = "select * from Category where categoryEventID = ?";
+    		PreparedStatement pst = conn.prepareStatement(query);
+    		pst.setInt(1, id);
+    		ResultSet result = pst.executeQuery();
+    		
+    		while(result.next()) {
+    			String name = result.getString("categoryName");
+    			int catID = result.getInt("categoryID");
+ 
+    			
+    			Category cat = new Category(catID, name, id);
+    			
+    			theEvent.addCategory(cat);
+    				
+    		}
+    		
+    		weaveEventList.add(theEvent);
+    		pst.close();
+    	}catch (Exception e){
+    		System.out.println("Error connection!" + e.getMessage());
+    	}
     }
     
     /**

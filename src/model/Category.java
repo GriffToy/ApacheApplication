@@ -3,6 +3,14 @@ package model;
 public class Category {
 	private int categoryID;
 	private String categoryName;
+	private int categoryEvent;
+	
+	public Category(int categoryID, String categoryName, int event){
+		this.categoryID = categoryID;
+		this.categoryName = categoryName;
+		this.categoryEvent = event;
+	}
+	
 	
 	public int getCategoryID() {
 		return categoryID;

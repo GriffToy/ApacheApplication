@@ -7,13 +7,19 @@ public class UserEntry {
 	private boolean selfDyedYarn;
 	private boolean handspunYarn;
 	private String otherDetails;
+	private User regUser;
 	
-	public UserEntry(WeaveEvent weaveEvent){
+	public UserEntry(WeaveEvent weaveEvent, User user){
 		this.weaveEvent = weaveEvent;
 		this.category = new Category();
+		this.setRegUser(user);
+		handspunYarn = false;
+		selfDyedYarn = false;
 		this.fibersInWeave = "Testing 1";
 		this.otherDetails = "Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123";
 	}
+	
+	
 	
 	@Override
 	public String toString(){
@@ -62,5 +68,17 @@ public class UserEntry {
 	}
 	public void setOtherDetails(String otherDetails) {
 		this.otherDetails = otherDetails;
+	}
+
+
+
+	public User getRegUser() {
+		return regUser;
+	}
+
+
+
+	public void setRegUser(User regUser) {
+		this.regUser = regUser;
 	}
 }

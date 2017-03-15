@@ -68,19 +68,6 @@ public class AttendeeController {
         	displayEntry((String)selectEntryComboBox.getSelectionModel().getSelectedItem());
         });
         selectEntryComboBox.valueProperty().addListener((obs, oldVal, newVal) -> displayEntry(newVal));
-      /*
-        selectEntryComboBox.setConverter(new StringConverter<String>() {
-    	    @Override
-    	    public String toString(UserEntry object) {
-    	    	return object.toString();
-    	    }
-
-    	    @Override
-    	    public UserEntry fromString(String string) {
-    	        return null;
-    	    }
-    	});
-    	*/
         selectEntryComboBox.getSelectionModel().selectFirst();
     }
     

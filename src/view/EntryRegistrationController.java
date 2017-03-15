@@ -36,6 +36,7 @@ public class EntryRegistrationController {
 
 	// Reference to the main application.
 	private Main mainApp;
+	
 	private WeaveEvent weaveEventSelected;
 
 	/**
@@ -105,7 +106,7 @@ public class EntryRegistrationController {
 		if (isValidEntry()) {
 			if (mainApp != null) {
 				mainApp.showAttendeePage();
-				UserEntry newEntry = new UserEntry(weaveEventSelected);
+				UserEntry newEntry = new UserEntry(weaveEventSelected, mainApp.getCurrentUser());
 				newEntry.setFibersInWeave(fibersTextField.getText());
 				newEntry.setSelfDyedYarn(selfDyedCheckBox.isSelected());
 				newEntry.setHandspunYarn(handSpunCheckBox.isSelected());
