@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import controller.Main;
 import controller.sqliteConnection;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,11 +16,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.WeaveEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.StringConverter;
 import model.WeaveEvent;
 import model.Category;
+import model.UserEntry;
 
 public class JudgeViewController {
 	@FXML
@@ -35,13 +41,34 @@ public class JudgeViewController {
 	private Button logoutButton;
 	@FXML
 	private ScrollPane entryDisplayPane;
+	@FXML
+	private TableView<Entry> entryTable;
+	@FXML
+	private TableColumn<Entry, String> nameCol;
+	@FXML
+	private TableColumn<Entry, String> dateCol;
+	@FXML
+	private TableColumn<Entry, String> detailsCol;
 	
     // Reference to the main application.
     private Main mainApp;
 	private ObservableList<WeaveEvent> weaveEventList;
 	private WeaveEvent event;
 	private Category category;
-    
+	private ObservableList<Entry> data = FXCollections.observableArrayList(new Entry("Jacob", "1/11/1111", "testing this"));
+	
+	public class Entry{
+		public SimpleStringProperty Name;
+		public SimpleStringProperty Date;
+		public SimpleStringProperty Details;
+		
+		public Entry(String Name, String Date, String Details){
+			this.Name = new SimpleStringProperty(Name);
+			this.Date = new SimpleStringProperty(Date);
+			this.Details = new SimpleStringProperty(Details);
+		}
+	}
+	
     /**
      * Is called by the main application to give a reference back to itself.
      * @author Griffin Toyoda
@@ -50,6 +77,13 @@ public class JudgeViewController {
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
         this.weaveEventList = mainApp.getWeaveEventList();
+        
+        entryTable.setEditable(true);
+		nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+		dateCol.setCellValueFactory(new PropertyValueFactory<>("Date"));
+		detailsCol.setCellValueFactory(new PropertyValueFactory<>("Details"));
+		entryTable.setItems(data);
+		
         eventComboBox.setItems(weaveEventList);
     	eventComboBox.valueProperty().addListener((obs, oldVal, newVal) -> selectEvent(newVal));
     	eventComboBox.setConverter(new StringConverter<WeaveEvent>() {
@@ -97,26 +131,38 @@ public class JudgeViewController {
 
 	private void updateList() {
 		if (this.event != null && this.category != null){
-			// Implement a sql query function that finds entries with the this event and category
-			// Create a new VBox and put it in the scroll pane
+			
+			
+			data.clear();
 			Connection conn = null;
 			conn = sqliteConnection.dbConnector();
-			StringBuilder query = new StringBuilder();
-			query.append("SELECT * FROM Entry WHERE CategoryID == ");
-			query.append(category.getCategoryID());
-			System.out.println(query.toString());
+			String query = "SELECT * FROM Entry WHERE CategoryID == " + category.getCategoryID() + " AND EventID == " + event.getEventID();
+			System.out.println(query);
 			try {
 				PreparedStatement pst = conn.prepareStatement(query.toString());
 				ResultSet result = pst.executeQuery();
 				
 				while(result.next()){
-					System.out.println(result.getString(8));
+					try{
+						pst = conn.prepareStatement("SELECT * FROM User WHERE attendeeID == " + result.getString(2));
+						ResultSet resultName = pst.executeQuery();
+						String nName = resultName.getString(2) + ", " + resultName.getString(3);
+						String nDate = result.getString(4);
+						String nDetails = result.getString(8);
+						data.add(new Entry(nName, nDate, nDetails));
+					} catch (SQLException e){
+						System.out.println("Connection Error" + e.getMessage());
+					}
 					
+				}
+				entryTable.setItems(data);
+				for (Entry x : data){
+					System.out.println(x.Name.get() + " " + x.Date.get() + " " + x.Details.get());
 				}
 			} catch (SQLException e) {
 				System.out.println("Connection Error" + e.getMessage());
-				
 			}
+
 			
 			
 		}
