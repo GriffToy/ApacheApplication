@@ -1,9 +1,13 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
+import java.util.Random;
 
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -49,6 +53,7 @@ public class CreateEventController {
 	// Reference to the main application.
 	private Main mainApp;
 	private WeaveEvent newWeaveEvent;
+	private Random rand = new Random();
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
@@ -86,7 +91,7 @@ public class CreateEventController {
 				if(!newWeaveEvent.containsCategory(result.get())){
 					// Category does not exist.
 					// Create a new event with the ID number equal to the number of categories and name equal to user input.
-					Category newCategory = new Category(newWeaveEvent.getEventCategories().size(), result.get());
+					Category newCategory = new Category(rand.nextInt(Integer.MAX_VALUE), result.get());
 					newWeaveEvent.addCategory(newCategory);
 				}
 				else{
@@ -171,7 +176,7 @@ public class CreateEventController {
 	private void saveEventButtonClicked(){
 		if(mainApp != null){
 			if(isValidEntry()){
-				newWeaveEvent.setEventID(mainApp.getWeaveEventList().size());
+				newWeaveEvent.setEventID(mainApp.getWeaveEventList().size()+1);
 				newWeaveEvent.setEventName(eventNameTextField.getText());
 				newWeaveEvent.setDateAndTime(eventDateDatePicker.getValue());
 				newWeaveEvent.setCutOffDate(eventDateDatePicker.getValue().minus(2, ChronoUnit.WEEKS));
@@ -179,6 +184,27 @@ public class CreateEventController {
 				newWeaveEvent.setSponsors(sponsorTextField.getText());
 				newWeaveEvent.setEventDetails(otherDetailsTextArea.getText());
 				mainApp.getWeaveEventList().add(newWeaveEvent);
+				
+				Connection conn = null;
+				conn = sqliteConnection.dbConnector();
+				
+				try{
+					Statement statement = conn.createStatement();
+					for (Category x : newWeaveEvent.eventCategories){
+					statement.executeUpdate("INSERT INTO Category VALUES(" 
+											+ x.getCategoryID() + ", '" 
+											+ x.getCategoryName() + "', " 
+											+ newWeaveEvent.getEventID() + ")");
+					}
+					statement.executeUpdate("INSERT INTO Event VALUES("
+											+ newWeaveEvent.getEventID() + ", '"
+											+ newWeaveEvent.getEventName() + "', '"
+											+ newWeaveEvent.getLocation() + "', '"
+											+ newWeaveEvent.getDateAndTime().toString() + "', '"
+											+ newWeaveEvent.getCutOffDate().toString() + "')");
+				} catch (Exception e){
+					System.out.println("Error connection!" + e.getMessage());
+				}
 				mainApp.showAdminPage();
 			}
 		}

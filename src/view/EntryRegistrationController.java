@@ -1,6 +1,11 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.Statement;
+import java.time.LocalDate;
+
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -112,6 +117,26 @@ public class EntryRegistrationController {
 				newEntry.setOtherDetails(otherDetailsTextArea.getText());
 				newEntry.setCategory(categoryComboBox.getValue());
 				mainApp.getCurrentUser().addUserEntry(newEntry);
+				Connection conn = null;
+				conn = sqliteConnection.dbConnector();
+				
+				try{
+					Statement statement = conn.createStatement();
+					String query = ("INSERT INTO Entry VALUES("
+									+ newEntry.getCategory().getCategoryID() + ", "
+									+ mainApp.getCurrentUser().getAttendeeID() + ", "
+									+ weaveEventSelected.getEventID() + ", '"
+									+ LocalDate.now().toString() + "', '"
+									+ newEntry.getFibersInWeave() + "', "
+									+ (newEntry.isSelfDyedYarn() ? 1 : 0) + ", "
+									+ (newEntry.isHandspunYarn() ? 1 : 0) + ", '"
+									+ newEntry.getOtherDetails() + "')");
+					System.out.println(query);
+					statement.executeUpdate(query);
+				} catch (Exception e){
+					System.out.println("Error connection!" + e.getMessage());
+				}
+				
 			}
 		}
 	}

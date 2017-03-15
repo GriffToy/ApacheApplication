@@ -35,6 +35,10 @@ public class Main extends Application {
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
     private User currentUser; // Stores current user. Set to null each time the login page is shown
     public HashMap<String, User> userNameUserMap; // Maps usernames to users
+    public HashMap<Integer,WeaveEvent> eventMap = new HashMap<Integer, WeaveEvent>();
+	public HashMap<Integer,String> categoryMap = new HashMap<Integer, String>();
+	public ArrayList<Integer> entryIdSet = new ArrayList<Integer>();
+	public ArrayList<UserEntry> entrySet = new ArrayList<UserEntry>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -75,13 +79,6 @@ public class Main extends Application {
     		ResultSet entryResult;
     		ResultSet categoryResult;
     		
-    		HashMap<Integer,WeaveEvent> eventMap = new HashMap<Integer, WeaveEvent>();
-    		HashMap<Integer,String> categoryMap = new HashMap<Integer, String>();
-    		ArrayList<Integer> entryIdSet = new ArrayList<Integer>();
-    		ArrayList<UserEntry> entrySet = new ArrayList<UserEntry>();
-    		
-    		
-    		
     		pst = conn.prepareStatement("select * from Event");
     		eventResult = pst.executeQuery();
     		
@@ -94,8 +91,6 @@ public class Main extends Application {
     		pst = conn.prepareStatement("select * from Category");
     		categoryResult = pst.executeQuery();
     		
-    		
-    		
     		while(eventResult.next()) {
     			WeaveEvent nEvent = new WeaveEvent();
     			nEvent.setEventID(eventResult.getInt(1));
@@ -106,8 +101,6 @@ public class Main extends Application {
     			weaveEventList.add(nEvent);
     			eventMap.put(nEvent.getEventID(), nEvent);
     		}
-    		
-    		
     		
     		while(categoryResult.next()){
     			Category nCategory = new Category();
@@ -133,7 +126,6 @@ public class Main extends Application {
 				entrySet.add(nEntry);
 				
     		}
-    		
     		
     		while(userResult.next()){
     			User nUser = new User();
