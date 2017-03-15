@@ -46,6 +46,8 @@ public class AttendeeController {
 	@FXML
 	private Button logoutButton;
 	
+	private Connection conn = sqliteConnection.dbConnector();
+	
     // Reference to the main application.
     private Main mainApp;
     
@@ -53,14 +55,15 @@ public class AttendeeController {
     
     /**
      * Is called by the main application to give a reference back to itself.
+     * 
+     * Modified by Jorie Fernandez - to get value from database
      * @author Griffin Toyoda
      * @param mainApp
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
   
-        fillEntryComboBox();
-        selectEntryComboBox.setItems(userEntryList);
+        refreshTable();
         selectEntryComboBox.setOnAction(e ->{
         	displayEntry((String)selectEntryComboBox.getSelectionModel().getSelectedItem());
         });
@@ -81,9 +84,13 @@ public class AttendeeController {
         selectEntryComboBox.getSelectionModel().selectFirst();
     }
     
+    private void refreshTable(){
+    	 userEntryList.clear();
+    	 fillEntryComboBox();
+         selectEntryComboBox.setItems(userEntryList);
+    }
     private void displayEntry(String entry){
-    	Connection conn = null;
-    	conn = sqliteConnection.dbConnector();
+    	
     	
     	String query = "select * from Registration where regName = ? and regAttendeeID = ?";
     	try{
@@ -114,8 +121,6 @@ public class AttendeeController {
     }
     
     private void fillEntryComboBox(){
-    	Connection conn = null;
-    	conn = sqliteConnection.dbConnector();
     	
     	String query = "select * from Registration where regAttendeeID = ? ";
     	try{
@@ -142,59 +147,7 @@ public class AttendeeController {
     		
     	}
     }
-    /*
-    /**
-     * If the userEntry is null, all labels are set to "None". Otherwise, the labels on the attendee
-     * home page are set to the relevant labels of the userEntry.
-     * 
-     * @author Griffin Toyoda
-     * @param userEntry an entry to display
-     */
-    /*
-    private void showUserEntry(String userEntry){
-    	if(userEntry == null){
-    		this.eventLabel.setText("None");
-    		this.categoryLabel.setText("None");
-	    	this.fibersLabel.setText("None");
-    		this.handspunLabel.setText("None");
-    		this.selfDyedLabel.setText("None");
-	    	this.otherDetailsLabel.setText("None");
-    	}
-    	else{
-	    	if(userEntry.getWeaveEvent() != null){
-	    		this.eventLabel.setText(userEntry.getWeaveEvent().toString());
-	    	}
-	    	else{
-	    		this.eventLabel.setText("No event");
-	    	}
-	    	
-	    	if(userEntry.getCategory() != null){
-	    		this.categoryLabel.setText(userEntry.getCategory().toString());
-	    	}
-	    	else{
-	    		this.categoryLabel.setText("No category");
-	    	}
-	    	
-	    	this.fibersLabel.setText(userEntry.getFibersInWeave());
-	    	
-	    	if(userEntry.isHandspunYarn()){
-	    		this.handspunLabel.setText("Yes");
-	    	}
-	    	else{
-	    		this.handspunLabel.setText("No");
-	    	}
-	    	
-	    	if(userEntry.isSelfDyedYarn()){
-	    		this.selfDyedLabel.setText("Yes");
-	    	}
-	    	else{
-	    		this.selfDyedLabel.setText("No");
-	    	}
-	    	
-	    	this.otherDetailsLabel.setText(userEntry.getOtherDetails());
-    	}
-    }
-	*/
+   
 	/**
 	 * Brings up the event selection page if the user is under the total entry limit.
 	 * Pops up a warning box if they have reached the limit.
@@ -236,8 +189,11 @@ public class AttendeeController {
 
     			Optional<ButtonType> result = alert.showAndWait();
     			if (result.get() == ButtonType.OK){
-    				// ... user chose OK
-        			userEntryList.remove(selectEntryComboBox.getValue());
+    				
+    				
+        			//userEntryList.remove(selectEntryComboBox.getValue());
+    				deleteTable(selectEntryComboBox.getValue());
+    				refreshTable();
     			} 
     			else {
         	    // ... user chose CANCEL or closed the dialog
@@ -246,6 +202,24 @@ public class AttendeeController {
 		}
 	}
 	
+	private void deleteTable(String val){
+		
+    	String query = "delete from Registration where regAttendeeID = ? and regName = ?";
+    	try{
+    			
+    		PreparedStatement pst = conn.prepareStatement(query);
+    		pst.setInt(1, mainApp.getCurrentUser().getAttendeeID());
+    		pst.setString(2, val );
+    		pst.executeUpdate();
+    		
+    		
+    		pst.close();
+    	}catch (Exception e){
+    		JOptionPane.showMessageDialog(null, "No registration record!" + e.getMessage(), "Database Error",
+					JOptionPane.ERROR_MESSAGE);
+    		
+    	}
+	}
 	/**
 	 * @author Griffin Toyoda
 	 */
