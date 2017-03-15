@@ -1,8 +1,15 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Optional;
 
+import javax.swing.JOptionPane;
+
 import controller.Main;
+import controller.sqliteConnection;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,12 +19,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.util.StringConverter;
+import model.User;
 import model.UserEntry;
+import model.User.UserType;
 
 public class AttendeeController {
 	private static int maxTotalEntries = 3;
 	@FXML
-	private ComboBox<UserEntry> selectEntryComboBox;
+	private ComboBox selectEntryComboBox;
 	@FXML
 	private Label eventLabel;
 	@FXML
@@ -40,7 +49,7 @@ public class AttendeeController {
     // Reference to the main application.
     private Main mainApp;
     
-	private ObservableList<UserEntry> userEntryList;
+	private ObservableList userEntryList = FXCollections.observableArrayList();
     
     /**
      * Is called by the main application to give a reference back to itself.
@@ -49,10 +58,13 @@ public class AttendeeController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
-        this.userEntryList = mainApp.getCurrentUser().getUserEntries();
+       // this.userEntryList = mainApp.getCurrentUser().getUserEntries();
+        fillEntryComboBox();
+       // selectEntryComboBox = new ComboBox(userEntryList);
         selectEntryComboBox.setItems(userEntryList);
-        selectEntryComboBox.valueProperty().addListener((obs, oldVal, newVal) -> showUserEntry(newVal));
-        selectEntryComboBox.setConverter(new StringConverter<UserEntry>() {
+     //   selectEntryComboBox.valueProperty().addListener((obs, oldVal, newVal) -> showUserEntry(newVal));
+      /*
+        selectEntryComboBox.setConverter(new StringConverter<String>() {
     	    @Override
     	    public String toString(UserEntry object) {
     	    	return object.toString();
@@ -63,10 +75,33 @@ public class AttendeeController {
     	        return null;
     	    }
     	});
+    	*/
         selectEntryComboBox.getSelectionModel().selectFirst();
     }
     
-  
+    private void fillEntryComboBox(){
+    	Connection conn = null;
+    	conn = sqliteConnection.dbConnector();
+    	
+    	String query = "select * from Registration where regAttendeeID = ? ";
+    	try{
+    			
+    		PreparedStatement pst = conn.prepareStatement(query);
+    		pst.setInt(1, mainApp.getCurrentUser().getAttendeeID());
+    		ResultSet result = pst.executeQuery();
+    		
+    		while(result.next()){
+    		    
+    			userEntryList.add(result.getString("regName"));
+    		}
+    		
+    		pst.close();
+    	}catch (Exception e){
+    		JOptionPane.showMessageDialog(null, "No registration record!" + e.getMessage(), "Database Error",
+					JOptionPane.ERROR_MESSAGE);
+    		
+    	}
+    }
     
     /**
      * If the userEntry is null, all labels are set to "None". Otherwise, the labels on the attendee

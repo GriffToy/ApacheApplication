@@ -71,7 +71,7 @@ public class LoginPageController {
 			if (validateUser()) {
 				// Go on to next screen
 				System.out.println("Valid user");
-				mainApp.setCurrentUser(mainApp.userNameUserMap.get(userNameField.getText()));
+				//mainApp.setCurrentUser(mainApp.userNameUserMap.get(userNameField.getText()));
 				// Check to see which type of user they are
 				if (userType.equals((UserType.ATTENDEE).toString())) {
 					mainApp.showAttendeePage();

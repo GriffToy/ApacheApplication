@@ -209,6 +209,7 @@ public class Main extends Application {
             // Give the controller access to the main app.
             LoginPageController controller = loader.getController();
             controller.setMainApp(this);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
