@@ -67,6 +67,18 @@ public class JudgeViewController {
 			this.Date = new SimpleStringProperty(Date);
 			this.Details = new SimpleStringProperty(Details);
 		}
+		
+		public SimpleStringProperty nameProperty(){
+			return this.Name;
+		}
+		
+		public SimpleStringProperty dateProperty(){
+			return this.Date;
+		}
+		
+		public SimpleStringProperty detailsProperty(){
+			return this.Details;
+		}
 	}
 	
     /**
@@ -79,9 +91,9 @@ public class JudgeViewController {
         this.weaveEventList = mainApp.getWeaveEventList();
         
         entryTable.setEditable(true);
-		nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
-		dateCol.setCellValueFactory(new PropertyValueFactory<>("Date"));
-		detailsCol.setCellValueFactory(new PropertyValueFactory<>("Details"));
+		nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+		dateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
+		detailsCol.setCellValueFactory(cellData -> cellData.getValue().detailsProperty());
 		entryTable.setItems(data);
 		
         eventComboBox.setItems(weaveEventList);
