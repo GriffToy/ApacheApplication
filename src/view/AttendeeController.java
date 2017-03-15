@@ -26,7 +26,7 @@ import model.User.UserType;
 public class AttendeeController {
 	private static int maxTotalEntries = 3;
 	@FXML
-	private ComboBox selectEntryComboBox;
+	private ComboBox<String> selectEntryComboBox;
 	@FXML
 	private Label eventLabel;
 	@FXML
@@ -58,11 +58,13 @@ public class AttendeeController {
      */
     public void setMainApp(Main mainApp) {
         this.mainApp = mainApp;
-       // this.userEntryList = mainApp.getCurrentUser().getUserEntries();
+  
         fillEntryComboBox();
-       // selectEntryComboBox = new ComboBox(userEntryList);
         selectEntryComboBox.setItems(userEntryList);
-     //   selectEntryComboBox.valueProperty().addListener((obs, oldVal, newVal) -> showUserEntry(newVal));
+        selectEntryComboBox.setOnAction(e ->{
+        	displayEntry((String)selectEntryComboBox.getSelectionModel().getSelectedItem());
+        });
+        selectEntryComboBox.valueProperty().addListener((obs, oldVal, newVal) -> displayEntry(newVal));
       /*
         selectEntryComboBox.setConverter(new StringConverter<String>() {
     	    @Override
@@ -79,6 +81,38 @@ public class AttendeeController {
         selectEntryComboBox.getSelectionModel().selectFirst();
     }
     
+    private void displayEntry(String entry){
+    	Connection conn = null;
+    	conn = sqliteConnection.dbConnector();
+    	
+    	String query = "select * from Registration where regName = ? and regAttendeeID = ?";
+    	try{
+    			
+    		PreparedStatement pst = conn.prepareStatement(query);
+    	//	pst.setString(1, (String)selectEntryComboBox.getSelectionModel().getSelectedItem());
+    		pst.setString(1, entry);
+    		pst.setInt(2, mainApp.getCurrentUser().getAttendeeID());
+    		ResultSet result = pst.executeQuery();
+    		
+    
+    		while(result.next()){
+    			
+    			this.eventLabel.setText(Integer.toString(result.getInt("regEventID")));
+        		this.categoryLabel.setText(Integer.toString(result.getInt("regCategoryID")));
+    	    	this.fibersLabel.setText(result.getString("regFibers"));
+        		this.handspunLabel.setText(Boolean.toString(result.getBoolean("regYarn")));
+        		this.selfDyedLabel.setText(Boolean.toString(result.getBoolean("regDye")));
+    	    	this.otherDetailsLabel.setText(result.getString("regDetails"));
+    		}
+    		
+    		pst.close();
+    	}catch (Exception e){
+    		JOptionPane.showMessageDialog(null, "No registration record!" + e.getMessage(), "Database Error",
+					JOptionPane.ERROR_MESSAGE);
+    		
+    	}
+    }
+    
     private void fillEntryComboBox(){
     	Connection conn = null;
     	conn = sqliteConnection.dbConnector();
@@ -93,6 +127,12 @@ public class AttendeeController {
     		while(result.next()){
     		    
     			userEntryList.add(result.getString("regName"));
+    			this.eventLabel.setText(Integer.toString(result.getInt("regEventID")));
+        		this.categoryLabel.setText(Integer.toString(result.getInt("regCategoryID")));
+    	    	this.fibersLabel.setText(result.getString("regFibers"));
+        		this.handspunLabel.setText(Boolean.toString(result.getBoolean("regYarn")));
+        		this.selfDyedLabel.setText(Boolean.toString(result.getBoolean("regDye")));
+    	    	this.otherDetailsLabel.setText(result.getString("regDetails"));
     		}
     		
     		pst.close();
@@ -102,7 +142,7 @@ public class AttendeeController {
     		
     	}
     }
-    
+    /*
     /**
      * If the userEntry is null, all labels are set to "None". Otherwise, the labels on the attendee
      * home page are set to the relevant labels of the userEntry.
@@ -110,7 +150,8 @@ public class AttendeeController {
      * @author Griffin Toyoda
      * @param userEntry an entry to display
      */
-    private void showUserEntry(UserEntry userEntry){
+    /*
+    private void showUserEntry(String userEntry){
     	if(userEntry == null){
     		this.eventLabel.setText("None");
     		this.categoryLabel.setText("None");
@@ -153,7 +194,7 @@ public class AttendeeController {
 	    	this.otherDetailsLabel.setText(userEntry.getOtherDetails());
     	}
     }
-	
+	*/
 	/**
 	 * Brings up the event selection page if the user is under the total entry limit.
 	 * Pops up a warning box if they have reached the limit.
