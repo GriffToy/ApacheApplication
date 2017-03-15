@@ -13,8 +13,6 @@ public class UserEntry {
 		this.weaveEvent = weaveEvent;
 		this.category = new Category();
 		this.setRegUser(user);
-		handspunYarn = false;
-		selfDyedYarn = false;
 		this.fibersInWeave = "Testing 1";
 		this.otherDetails = "Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123 Testing 123";
 	}

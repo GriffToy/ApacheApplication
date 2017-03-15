@@ -1,6 +1,13 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JOptionPane;
+
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -10,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 import model.Category;
+import model.User;
 import model.UserEntry;
 import model.WeaveEvent;
 
@@ -38,6 +46,8 @@ public class EntryRegistrationController {
 	private Main mainApp;
 	
 	private WeaveEvent weaveEventSelected;
+	
+	private User curUser;
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
@@ -47,6 +57,7 @@ public class EntryRegistrationController {
 	 */
 	public void setMainApp(Main mainApp) {
 		this.mainApp = mainApp;
+		curUser = mainApp.getCurrentUser();
 		categoryComboBox.setItems(weaveEventSelected.getEventCategories());
 		categoryComboBox.setConverter(new StringConverter<Category>() {
 			@Override
@@ -113,9 +124,41 @@ public class EntryRegistrationController {
 				newEntry.setOtherDetails(otherDetailsTextArea.getText());
 				newEntry.setCategory(categoryComboBox.getValue());
 				mainApp.getCurrentUser().addUserEntry(newEntry);
+				System.out.println(isValid());
+				
 			}
 		}
 	}
+	
+	 private void insertData(){
+	    	
+	    		Connection conn = null;
+	    		conn = sqliteConnection.dbConnector();
+	    	
+	    		try{
+	    			String query = "insert into Registration(regCategoryID, regAttendeeID,"
+	    					+ "regEventID, regDate, regFibers, regDye, regYarn, regDetails, regName)"
+	    				+ " VALUES (?,?,?,?,?,?,?, ?, ?)";
+	    			PreparedStatement pst = conn.prepareStatement(query);
+	    		/*
+	    			pst.setString(1, lastName.getText());
+	    			pst.setString(2, firstName.getText());
+	    			pst.setString(3,  userNameField.getText());
+	    			pst.setString(4,  passwordField.getText());
+	    			pst.setString(5,  emailAddress.getText());
+	    			pst.setDouble(6,  Double.parseDouble(phoneNumber.getText()));
+	    			pst.setString(7,  attendeeType.toString());
+	    	*/	
+	    			pst.execute();
+	    		
+	    			JOptionPane.showMessageDialog(null, "Submission Confirmed");
+	    		
+	    			pst.close();
+	    		}catch (Exception e){
+	    			System.out.println("Error connection!" + e.getMessage());
+	    		}
+	    	
+	    }
 
 	/**
 	 * @author Griffin Toyoda
@@ -134,4 +177,42 @@ public class EntryRegistrationController {
 		}
 		return true;
 	}
+	
+	  private boolean isValid(){
+	
+	    	Connection conn = null;
+	    	conn = sqliteConnection.dbConnector();
+	    	
+    		System.out.println(curUser.getAttendeeID());
+    		System.out.println(weaveEventSelected.getEventID());
+	    	
+	    	String query = "select count(*) from Registration where regAttendeeID = ? "
+	    				+ "and regEventID = ? and regCategoryID = ?";
+	    	try{
+	    			
+	    		PreparedStatement pst = conn.prepareStatement(query);
+	    		pst.setInt(1, curUser.getAttendeeID());
+	    		pst.setInt(2, weaveEventSelected.getEventID());
+	    		pst.setInt(3, Integer.valueOf(categoryComboBox.getValue().toString()));
+	    		
+	    		ResultSet result = pst.executeQuery();
+	    		
+	    
+
+	    		
+	    		if(result.next()){
+	    			JOptionPane.showMessageDialog(null, "Duplicate category!", "Error",
+	    					JOptionPane.ERROR_MESSAGE);
+	    			return false;
+	    		}
+	    		
+	    		pst.close();
+	    	}catch (Exception e){
+	    		JOptionPane.showMessageDialog(null, "Error Connection!" + e.getMessage(), "Database Error",
+						JOptionPane.ERROR_MESSAGE);
+	    		
+	    	}
+	    	
+	    	return true;
+	    }
 }
