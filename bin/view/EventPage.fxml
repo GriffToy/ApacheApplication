@@ -20,7 +20,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -29,18 +29,16 @@
                <children>
                   <Label text="Select Event:" GridPane.rowIndex="1" />
                   <ComboBox fx:id="eventsComboBox" prefHeight="25.0" prefWidth="182.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label text="Event Details" GridPane.rowIndex="2" />
-                  <Label text="Date and Time" GridPane.rowIndex="4" />
-                  <Label text="Registration Cut-off Date" GridPane.rowIndex="5" />
-                  <Label text="Sponsors" GridPane.rowIndex="6" />
-                  <Label text="Judges" GridPane.rowIndex="7" />
-                  <Label fx:id="eventDetails" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="180.0" text="None" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Label fx:id="cutOff" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <Label fx:id="judges" text="None" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                  <Label text="Location" GridPane.rowIndex="3" />
-                  <Label fx:id="eventLocation" text="None" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label text="Event Details" GridPane.rowIndex="6" />
+                  <Label text="Date and Time" GridPane.rowIndex="3" />
+                  <Label text="Registration Cut-off Date" GridPane.rowIndex="4" />
+                  <Label text="Sponsors" GridPane.rowIndex="5" />
+                  <Label fx:id="eventDetails" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="60.0" prefWidth="180.0" text="None" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+                  <Label fx:id="dateAndTime" text="None" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="cutOff" text="None" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="sponsors" text="None" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label text="Location" GridPane.rowIndex="2" />
+                  <Label fx:id="eventLocation" text="None" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <Label text="Event List">
                      <font>
                         <Font name="System Bold" size="12.0" />

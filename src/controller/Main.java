@@ -55,7 +55,7 @@ public class Main extends Application {
 	 */
 	@Override
 	public void stop(){
-		//saveData();
+		
 	}
     
     /**
@@ -156,13 +156,6 @@ public class Main extends Application {
     	}catch (Exception e){
     		System.out.println("Error connection!" + e.getMessage());
     	}
-    }
-    
-    /**
-     * Saves the weaveEventList and userNameUserMap to database. Called when application is closed.
-     */
-    private void saveData(){
-    	// TODO complete function
     }
     
     /**

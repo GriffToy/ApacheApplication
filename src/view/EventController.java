@@ -26,8 +26,8 @@ public class EventController {
 	private Label cutOff;
 	@FXML
 	private Label sponsors;
-	@FXML
-	private Label judges;
+	//@FXML
+	//private Label judges;
 	
 	private ObservableList<WeaveEvent> weaveEventList;
 	
@@ -79,7 +79,7 @@ public class EventController {
 			dateAndTime.setText(eventToShow.getDateAndTime().toString());	
 			sponsors.setText(eventToShow.getSponsors());
 			cutOff.setText(eventToShow.getCutOffDate().toString());
-			judges.setText(eventToShow.getCriteriaAndJudges());
+			//judges.setText(eventToShow.getCriteriaAndJudges());
 		}
 		else{
 			eventDetails.setText("None");
@@ -87,7 +87,7 @@ public class EventController {
 			dateAndTime.setText("None");
 			cutOff.setText("None");
 			sponsors.setText("None");
-			judges.setText("None");
+			//judges.setText("None");
 		}
 	}
 
