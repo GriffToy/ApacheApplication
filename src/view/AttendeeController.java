@@ -1,8 +1,11 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Optional;
 
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -170,7 +173,17 @@ public class AttendeeController {
     			Optional<ButtonType> result = alert.showAndWait();
     			if (result.get() == ButtonType.OK){
     				// ... user chose OK
-        			userEntryList.remove(selectEntryComboBox.getValue());
+        			Connection conn = null;
+    				conn = sqliteConnection.dbConnector();
+    				try{
+    					Statement statement = conn.createStatement();
+    					statement.executeUpdate("DELETE FROM Entry WHERE CategoryID == "
+    							+ selectEntryComboBox.getValue().category.getCategoryID() + " AND AttendeeID == "
+    							+ mainApp.getCurrentUser().getAttendeeID());
+    				} catch (Exception e){
+    					System.out.println("Error connection!" + e.getMessage());
+    				}
+    				userEntryList.remove(selectEntryComboBox.getValue());
     			} 
     			else {
         	    // ... user chose CANCEL or closed the dialog
