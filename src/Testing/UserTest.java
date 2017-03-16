@@ -28,12 +28,13 @@ public class UserTest {
 
     /**
      * Test of containsCategory method, of class User.
+     * @modified by Jorie Fernandez parameters for Category and Weave Event
      */
     @Test
     public void testContainsCategory() {
         System.out.println("containsCategory");
-        Category targetCategory = null;
-        WeaveEvent targetEvent = null;
+        Category targetCategory = new Category();
+        WeaveEvent targetEvent = new WeaveEvent();
         User instance = new User();
         boolean expResult = false;
         boolean result = instance.containsCategory(targetCategory, targetEvent);
@@ -55,13 +56,15 @@ public class UserTest {
     
     /**
      * Test of addUserEntry method, of class User.
+     * 
      */
     @Test
     public void testAddUserEntry() {
         System.out.println("addUserEntry");
-        UserEntry userEntry = null;
+        UserEntry userEntry = new UserEntry();
         User instance = new User();
         instance.addUserEntry(userEntry);
+       // assertEquals(userEntry, instance.getUserEntries());
     }
 
     /**
@@ -75,9 +78,20 @@ public class UserTest {
         int result = instance.getEventID();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * Test to check for negative ID
+     * @author Jorie Fernandez
+     */
+    @Test (expected = IllegalArgumentException.class)
+    public void testNegGetEventID(){
+    	User instance = new User();
+    	instance.setAttendeeID(-1);
+    }
 
     /**
      * Test of setEventID method, of class User.
+     * @modified by Jorie Fernandez to include assert statement
      */
     @Test
     public void testSetEventID() {
@@ -85,8 +99,10 @@ public class UserTest {
         int eventID = 0;
         User instance = new User();
         instance.setEventID(eventID);
+        assertEquals(0, instance.getEventID());
     }
-
+    
+  
     /**
      * Test of getUserType method, of class User.
      */
@@ -132,6 +148,17 @@ public class UserTest {
         User instance = new User();
         instance.setAttendeeID(attendeeID);
     }
+    
+    /**
+     * Test to check for negative ID
+     * @author Jorie Fernandez
+     */
+    @Test (expected = IllegalArgumentException.class)
+    public void testNegSetAttendeeID(){
+    	User instance = new User();
+    	instance.setAttendeeID(-1);
+    }
+
 
     /**
      * Test of getUsername method, of class User.
@@ -157,6 +184,16 @@ public class UserTest {
     }
 
     /**
+     * Test to check for null username
+     * @author Jorie Fernandez
+     */
+    @Test (expected = NullPointerException.class)
+    public void testNullSetUserName(){
+    	User instance = new User();
+    	instance.setUsername(null);
+    }
+
+    /**
      * Test of getPassword method, of class User.
      */
     @Test
@@ -178,6 +215,17 @@ public class UserTest {
         User instance = new User();
         instance.setPassword(password);
     }
+    
+    /**
+     * Test to check for null username
+     * @author Jorie Fernandez
+     */
+    @Test (expected = NullPointerException.class)
+    public void testNullSetPassword(){
+    	User instance = new User();
+    	instance.setPassword(null);
+    }
+
 
     /**
      * Test of getFirstName method, of class User.
@@ -200,6 +248,16 @@ public class UserTest {
         String firstName = "";
         User instance = new User();
         instance.setFirstName(firstName);
+    }
+
+    /**
+     * Test to check for null first name
+     * @author Jorie Fernandez
+     */
+    @Test (expected = NullPointerException.class)
+    public void testNullSetFirstName(){
+    	User instance = new User();
+    	instance.setFirstName(null);
     }
 
     /**
@@ -226,6 +284,15 @@ public class UserTest {
     }
 
     /**
+     * Test to check for null last name
+     * @author Jorie Fernandez
+     */
+    @Test (expected = NullPointerException.class)
+    public void testNullSetLastName(){
+    	User instance = new User();
+    	instance.setFirstName(null);
+    }
+    /**
      * Test of getEmailAddress method, of class User.
      */
     @Test
@@ -249,6 +316,15 @@ public class UserTest {
     }
 
     /**
+     * Test to check for null email
+     * @author Jorie Fernandez
+     */
+    @Test (expected = NullPointerException.class)
+    public void testNullSetEmail(){
+    	User instance = new User();
+    	instance.setEmailAddress(null);
+    }
+    /**
      * Test of getPhoneNumber method, of class User.
      */
     @Test
@@ -262,6 +338,7 @@ public class UserTest {
 
     /**
      * Test of setPhoneNumber method, of class User.
+     * @modified by Jorie Fernandez to add assert statement
      */
     @Test
     public void testSetPhoneNumber() {
@@ -269,6 +346,7 @@ public class UserTest {
         long phoneNumber = 0L;
         User instance = new User();
         instance.setPhoneNumber(phoneNumber);
+        assertEquals(phoneNumber, instance.getPhoneNumber());
     }
     
 }
