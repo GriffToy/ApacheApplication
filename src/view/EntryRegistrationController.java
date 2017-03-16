@@ -18,6 +18,12 @@ import model.Category;
 import model.UserEntry;
 import model.WeaveEvent;
 
+/**
+ * Controller for the entryRegistrationPage
+ * 
+ * @author Griffin Toyoda
+ *
+ */
 public class EntryRegistrationController {
 	private static int minFibersTextFieldLength = 1;
 	@FXML

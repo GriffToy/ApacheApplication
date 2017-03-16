@@ -22,6 +22,12 @@ import javafx.scene.control.Alert.AlertType;
 import model.Category;
 import model.WeaveEvent;
 
+/**
+ * Controller for the createEventPage
+ * 
+ * @author Griffin Toyoda
+ *
+ */
 public class CreateEventController {
 	private static int minEventNameLength = 1;
 	private static int minlocationLength = 1;
