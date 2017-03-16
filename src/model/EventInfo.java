@@ -5,37 +5,19 @@ import java.time.LocalDate;
 
 /**
  * Model class for an event.
- * 
- * Modified by Jorie Fernandez - added additional parameters in the constructor
  * @author Griffin Toyoda
  *
  */
 public class EventInfo {
-	/** Event ID */
 	private int eventID;
-	/** Event Name */
 	private String eventName;
-	/** Event details */
 	private String eventDetails;
-	/** Event location */
 	private String location;
-	/** Event date */
 	private Date dateAndTime; 
-	/** Event registration cutoff */
 	private Date cutOff;
-	/** Event sponsors */
 	private String sponsors;
-	/** Event judges */
 	private String criteriaAndJudges;
 	
-	/**
-	 * Constructor
-	 * @param eventName, event name
-	 * @param eventID, event ID
-	 * @param loc, location
-	 * @param date, date of event
-	 * @param cutDate, cut off date
-	 */
 	public EventInfo(String eventName, int eventID, String loc,
 			Date date, Date cutDate ){
 		this.eventID = eventID;
@@ -48,139 +30,149 @@ public class EventInfo {
 		this.criteriaAndJudges = "Hans";
 	}
 	
-	/**
-	 * Return event string
-	 * 
-	 * @return event name
-	 */
 	@Override
 	public String toString(){
 		return eventName;
 	}
 	
-	/**
-	 * Method to get event ID
-	 * @return event ID
-	 */
 	public int getEventID() {
 		return eventID;
 	}
-	
-	/**
-	 * Method to set event ID
-	 * @param eventID
-	 */
 	public void setEventID(int eventID) {
 		this.eventID = eventID;
 	}
-	
-	/**
-	 * Method to get event name.
-	 * @return event name
-	 */
 	public String getEventName() {
 		return eventName;
 	}
-	/**
-	 * Method to set event name
-	 * @param eventName
-	 */
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
-	
-	/**
-	 * Method to get event details
-	 * @return event details
-	 */
 	public String getEventDetails() {
 		return eventDetails;
 	}
-	/**
-	 * Method to set event details
-	 * @param eventDetails
-	 */
 	public void setEventDetails(String eventDetails) {
 		this.eventDetails = eventDetails;
 	}
-	
-	/**
-	 * Method to get Location.
-	 * @return location of event
-	 */
 	public String getLocation() {
 		return location;
 	}
-	
-	/**
-	 * Method to set event location.
-	 * @param location
-	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
-	/**
-	 * Method to get event date.
-	 * @return event date
-	 */
 	public Date getDateAndTime() {
 		return dateAndTime;
 	}
-	
-	/**
-	 * Method to set date and time
-	 * @param dateAndTime
-	 */
 	public void setDateAndTime(Date dateAndTime) {
 		this.dateAndTime = dateAndTime;
 	}
-	
-	/**
-	 * Method to get cutOffDate
-	 * @return cutoff date
-	 */
 	public Date getCutOffDate() {
 		return cutOff;
 	}
-	
-	/**
-	 * Method to set cut off date
-	 * @param eventInfo
-	 */
 	public void setCutOffDate(Date eventInfo) {
 		this.cutOff = eventInfo;
 	}
-	
-	/**
-	 * Method to get Sponsors
-	 * @return sponsors
-	 */
 	public String getSponsors() {
 		return sponsors;
 	}
-	
-	/**
-	 * Method to set sponsors.
-	 * @param sponsors
-	 */
 	public void setSponsors(String sponsors) {
 		this.sponsors = sponsors;
 	}
-	
-	/**
-	 * Method to get judge and criteria
-	 * @return judge and criteria
-	 */
 	public String getCriteriaAndJudges() {
 		return criteriaAndJudges;
 	}
-	/**
-	 * Method to set criteria and judge.
-	 * @param criteriaAndJudges
-	 */
 	public void setCriteriaAndJudges(String criteriaAndJudges) {
 		this.criteriaAndJudges = criteriaAndJudges;
 	}
 	
+	/*
+	 * Below is class that follows the format of the address book example. I don't think
+	 * it is needed, but am leaving it in case
+	private IntegerProperty eventID;
+	private StringProperty eventName;
+	private StringProperty eventDetails;
+	private StringProperty location;
+	private StringProperty dateAndTime;
+	private StringProperty eventInfo;
+	private StringProperty sponsors;
+	private StringProperty criteriaAndJudges;
+	
+	public WeaveEvent(String eventName, int eventID){
+		this.eventID = new SimpleIntegerProperty(eventID);
+		this.eventName = new SimpleStringProperty(eventName);
+		this.eventDetails = new SimpleStringProperty(eventName);
+		this.location = new SimpleStringProperty("Narnia");
+		this.dateAndTime = new SimpleStringProperty("3/14/2017");
+		this.eventInfo = new SimpleStringProperty("Boring");
+		this.sponsors = new SimpleStringProperty("Nike");
+		this.criteriaAndJudges = new SimpleStringProperty("Hans");
+	}
+	
+	@Override
+	public String toString(){
+		return eventName.get();
+	}
+
+	public int getEventID() {
+		return eventID.get();
+	}
+
+	public void setEventID(int eventID) {
+		this.eventID.set(eventID);
+	}
+
+	public String getEventName() {
+		return eventName.get();
+	}
+
+	public void setEventName(String eventName) {
+		this.eventName.set(eventName);
+	}
+
+	public String getEventDetails() {
+		return eventDetails.get();
+	}
+
+	public void setEventDetails(String eventDetails) {
+		this.eventDetails.set(eventDetails);
+	}
+
+	public String getLocation() {
+		return location.get();
+	}
+
+	public void setLocation(String location) {
+		this.location.set(location);
+	}
+
+	public String getDateAndTime() {
+		return dateAndTime.get();
+	}
+
+	public void setDateAndTime(String dateAndTime) {
+		this.dateAndTime.set(dateAndTime);
+	}
+
+	public String getEventInfo() {
+		return eventInfo.get();
+	}
+
+	public void setEventInfo(String eventInfo) {
+		this.eventInfo.set(eventInfo);
+	}
+
+	public String getSponsors() {
+		return sponsors.get();
+	}
+
+	public void setSponsors(String sponsors) {
+		this.sponsors.set(sponsors);
+	}
+
+	public String getCriteriaAndJudges() {
+		return criteriaAndJudges.get();
+	}
+
+	public void setCriteriaAndJudges(String criteriaAndJudges) {
+		this.criteriaAndJudges.set(criteriaAndJudges);
+	}*/
 }
