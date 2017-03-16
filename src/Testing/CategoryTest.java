@@ -5,9 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Category Test
  * @author Max Kulish
- * @author Jorie Fernandez - Added methods to handle negative category ID and name
  */
 public class CategoryTest{
 
@@ -25,7 +23,6 @@ public class CategoryTest{
     
     /**
      * Method to test if the category ID is negative.
-     * @author Jorie Fernandez
      */
     @Test (expected = IllegalArgumentException.class)
     public void testSetNegativeCategoryID() {
@@ -69,15 +66,6 @@ public class CategoryTest{
         String categoryName = "";
         Category instance = new Category();
         instance.setCategoryName(categoryName);
-    }
-    
-    /**
-     * Method to 
-     */
-    @Test (expected = NullPointerException.class)
-    public void testSetNullCategoryName(){
-    	Category instance = new Category();
-    	instance.setCategoryName(null);
     }
 
     /**
