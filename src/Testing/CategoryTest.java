@@ -16,32 +16,20 @@ public class CategoryTest{
     public void testGetCategoryID() {
         System.out.println("getCategoryID");
         Category instance = new Category();
-        int expResult = 0;
+        int expResult = -1;
         int result = instance.getCategoryID();
         assertEquals(expResult, result);
-    }
-    
-    /**
-     * Method to test if the category ID is negative.
-     */
-    @Test (expected = IllegalArgumentException.class)
-    public void testSetNegativeCategoryID() {
-    	Category instance = new Category();
-    	instance.setCategoryID(-1);
-    	
     }
 
     /**
      * Test of setCategoryID method, of class Category.
-     * Modified by Jorie Fernandez by setting category instance and  checking the result.
      */
     @Test
     public void testSetCategoryID() {
         System.out.println("setCategoryID");
-        int categoryID = 2;
+        int categoryID = 0;
         Category instance = new Category();
         instance.setCategoryID(categoryID);
-        assertEquals(2, instance.getCategoryID());
     }
 
     /**
@@ -52,7 +40,6 @@ public class CategoryTest{
         System.out.println("getCategoryName");
         Category instance = new Category();
         String expResult = "A test category";
-        instance.setCategoryName(expResult);
         String result = instance.getCategoryName();
         assertEquals(expResult, result);
     }
@@ -77,7 +64,7 @@ public class CategoryTest{
         Category instance = new Category();
         String expResult = "A test category";
         String result = instance.toString();
-        assertEquals(null, result);
+        assertEquals(expResult, result);
     }
     
 }
