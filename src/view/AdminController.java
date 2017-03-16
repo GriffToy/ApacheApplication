@@ -7,6 +7,12 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 
+/**
+ * Controller for the admin home page
+ * 
+ * @author Griffin Toyoda
+ *
+ */
 public class AdminController {
 	@FXML
 	private RadioButton createEventRButton;
