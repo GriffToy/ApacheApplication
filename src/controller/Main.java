@@ -29,8 +29,15 @@ import view.UserSelectController;
 import model.UserEntry;
 import model.WeaveEvent;
 
+/**
+ * Class that handles all window displays of the application.
+ * @author Griffin Toyoda
+ *
+ */
 public class Main extends Application {
+	// Use to set up application
     private Stage primaryStage;
+    //Main layout pane
     private BorderPane rootLayout;
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
     private User currentUser; // Stores current user. Set to null each time the login page is shown
