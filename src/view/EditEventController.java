@@ -1,9 +1,12 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -212,7 +215,6 @@ public class EditEventController {
 	private void saveEventButtonClicked(){
 		if(mainApp != null){
 			if(isValidEntry()){
-				eventToEdit.setEventID(mainApp.getWeaveEventList().size());
 				eventToEdit.setEventName(eventNameTextField.getText());
 				eventToEdit.setDateAndTime(eventDateDatePicker.getValue());
 				eventToEdit.setCutOffDate(eventDateDatePicker.getValue().minus(2, ChronoUnit.WEEKS));
@@ -220,6 +222,21 @@ public class EditEventController {
 				eventToEdit.setSponsors(sponsorTextField.getText());
 				eventToEdit.setEventDetails(otherDetailsTextArea.getText());
 				mainApp.showAdminPage();
+				
+				Connection conn = null;
+				conn = sqliteConnection.dbConnector();
+				try{
+					Statement statement = conn.createStatement();
+					String query = "UPDATE Event SET eventName = '" + eventToEdit.getEventName()
+									+ "', eventLocation = '" + eventToEdit.getLocation()
+									+ "', eventDate = '" + eventToEdit.getDateAndTime().toString()
+									+ "', eventCutDate = '" + eventToEdit.getCutOffDate().toString()
+									+ "' WHERE eventID == " + eventToEdit.getEventID();
+					System.out.println(query);
+					statement.executeUpdate(query);
+				} catch (Exception e){
+					System.out.println("Error connection!" + e.getMessage());
+				}
 			}
 		}
 	}
