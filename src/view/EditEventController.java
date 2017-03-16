@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
+import java.util.Random;
 
 import controller.Main;
 import controller.sqliteConnection;
@@ -54,6 +55,7 @@ public class EditEventController {
 	// Reference to the main application.
 	private Main mainApp;
 	private WeaveEvent eventToEdit;
+	private Random rand = new Random();
 
 	/**
 	 * Is called by the main application to give a reference back to itself.
@@ -117,7 +119,7 @@ public class EditEventController {
 				if(!eventToEdit.containsCategory(result.get())){
 					// Category does not exist.
 					// Create a new event with the ID number equal to the number of categories and name equal to user input.
-					Category newCategory = new Category(eventToEdit.getEventCategories().size(), result.get());
+					Category newCategory = new Category(rand.nextInt(Integer.MAX_VALUE), result.get());
 					eventToEdit.addCategory(newCategory);
 				}
 				else{
@@ -234,6 +236,17 @@ public class EditEventController {
 									+ "' WHERE eventID == " + eventToEdit.getEventID();
 					System.out.println(query);
 					statement.executeUpdate(query);
+					
+					query = "DELETE FROM Category WHERE categoryEventID == " + eventToEdit.getEventID();
+					System.out.println(query);
+					statement.executeUpdate(query);
+					
+					for (Category x : eventToEdit.eventCategories){
+						statement.executeUpdate("INSERT INTO Category VALUES(" 
+											+ x.getCategoryID() + ", '" 
+											+ x.getCategoryName() + "', " 
+											+ eventToEdit.getEventID() + ")");
+					}
 				} catch (Exception e){
 					System.out.println("Error connection!" + e.getMessage());
 				}
@@ -249,22 +262,22 @@ public class EditEventController {
 	 * @return false if a required field is not filled out, true otherwise.
 	 */
 	private boolean isValidEntry(){
-		if(eventNameTextField.getText().length() < minEventNameLength){
-			warningLabel.setText("Please enter an event name");
-			return false;
-		}
-		else if(eventDateDatePicker.getValue() == null){
-			warningLabel.setText("Please pick a date for the event");
-			return false;
-		}
-		else if(locationTextField.getText().length() < minlocationLength){
-			warningLabel.setText("Please enter a location");
-			return false;
-		}
-		else if(sponsorTextField.getText().length() < minSponsorLength){
-			warningLabel.setText("Please enter a sponsor name");
-			return false;
-		}
-		return true;
-	}
+        if(eventNameTextField.getText() != null && eventNameTextField.getText().length() < minEventNameLength){
+            warningLabel.setText("Please enter an event name");
+            return false;
+        }
+        else if(eventDateDatePicker.getValue() == null){
+            warningLabel.setText("Please pick a date for the event");
+            return false;
+        }
+        else if(locationTextField.getText() != null && locationTextField.getText().length() < minlocationLength){
+            warningLabel.setText("Please enter a location");
+            return false;
+        }
+        else if(sponsorTextField.getText() != null && sponsorTextField.getText().length() < minSponsorLength){
+            warningLabel.setText("Please enter a sponsor name");
+            return false;
+        }
+        return true;
+    }
 }

@@ -191,7 +191,7 @@ public class CreateEventController {
 				try{
 					Statement statement = conn.createStatement();
 					for (Category x : newWeaveEvent.eventCategories){
-					statement.executeUpdate("INSERT INTO Category VALUES(" 
+						statement.executeUpdate("INSERT INTO Category VALUES(" 
 											+ x.getCategoryID() + ", '" 
 											+ x.getCategoryName() + "', " 
 											+ newWeaveEvent.getEventID() + ")");
