@@ -1,13 +1,9 @@
 package view;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Optional;
 import java.util.Random;
-
-import javax.swing.JOptionPane;
 
 import controller.Main;
 import controller.sqliteConnection;
@@ -120,7 +116,6 @@ public class RegisterPageController {
 	    	
 	    	Connection conn = null;
 			conn = sqliteConnection.dbConnector();
-			if(validNewUser()) {
 	    	try{
 				Statement statement = conn.createStatement();
 				String query = "INSERT INTO User VALUES( "
@@ -141,37 +136,6 @@ public class RegisterPageController {
 			}
 	    	mainApp.showLoginPage();
     	}
-    	}
-    }
-    
-   
-    private boolean validNewUser(){
-    	Connection conn = null;
-    	conn = sqliteConnection.dbConnector();
-    	
-    	String query = "select * from User where attendeeEmail = ? "
-    				+ "or attendeeUserName = ?";
-    	try{
-    			
-    		PreparedStatement pst = conn.prepareStatement(query);
-    		pst.setString(1, emailAddress.getText().replaceAll("\\s", ""));
-    		pst.setString(2, userNameField.getText().replaceAll("\\s", ""));
-    		ResultSet result = pst.executeQuery();
-    		
-    		if(result.next()){
-    			JOptionPane.showMessageDialog(null, "Duplicate user!", "Error",
-    					JOptionPane.ERROR_MESSAGE);
-    			return false;
-    		}
-    		
-    		pst.close();
-    	}catch (Exception e){
-    		JOptionPane.showMessageDialog(null, "Error Connection!" + e.getMessage(), "Database Error",
-					JOptionPane.ERROR_MESSAGE);
-    		
-    	}
-    	
-    	return true;
     }
     
     /**
