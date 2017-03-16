@@ -199,6 +199,17 @@ public class EditEventController {
         	Optional<ButtonType> result = alert.showAndWait();
         	if (result.get() == ButtonType.OK){
         	    // ... user chose OK
+        		
+        		Connection conn = null;
+				conn = sqliteConnection.dbConnector();
+				
+				try{
+					Statement statement = conn.createStatement();
+					statement.executeUpdate("DELETE FROM Category WHERE categoryEventID == " + eventToEdit.getEventID());
+					statement.executeUpdate("DELETE FROM Event WHERE eventID == " + eventToEdit.getEventID());
+				} catch (Exception e){
+					System.out.println("Error connection!" + e.getMessage());
+				}
         		mainApp.getWeaveEventList().remove(eventToEdit);
     			mainApp.showAdminPage();
         	} else {

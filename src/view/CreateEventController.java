@@ -176,7 +176,7 @@ public class CreateEventController {
 	private void saveEventButtonClicked(){
 		if(mainApp != null){
 			if(isValidEntry()){
-				newWeaveEvent.setEventID(mainApp.getWeaveEventList().size()+1);
+				newWeaveEvent.setEventID(rand.nextInt(Integer.MAX_VALUE));
 				newWeaveEvent.setEventName(eventNameTextField.getText());
 				newWeaveEvent.setDateAndTime(eventDateDatePicker.getValue());
 				newWeaveEvent.setCutOffDate(eventDateDatePicker.getValue().minus(2, ChronoUnit.WEEKS));

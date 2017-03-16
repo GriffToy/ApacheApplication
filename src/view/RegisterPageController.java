@@ -1,8 +1,12 @@
 package view;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Optional;
+import java.util.Random;
 
 import controller.Main;
+import controller.sqliteConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -12,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.Category;
 import model.User;
 import model.User.UserType;
 
@@ -47,6 +52,7 @@ public class RegisterPageController {
     // Reference to the main application.
     private Main mainApp;
     private UserType attendeeType;
+    private Random rand = new Random();
     
     /**
      * Is called by the main application to give a reference back to itself.
@@ -97,7 +103,7 @@ public class RegisterPageController {
 	    	// Store data and go back to the login page.
     		User newUser = new User();
     		newUser.setUserType(attendeeType);
-    		newUser.setAttendeeID(-1);
+    		newUser.setAttendeeID(rand.nextInt(Integer.MAX_VALUE));
     		newUser.setUsername(userNameField.getText());
     		newUser.setPassword(passwordField.getText());
 	    	// TODO Encrypt password. http://blog.jerryorr.com/2012/05/secure-password-storage-lots-of-donts.html
@@ -107,7 +113,28 @@ public class RegisterPageController {
     		newUser.setEmailAddress(emailAddress.getText());
 	    	mainApp.userNameUserMap.put(userNameField.getText(), newUser);
 	    	// TODO Remove print user statement for final product.
-	    	System.out.println(newUser);
+	    	//System.out.println(newUser);
+	    	
+	    	Connection conn = null;
+			conn = sqliteConnection.dbConnector();
+	    	try{
+				Statement statement = conn.createStatement();
+				String query = "INSERT INTO User VALUES( "
+										+ newUser.getAttendeeID()  + ", '"
+										+ newUser.getLastName() + "', '"
+										+ newUser.getFirstName() + "', '"
+										+ newUser.getUsername() + "', '"
+										+ newUser.getPassword() + "', '"
+										+ newUser.getEmailAddress() + "', "
+										+ newUser.getPhoneNumber() + ", '";
+				if (newUser.getUserType() == UserType.ATTENDEE) query += "attendee')";
+				else query += "judge')";
+				
+				statement.executeUpdate(query);
+	
+			} catch (Exception e){
+				System.out.println("Error connection!" + e.getMessage());
+			}
 	    	mainApp.showLoginPage();
     	}
     }
