@@ -124,12 +124,14 @@ public class User {
 
 	/**
 	 * Method to add user entry
-	 * 
+	 * Modified by Jorie Fernandez to handle error for null entry
 	 * @param user entry
 	 */
 	public void addUserEntry(UserEntry userEntry) {
 		
-	
+		if(userEntry.equals(null)){
+			throw new NullPointerException("Null user entry!");
+		}
 		userEntries.add(userEntry);
 	}
 	
@@ -196,7 +198,7 @@ public class User {
 	 */
 	public void setUsername(String username) {
 		if(username.equals(null)){
-			throw new NullPointerException("Null user name");
+			throw new NullPointerException();
 		}
 		this.username = username;
 	}
