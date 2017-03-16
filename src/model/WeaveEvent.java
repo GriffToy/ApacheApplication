@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Model class for an event.
+ * Modified by - Jorie Fernandez added parameters to contructor
  * @author Griffin Toyoda
  *
  */

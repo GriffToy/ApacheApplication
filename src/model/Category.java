@@ -24,6 +24,9 @@ public class Category {
 	 * @param categoryID, the category ID
 	 * */
 	public void setCategoryID(int categoryID) {
+		if(categoryID <= 0) {
+			throw new IllegalArgumentException("Category is zero or negative!");
+		}
 		this.categoryID = categoryID;
 	}
 
@@ -40,6 +43,9 @@ public class Category {
 	 * @param categoryName
 	 */
 	public void setCategoryName(String categoryName) {
+		if(categoryName == null){
+			throw new NullPointerException("Null Category!");
+		}
 		this.categoryName = categoryName;
 	}
 
