@@ -8,21 +8,42 @@ import controller.sqliteConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Class for registered user
+ * @author Griffin Toyoda
+ *
+ */
 public class User {
+	
+	/** Enum */
 	public enum UserType{
 		NONE, ATTENDEE, JUDGE, ADMIN
 	}
+	
+	/** User type */
 	private UserType userType;
+	/** Attendee ID */
 	private int attendeeID;
+	/** user name */
 	private String username;
+	/** password */
 	private String password;
+	/** first name */
 	private String firstName;
+	/** Last name */
 	private String lastName;
+	/** email address */
 	private String emailAddress;
+	/** Phone number */
 	private long phoneNumber;
+	/** Event ID */
 	private int eventID;
+	/** User entry list */
 	private ObservableList<UserEntry> userEntries = FXCollections.observableArrayList();
 
+	/**
+	 * Constructor
+	 */
 	public User(){
 		this.userType = UserType.NONE;
 		this.attendeeID = -1;
@@ -36,8 +57,13 @@ public class User {
 
 	}
 	
+	/**
+	 * Method to return string
+	 * 
+	 */
 	@Override
 	public String toString(){
+		/** Create and append fields info. */
 		StringBuilder returnString = new StringBuilder();
 		returnString.append("User is: ");
 		returnString.append(userType);
