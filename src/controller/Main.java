@@ -31,27 +31,22 @@ import model.WeaveEvent;
 
 /**
  * Class that handles all window displays of the application.
- * @author Griffin Toyoda - initial GUI and data load set-up
- * @author Jorie Fernandez - load data events from database
+ * @author Griffin Toyoda
  *
  */
 public class Main extends Application {
-	/**Use to set up application */
+	// Use to set up application
     private Stage primaryStage;
-    /** Main layout pane */
+    //Main layout pane
     private BorderPane rootLayout;
-    /**List of event that will be stored  */
     private ObservableList<WeaveEvent> weaveEventList = FXCollections.observableArrayList();
-    /** Stores current user. Set to null each time the login page is shown */
-    private User currentUser; 
-    /** Map for User names, events, category, entries */
-    public HashMap<String, User> userNameUserMap; 
+    private User currentUser; // Stores current user. Set to null each time the login page is shown
+    public HashMap<String, User> userNameUserMap; // Maps usernames to users
     public HashMap<Integer,WeaveEvent> eventMap = new HashMap<Integer, WeaveEvent>();
 	public HashMap<Integer,String> categoryMap = new HashMap<Integer, String>();
 	public ArrayList<Integer> entryIdSet = new ArrayList<Integer>();
 	public ArrayList<UserEntry> entrySet = new ArrayList<UserEntry>();
 
-	/** Initiate loading of application. */
 	@Override
 	public void start(Stage primaryStage) {
 		loadData();
@@ -71,7 +66,7 @@ public class Main extends Application {
 	}
     
     /**
-     * Constructor for user name map
+     * Constructor for testing purposes
      */
     public Main(){        
     	userNameUserMap = new HashMap<String, User>();
@@ -79,44 +74,30 @@ public class Main extends Application {
     
     /**
      * Loads the eventList and userList from database. Called once at startup.
-     * @author Jorie Fernandez
-     * 
      */
     private void loadData(){
-    	/**Establish connection  to database */
     	Connection conn = null;
     	conn = sqliteConnection.dbConnector();
     	
-    	/** Create result set from queries. */
     	try{
-    		/** SQL query */
-    		PreparedStatement pst; 
-    		/** Event query */
+    		PreparedStatement pst;
     		ResultSet eventResult;
-    		/** User query */
     		ResultSet userResult;
-    		/** entry query */
     		ResultSet entryResult;
-    		/** category query */
     		ResultSet categoryResult;
     		
-    		/** Execute event query */
     		pst = conn.prepareStatement("select * from Event");
     		eventResult = pst.executeQuery();
     		
-    		/** Execute user query */
     		pst = conn.prepareStatement("select * from User");
     		userResult = pst.executeQuery();
     		
-    		/** Execute entry query */
     		pst = conn.prepareStatement("select * from Entry");
     		entryResult = pst.executeQuery();
     		
-    		/** Execute category query */
     		pst = conn.prepareStatement("select * from Category");
     		categoryResult = pst.executeQuery();
     		
-    		/** retrieve results per row and store in the WeaveEvent map */
     		while(eventResult.next()) {
     			WeaveEvent nEvent = new WeaveEvent();
     			nEvent.setEventID(eventResult.getInt(1));
@@ -128,7 +109,6 @@ public class Main extends Application {
     			eventMap.put(nEvent.getEventID(), nEvent);
     		}
     		
-    		/** retrieve results per row and store in the Category map */	
     		while(categoryResult.next()){
     			Category nCategory = new Category();
     			nCategory.setCategoryID(categoryResult.getInt(1));
@@ -141,7 +121,6 @@ public class Main extends Application {
     			categoryMap.put(categoryResult.getInt(1), categoryResult.getString(2));
     		}
     		
-    		/** retrieve results per row and store in the entry map */
     		while(entryResult.next()){
 				UserEntry nEntry = new UserEntry();
 				nEntry.category.setCategoryID(entryResult.getInt(1));
@@ -155,7 +134,6 @@ public class Main extends Application {
 				
     		}
     		
-    		/** retrieve results per row and store in the user map */
     		while(userResult.next()){
     			User nUser = new User();
     			nUser.setAttendeeID(userResult.getInt("attendeeID"));
@@ -180,7 +158,7 @@ public class Main extends Application {
     		
     		
     		
-    		/** Close database connection. */
+    		
     		pst.close();
     	}catch (Exception e){
     		System.out.println("Error connection!" + e.getMessage());
@@ -190,24 +168,16 @@ public class Main extends Application {
     /**
      * Returns the data as an observable list of WeaveEvents. 
      * @author Griffin Toyoda
-     * @return event list
+     * @return
      */
     public ObservableList<WeaveEvent> getWeaveEventList() {
         return weaveEventList;
     }
     
-    /**
-     * Method to get current user.
-     * @return current user
-     */
     public User getCurrentUser(){
     	return currentUser;
     }
     
-    /**
-     * Method to set current user.
-     * @param current user
-     */
     public void setCurrentUser(User currentUser){
     	this.currentUser = currentUser;
     }
@@ -456,10 +426,6 @@ public class Main extends Application {
         }
     }
 	
-    /**
-     * Main method
-     * @param args
-     */
 	public static void main(String[] args) {
 		launch(args);
 	}
