@@ -9,12 +9,6 @@ import javafx.scene.control.Label;
 import javafx.util.StringConverter;
 import model.WeaveEvent;
 
-/**
- * Controller for the eventPage.
- * 
- * @author Griffin Toyoda
- *
- */
 public class EventController {
 	@FXML
 	private Button leftButton;

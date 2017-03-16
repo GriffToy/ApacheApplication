@@ -22,7 +22,7 @@ import javafx.util.StringConverter;
 import model.Category;
 
 /**
- * Controller for the judgeViewPage.
+ * Controller for the judgeViewPage
  * 
  * @author Griffin Toyoda
  *
