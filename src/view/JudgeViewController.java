@@ -21,12 +21,6 @@ import model.WeaveEvent;
 import javafx.util.StringConverter;
 import model.Category;
 
-/**
- * Controller for the judgeViewPage
- * 
- * @author Griffin Toyoda
- *
- */
 public class JudgeViewController {
 	@FXML
 	private ComboBox<WeaveEvent> eventComboBox;

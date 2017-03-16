@@ -6,12 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 
-/**
- * Controller for the rootLayout
- * 
- * @author Griffin Toyoda
- *
- */
 public class RootLayoutController {
 	@FXML
 	private MenuItem delete;

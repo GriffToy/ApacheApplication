@@ -22,12 +22,6 @@ import model.User;
 import model.User.UserType;
 
 @SuppressWarnings("unused")
-/**
- * Controller for the registerPage.
- * 
- * @author Griffin Toyoda
- *
- */
 public class RegisterPageController {
 	private static int minUsernameLength = 1;
 	private static int minPasswordLength = 1;
